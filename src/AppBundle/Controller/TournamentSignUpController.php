@@ -28,13 +28,6 @@ class TournamentSignUpController extends Controller
 
             $user = $this->getUser();
 
-            $signupTournament = $em->getRepository('AppBundle:SignUpTournament')
-                ->findOneBy([
-                    'user' => $user->getId(),
-                    'tournament' => $tournament,
-                    'deleted_at' => null
-                ]);
-
             $birthDay = $user->getBirthDay();
             $tournamentDay = $tournament->getStart();
 
@@ -42,8 +35,9 @@ class TournamentSignUpController extends Controller
             $date_diff = date_diff($birthDay, $tournamentDay);
             $date_diff = $date_diff->format("%y");
 
-
-            if($date_diff <=16){
+            if ($date_diff <=14) {
+                $age = 'młodzik';
+            }elseif($date_diff <=16){
                 $age = 'kadet';
             }elseif ($date_diff <= 18){
                 $age = 'junior';
@@ -73,15 +67,11 @@ class TournamentSignUpController extends Controller
                         'deleted_at' => null
                     ]);
 
-            if($isAlreadySignUp){
-                $form = $this->createForm(SignUpTournamentType::class,$isAlreadySignUp,
+            $signupTournament = $isAlreadySignUp ?? new SignUpTournament($user, $tournament);
+
+            $form = $this->createForm(SignUpTournamentType::class, $signupTournament,
                     ['trait_choices' => $arr]
                 );
-            }else{
-                $form = $this->createForm(SignUpTournamentType::class, new SignUpTournament($user, $tournament),
-                    ['trait_choices' => $arr]
-                );
-            }
 
 
             $form->handleRequest($request);
@@ -101,16 +91,12 @@ class TournamentSignUpController extends Controller
                 return $this->redirectToRoute("tournament_sign_up", ['id' => $tournament->getId()]);
             }
 
-            if ($date_diff <=14) {
-                $age = 'młodzik';
-            }
-
             return $this->render('tournament/sign_up.twig', array(
                 'form' => $form->createView(),
                 'age' => $age,
                 'tournament' => $tournament,
                 'date_diff' => $date_diff,
-                'isUserRegister' => $signupTournament,
+                'isUserRegister' => $isAlreadySignUp,
             ));
 
         }
