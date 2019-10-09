@@ -13,12 +13,12 @@ final class Database
      */
     public $mysqli;
 
-    public function __construct()
+    public function __construct(string $env)
     {
-            $dbServer = 'db';
+            $dbServer = ($env == 'dev') ? 'db' : 'db_test';
             $dbUser = 'test';
             $dbPass = 'test';
-            $dbName = 'test';
+            $dbName = ($env == 'dev') ? 'test' : 'db_test';
             $dbPort = 3306;
 
         $this->mysqli = new mysqli($dbServer, $dbUser, $dbPass, $dbName, $dbPort);

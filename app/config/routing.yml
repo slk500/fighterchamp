@@ -39,6 +39,13 @@ api_signup_new:
     controller: AppBundle\Controller\Api\SignUpController::newAction
     condition: 'request.isXmlHttpRequest()'
 
+api_signup_delete:
+    path:     /api/signups/{id}
+    controller: AppBundle\Controller\Api\SignUpController::delete
+    condition: 'request.isXmlHttpRequest()'
+    requirements:
+        id: '\d+'
+
 api_club_list:
     path:     /api/kluby
     condition: 'request.isXmlHttpRequest()'

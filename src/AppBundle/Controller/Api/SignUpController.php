@@ -7,10 +7,13 @@ use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class SignUpController extends Controller
 {
@@ -41,7 +44,21 @@ class SignUpController extends Controller
 
     public function list(Tournament $tournament, EntityManagerInterface $entityManager)
     {
-       return $entityManager->getRepository(SignUpTournament::class)
-            ->findBy(['tournament' => $tournament]);
+       return $entityManager->getRepository(SignUpTournament::class) //todo remove flags delete
+            ->findBy(
+                [
+                    'tournament' => $tournament,
+                    'deleted_at' => null,
+                    'deletedAtByAdmin' => null
+                ]
+            );
+    }
+
+    public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
+    {
+        $signUpTournament->delete();
+        $entityManager->flush();
+
+        return $signUpTournament;
     }
 }

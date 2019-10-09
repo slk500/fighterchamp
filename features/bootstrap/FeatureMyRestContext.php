@@ -35,7 +35,7 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
             ]
         ]);
 
-        $this->databaseHelper = new DatabaseHelper(new Database());
+        $this->databaseHelper = new DatabaseHelper(new Database('dev'));
     }
 
     /**
@@ -171,5 +171,13 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
         TestCase::assertJsonStringEqualsJsonString(
          $this->content, $string->getRaw()
         );
+    }
+
+    /**
+     * @Then /^the response should contain "([^"]*)" field which is not empty$/
+     */
+    public function theResponseShouldContainFieldWhichIsNotEmpty($arg1)
+    {
+        TestCase::assertNotEmpty($this->getContentDecode()['data'][$arg1]);
     }
 }

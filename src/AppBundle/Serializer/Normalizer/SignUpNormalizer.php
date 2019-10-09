@@ -44,6 +44,7 @@ class SignUpNormalizer implements NormalizerInterface
             'trainingTime' => $object->getTrainingTime(),
             'isLicence' => $object->getIsLicence(),
             'discipline' => $object->getDiscipline(),
+            'deletedAt' => $object->getDeletedAt(),
             'user'=> [
                 'href' => $this->router->generate('user_show', ['id' => $object->getUser()->getId()]),
                 'name' => $object->getUser()->getName(),

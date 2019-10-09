@@ -56,8 +56,8 @@
 
                         <p>Twoje zgłoszenie na turniej zostało zarejestrowane:</p>
                         {% include 'tournament/_parts/_twojeZgloszeniehtml.twig' with { signUpTournament : [isUserRegister]} only %}
-                        {% include 'tournament/_parts/skasuj_moje_zgloszenie_form.html.twig' %}
-
+                        <button id="js-signup-delete" class="btn btn-danger align-left">Skasuj moje zgłoszenie</button>
+                        <br>
                         {% if signUpOpen %}
 
                             <br>
@@ -65,7 +65,7 @@
                             <br>
 
                             <div id="edit_box" class="col-xs-12">
-                                {% include 'tournament/_parts/show_sing_up_form_if_inssurance_data_ELSE_link_to_profile.html.twig' %}
+                                {% include ':tournament/_parts:_sign_up_form.html.twig' %}
                             </div>
 
                         {% else %}
@@ -78,19 +78,13 @@
 
                         {% endif %}
 
+                    {% else %}
 
-                        {#{% if not isUserRegister.isPaid %}#}
-                            {#<br>#}
-                            {#<p>#}
-                                {#<small>{{ include(template_from_string(tournament.paymentInfo)) }}</small>#}
-                            {#</p>#}
-                        {#{% endif %}#}
-                        
-                    {% endif %}
+                        {% if signUpOpen and tournament.isAvailableSeats %}
 
-                    {% if signUpOpen and tournament.isAvailableSeats %}
+                            {% include  ':tournament/_parts:_sign_up_form.html.twig' %}
 
-                        {% include 'tournament/_parts/show_sing_up_form_if_inssurance_data_ELSE_link_to_profile.html.twig' %}
+                        {% endif %}
 
                     {% endif %}
 
@@ -128,12 +122,20 @@
         <script src="{{ asset('js/fight_table.js') }}"></script>
 
         <script>
-            $(document).ready(function () {
-                {% if isUserRegister.getYoutubeId is defined and isUserRegister.getYouTubeId != '' %}
-                embedYouTube('{{ isUserRegister.getYoutubeId }}');
-                {% endif %}
-            });
 
+            {% if isUserRegister %}
+
+            $( "#js-signup-delete" ).click(function() {
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: "{{ path('api_signup_delete', {id: isUserRegister.id }) }}", //todo SECURITY
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+            {% endif %}
 
             $("#edit_box").hide();
 

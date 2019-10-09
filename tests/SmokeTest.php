@@ -14,7 +14,7 @@ class SmokeTest extends HttpSmokeTestCase
 {
     public static function setUpBeforeClass()
     {
-        $databaseHelper = new DatabaseHelper(new Database());
+        $databaseHelper = new DatabaseHelper(new Database('test'));
         $databaseHelper->truncateAllTables();
 
         $kernel = new \AppKernel("test", true);
@@ -32,11 +32,6 @@ class SmokeTest extends HttpSmokeTestCase
     protected function setUp()
     {
         parent::setUp();
-
-        static::bootKernel([
-            'environment' => 'test',
-            'debug' => true,
-        ]);
     }
 
     protected function createRequest(RequestDataSet $requestDataSet)

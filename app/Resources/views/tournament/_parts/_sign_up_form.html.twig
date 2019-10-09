@@ -5,7 +5,7 @@ Klasy zawodników wg. stopnia zaawansowania:<br>
     <li>B – zawodnicy średniej klasy. 3 lub więcej pojedynków amatorskich bez występów na zawodach ogólnopolskich. W klasie tej na odpowiedzialność trenera wystąpić może zawodnik z klasy C.</li>
     <li>C – osoby początkujące i trenujące rekreacyjnie. Góra kilka walk amatorskich. Dodatkowo uwzględniamy w zgłoszeniu staż treningowy.</li>
 </ul>
-<div class="col-md-6">
+<div class="col-md-8">
     {{ form_start(form) }}
     {{ form_row(form.discipline,{ 'label' : 'Dyscyplina', 'placeholder' : 'Wybierz dyscypline'} ) }}
     {{ form_row(form.formula,{ 'label' : 'Klasa', 'placeholder' : 'Wybierz klasę'} ) }}
@@ -13,21 +13,8 @@ Klasy zawodników wg. stopnia zaawansowania:<br>
     {{ form_row(form.trainingTime, {
         'label': 'Staż treningowy (opcjonalnie) - liczba miesięcy',
         'attr': {'min': 0, 'max' : 99 }}) }}
-    {#{{ form_row(form.isLicence, {#}
-        {#'label': 'Posiadam ważną licencję PZB'#}
-    {#}) }}#}
-</div>
-<div class="col-md-6" id="yt-video"></div>
-<div class="col-md-6">
-    {#{{ form_row(form.youtubeId,{ 'label' : 'Muzyka wejścia zawodnika na ring - Podaj link do utworu z Youtube',#}
-        {#'placeholder' : 'Podaj link do utworu z Youtube',#}
-        {#'id': 'youtubeId'#}
-    {#}) }}#}
-    {#{{ form_row(form.musicArtistAndTitle,{ 'label' : 'Tytuł utworu',#}
-        {#'id': 'musicArtistAndTitle'#}
-    {#}) }}#}
-
     <button type="submit" class="btn btn-primary" formnovalidate >Wyślij moje zgłoszenie </button>
     {{ form_end(form)  }}
+</div>
 </div>
 

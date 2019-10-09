@@ -28,7 +28,7 @@ class TournamentSignUpController extends Controller
 
             $user = $this->getUser();
 
-            $isUserRegister = $em->getRepository('AppBundle:SignUpTournament')
+            $signupTournament = $em->getRepository('AppBundle:SignUpTournament')
                 ->findOneBy([
                     'user' => $user->getId(),
                     'tournament' => $tournament,
@@ -89,11 +89,11 @@ class TournamentSignUpController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $signUpTournament = $form->getData();
+                $signupTournament = $form->getData();
 
                 if(!$isAlreadySignUp) {
 
-                    $em->persist($signUpTournament);
+                    $em->persist($signupTournament);
 
                 }
                     $em->flush();
@@ -101,31 +101,16 @@ class TournamentSignUpController extends Controller
                 return $this->redirectToRoute("tournament_sign_up", ['id' => $tournament->getId()]);
             }
 
-            $formDelete = $this->createFormBuilder($isUserRegister)
-                ->getForm();
-
-            $formDelete->handleRequest($request);
-
-            if ($formDelete->isSubmitted() && $formDelete->isValid()) {
-
-                //todo sometimes isUserRegister is null - error 500
-                $isUserRegister->delete();
-                $em->flush();
-                return $this->redirectToRoute("tournament_sign_up", ['id' => $tournament->getId()]);
-            }
-
-
             if ($date_diff <=14) {
                 $age = 'młodzik';
             }
 
             return $this->render('tournament/sign_up.twig', array(
                 'form' => $form->createView(),
-                'formDelete' => $formDelete->createView(),
                 'age' => $age,
                 'tournament' => $tournament,
                 'date_diff' => $date_diff,
-                'isUserRegister' => $isUserRegister,
+                'isUserRegister' => $signupTournament,
             ));
 
         }

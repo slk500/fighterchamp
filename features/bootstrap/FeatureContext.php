@@ -1,5 +1,6 @@
 <?php
 
+use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Behat\Behat\Context\Context;
@@ -8,6 +9,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Tests\Builder\RulesetBuilder;
 use Tests\Builder\SignupTournamentBuilder;
@@ -58,11 +60,12 @@ class FeatureContext extends RawMinkContext implements Context
         $kernel = new AppKernel('dev', true);
         $kernel->boot();
         $this->em = $kernel->getContainer()->get('doctrine')->getManager();
+        $kernel->getContainer()->get('profiler')->disable();
         $this->userBuilder = new UserBuilder();
         $this->tournamentBuilder = new TournamentBuilder();
         $this->signupTournamentBuilder = new SignupTournamentBuilder();
         $this->rulesetBuilder = new RulesetBuilder();
-        $this->databaseHelper = new DatabaseHelper(new Database());
+        $this->databaseHelper = new DatabaseHelper(new Database('dev'));
     }
 
     /**
@@ -192,5 +195,35 @@ class FeatureContext extends RawMinkContext implements Context
 
         $this->em->persist($signup);
         $this->em->flush();
+    }
+
+    /**
+     * @Given /^I am signed up for a tournament$/
+     */
+    public function iAmSignedUpForATournament()
+    {
+        $user = $this->em->getRepository(User::class)
+            ->find(1);
+
+        $tournament = $this->em->getRepository(Tournament::class)
+            ->find(1);
+
+        $signup = $this->signupTournamentBuilder
+            ->withUser($user)
+            ->withTournament($tournament)
+            ->build();
+
+        $this->em->persist($signup);
+        $this->em->flush();
+    }
+
+    /**
+     * @Then /^SignUpTournament table should be empty$/
+     */
+    public function signuptournamentTableShouldBeEmpty()
+    {
+        $result = $this->em->getRepository(SignUpTournament::class)->findAll();
+
+        TestCase::assertEmpty($result);
     }
 }

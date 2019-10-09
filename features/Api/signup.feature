@@ -1,5 +1,11 @@
 Feature: Signup
-  User (Fighter or Coach) can sign up for a tournament
+
+  Scenario:
+    Given there is a tournament "Fight Tournament 1"
+    And there is a user "user"
+    And "user" have signup for "Fight Tournament 1"
+    When I send a "DELETE" request to "api/signups/1"
+    Then the response should contain "deletedAt" field which is not empty
 
   Scenario:
     Given there is a tournament "Fight Tournament 1"
@@ -22,6 +28,7 @@ Feature: Signup
     "trainingTime": null,
     "isLicence": false,
     "discipline": null,
+    "deletedAt": null,
     "user": {
       "href": "\/ludzie\/1",
       "name": "user",
