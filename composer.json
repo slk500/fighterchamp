@@ -1,93 +1,93 @@
 {
-  "name": "slk500/fighterchamp",
-  "license": "gpl-3.0",
-  "type": "project",
-  "autoload": {
-    "psr-4": {
-      "": "src/"
+    "name": "slk500/fighterchamp",
+    "type": "project",
+    "description": "What runs on fighterchamp.pl",
+    "license": "gpl-3.0",
+    "require": {
+        "php": ">=7.1",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-cache-bundle": "^1.2",
+        "doctrine/doctrine-migrations-bundle": "^1.1",
+        "doctrine/orm": "^2.5",
+        "friendsofsymfony/jsrouting-bundle": "^2.4",
+        "gedmo/doctrine-extensions": "^2.4",
+        "knpuniversity/oauth2-client-bundle": "^1.3",
+        "league/oauth2-client": "~1.0@dev",
+        "league/oauth2-facebook": "^1.4",
+        "lexik/jwt-authentication-bundle": "^2.4",
+        "myclabs/php-enum": "^1.5",
+        "paragonie/random_compat": "^2.0",
+        "pear/console_table": "^1.3",
+        "sensio/framework-extra-bundle": "^5.4",
+        "symfony/monolog-bundle": "^3.4",
+        "symfony/polyfill-apcu": "^1.0",
+        "symfony/swiftmailer-bundle": "^3.2",
+        "symfony/symfony": "^4.0",
+        "symfony/var-dumper": "^4.0",
+        "twig/extensions": "^1.4",
+        "vich/uploader-bundle": "^1.3"
     },
-    "classmap": [
-      "app/AppKernel.php",
-      "app/AppCache.php"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "require": {
-    "php": ">=7.1",
-    "doctrine/doctrine-bundle": "^1.6",
-    "doctrine/doctrine-cache-bundle": "^1.2",
-    "doctrine/doctrine-migrations-bundle": "^1.1",
-    "doctrine/orm": "^2.5",
-    "friendsofsymfony/jsrouting-bundle": "^2.4",
-    "gedmo/doctrine-extensions": "^2.4",
-    "knpuniversity/oauth2-client-bundle": "^1.3",
-    "league/oauth2-client": "~1.0@dev",
-    "league/oauth2-facebook": "^1.4",
-    "lexik/jwt-authentication-bundle": "^2.4",
-    "myclabs/php-enum": "^1.5",
-    "paragonie/random_compat": "^2.0",
-    "pear/console_table": "^1.3",
-    "sensio/framework-extra-bundle": "^5.4",
-    "symfony/monolog-bundle": "^3.4",
-    "symfony/polyfill-apcu": "^1.0",
-    "symfony/swiftmailer-bundle": "^3.2",
-    "symfony/symfony": "^4.0",
-    "symfony/var-dumper": "^4.0",
-    "twig/extensions": "^1.4",
-    "vich/uploader-bundle": "^1.3"
-  },
-
-
-  "require-dev": {
-    "behat/mink": "dev-master",
-    "behat/mink-extension": "^2.3",
-    "behat/mink-goutte-driver": "^1.2",
-    "behat/mink-selenium2-driver": "^1.3",
-    "doctrine/data-fixtures": "^1.3",
-    "doctrine/doctrine-fixtures-bundle": "^3.2",
-    "fzaninotto/faker": "^1.7",
-    "phpunit/phpunit": "^7.0",
-    "shopsys/http-smoke-testing": "^8.0",
-    "symfony/phpunit-bridge": "^4.0"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-    ],
-    "post-update-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-    ]
-  },
-  "extra": {
-    "symfony-app-dir": "app",
-    "symfony-bin-dir": "bin",
-    "symfony-var-dir": "var",
-    "symfony-web-dir": "web",
-    "symfony-tests-dir": "tests",
-    "symfony-assets-install": "relative",
-    "incenteev-parameters": {
-      "file": "app/config/parameters.yml"
+    "require-dev": {
+        "behat/mink": "dev-master",
+        "behat/mink-extension": "^2.3",
+        "behat/mink-goutte-driver": "^1.2",
+        "behat/mink-selenium2-driver": "^1.3",
+        "doctrine/data-fixtures": "^1.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
+        "fzaninotto/faker": "^1.7",
+        "localheinz/composer-normalize": "^1.3",
+        "phpunit/phpunit": "^7.0",
+        "shopsys/http-smoke-testing": "^8.0",
+        "symfony/phpunit-bridge": "^4.0"
     },
-    "symfony": {
-      "allow-contrib": true,
-      "require": "4.3.*"
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "symfony": {
+            "allow-contrib": true,
+            "require": "4.3.*"
+        },
+        "symfony-app-dir": "app",
+        "symfony-assets-install": "relative",
+        "symfony-bin-dir": "bin",
+        "symfony-tests-dir": "tests",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
     }
-  }
 }
