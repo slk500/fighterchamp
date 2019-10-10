@@ -4,7 +4,11 @@ namespace Tests\AppBundle\Util;
 
 use AppBundle\Util\AgeCategoryConverter;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bridge\PhpUnit\ClockMock;
 
+/**
+ * @group time-sensitive
+ */
 class AgeCategoryConverterTest extends TestCase
 {
     /**
@@ -12,6 +16,8 @@ class AgeCategoryConverterTest extends TestCase
      */
     public function testShouldConvertUserCategory($age, $expected)
     {
+        ClockMock::withClockMock(strtotime('2000-01-01 12:00:00'));
+
         $actual = AgeCategoryConverter::convert($age);
         self::assertEquals($expected, $actual);
     }
@@ -19,10 +25,10 @@ class AgeCategoryConverterTest extends TestCase
     public function getAges()
     {
         return [
-            [13, 'młodzik'],
-            [15, 'kadet'],
-            [17, 'junior'],
-            [20, 'senior'],
+            [\DateTime::createFromFormat('Y-m-d', '2013-01-01'), 'młodzik'],
+            [\DateTime::createFromFormat('Y-m-d', '2016-01-01'), 'kadet'],
+            [\DateTime::createFromFormat('Y-m-d', '2018-01-01'), 'junior'],
+            [\DateTime::createFromFormat('Y-m-d', '2020-01-01'), 'senior']
         ];
     }
 }
