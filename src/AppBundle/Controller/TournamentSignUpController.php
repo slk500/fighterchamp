@@ -93,9 +93,7 @@ class TournamentSignUpController extends Controller
 
             return $this->render('tournament/sign_up.twig', array(
                 'form' => $form->createView(),
-                'age' => $age,
                 'tournament' => $tournament,
-                'date_diff' => $date_diff,
                 'isUserRegister' => $isAlreadySignUp,
             ));
 
