@@ -12,13 +12,24 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $admin = new User();
+        $admin->setHash($this->faker->sha1);
+        $admin->setEmail('admin@admin.pl');
+        $admin->setName('admin');
+        $admin->setSurname('admin');
+        $admin->setMale(true);
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPlainPassword('password');
+
+        $manager->persist($admin);
+
         $user = new User();
         $user->setHash($this->faker->sha1);
-        $user->setEmail('admin@admin.pl');
-        $user->setName('admin');
-        $user->setSurname('admin');
+        $user->setEmail('user@user.pl');
+        $user->setName('user');
+        $user->setSurname('user');
         $user->setMale(true);
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER']);
         $user->setPlainPassword('password');
 
         $manager->persist($user);
