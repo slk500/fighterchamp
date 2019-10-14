@@ -215,17 +215,17 @@ class User implements UserInterface, Serializable
 
     public function isFighter(): bool
     {
-        return self::TYPE_FIGHTER === 1;
+        return self::TYPE_FIGHTER === $this->type;
     }
 
     public function isCoach(): bool
     {
-        return self::TYPE_FIGHTER === 2;
+        return self::TYPE_COACH === $this->type;
     }
 
     public function isFan(): bool
     {
-        return self::TYPE_FIGHTER === 3;
+        return self::TYPE_FAN === $this->type;
     }
 
     public function isValid(): bool

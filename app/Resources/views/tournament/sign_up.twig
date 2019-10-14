@@ -50,7 +50,7 @@
                     </p>
                 {% endif %}
 
-                {% if is_granted('ROLE_USER') %}
+                {% if is_granted('ROLE_USER') and not app.user.isFan %}
 
                     {% if isUserRegister %}
 
@@ -80,9 +80,9 @@
 
                     {% else %}
 
-                        {% if signUpOpen and tournament.isAvailableSeats %}
+                        {% if signUpOpen and tournament.isAvailableSeats and not app.user.isFan %}
 
-                            {% include  ':tournament/_parts:_sign_up_form.html.twig' %}
+                            {% include  ':tournament/_parts:_sign_up_form.html.twig' %}#}
 
                         {% endif %}
 

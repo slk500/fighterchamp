@@ -25,7 +25,7 @@ class TournamentSignUpController extends Controller
      */
     public function signUpAction(Tournament $tournament, Request $request, EntityManagerInterface $em)
     {
-        if ($this->get('security.authorization_checker')->isGranted('CAN_TOURNAMENT_ACTON', $tournament)) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') && ($this->getUser())->getType() != 3) {
 
             $user = $this->getUser();
 

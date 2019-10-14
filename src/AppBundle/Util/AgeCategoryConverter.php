@@ -12,9 +12,10 @@ class AgeCategoryConverter
             ->format("%y");
 
 
-        if ($years <= 14) {
-            return 'młodzik';
-        } elseif ($years <= 16) {
+//        if ($years <= 14) {
+//            return 'młodzik'; //have to add to database first
+//        }
+        if ($years <= 16) {
             return 'kadet';
         } elseif ($years <= 18) {
             return 'junior';
