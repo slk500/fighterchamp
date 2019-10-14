@@ -10,7 +10,7 @@ class ClubFixtures extends BaseFixture
 {
     public function load(ObjectManager $manager)
     {
-        foreach (range(1, 2) as $i) {
+        foreach (range(1, 10) as $i) {
 
             $club = new Club();
             $club->setName($this->faker->company);
@@ -18,10 +18,10 @@ class ClubFixtures extends BaseFixture
             $club->setStreet($this->faker->streetAddress);
             $club->setWww($this->faker->url);
 
-            $this->addReference(Club::class . '_' . $i, $club);
-
             $manager->persist($club);
             $manager->flush();
+
+            $this->addReference(Club::class . '_' . $i, $club);
         }
     }
 }

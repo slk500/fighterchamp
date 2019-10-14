@@ -54,16 +54,19 @@
 
                 <li {{ (app.request.attributes.get('_route') == 'tournament_list') ? 'class="active"' }}><a
                             href="{{ path ('tournament_list' ) }}">Turnieje</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'tournament_list') ? 'class="active"' }}><a
+                            href="{{ path ('sparring_list' ) }}">Sparingi</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'user_list') ? 'class="active"' }}><a
                             href="{{ path ('user_list') }}">Ludzie</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'club_list') ? 'class="active"' }}><a
                             href="{{ path ('club_list') }}">Kluby</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'fight_list') ? 'class="active"' }}><a
                             href="{{ path ('fight_list') }}">Walki</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'rank') ? 'class="active"' }}>
+                    <a href="{{ path ('rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a>
+                </li>
                 <li {{ (app.request.attributes.get('_route') == 'tqm_nowosci') ? 'class="active"' }}><a
                             href="{{ path ('ideas') }}">Pomysły</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'rank') ? 'class="active"' }}><a
-                            href="{{ path ('rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'about') ? 'class="active"' }}><a
                             href="{{ path ('about') }}">O Serwisie</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'rules') ? 'class="active"' }}><a
