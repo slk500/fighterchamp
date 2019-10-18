@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 //todo REFACTOR
@@ -166,6 +167,4 @@ class Ruleset
     {
         $this->kadet = $kadet;
     }
-
 }
-

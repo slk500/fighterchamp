@@ -34,14 +34,14 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
 
         $manager->persist($user);
 
-        foreach (range(1,10) as $i) {
+        foreach (range(1, 10) as $i) {
             $user = new User();
             $user->setHash($this->faker->sha1);
             $user->setEmail($this->faker->email);
             $user->setName($this->faker->firstName);
             $user->setSurname($this->faker->lastName);
             $user->setMale($this->faker->boolean());
-            $user->setClub($this->getReference(Club::class . '_' . rand(1,2)));
+            $user->setClub($this->getReference(Club::class . '_' . rand(1, 2)));
             $manager->persist($user);
 
             $this->addReference(User::class . '_' . $i, $user);
@@ -56,6 +56,4 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
           ClubFixtures::class
         ];
     }
-
-
 }

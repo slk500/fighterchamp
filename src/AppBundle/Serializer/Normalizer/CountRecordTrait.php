@@ -2,7 +2,6 @@
 
 namespace AppBundle\Serializer\Normalizer;
 
-
 use AppBundle\Entity\User;
 
 trait CountRecordTrait
@@ -12,14 +11,13 @@ trait CountRecordTrait
         $userRecord = new UserRecord();
 
         foreach ($user->getUserFights() as $userFight) {
-
-            switch ($userFight->getResult()){
+            switch ($userFight->getResult()) {
                 case 'win':
                     $userRecord->addWin();
                     break;
-				case 'win_ko':
-					$userRecord->addWin();
-					break;
+                case 'win_ko':
+                    $userRecord->addWin();
+                    break;
                 case 'draw':
                     $userRecord->addDraw();
                     break;
@@ -28,7 +26,6 @@ trait CountRecordTrait
                     $userRecord->addLose();
                     break;
             }
-
         }
         return [
             'win' => $userRecord->win,

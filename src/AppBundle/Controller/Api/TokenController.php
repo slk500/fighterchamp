@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller\Api;
 
-
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,7 +28,7 @@ class TokenController extends Controller
     {
         $user = $em->getRepository(User::class)->findOneBy(['name' => $request->getUser()]);
 
-        if(!$user) {
+        if (!$user) {
             throw $this->createNotFoundException('No user');
         }
 

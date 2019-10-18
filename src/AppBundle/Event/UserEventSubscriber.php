@@ -12,7 +12,6 @@ use AppBundle\Service\AppMailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-
 class UserEventSubscriber implements EventSubscriberInterface
 {
     private $mailer;
@@ -43,11 +42,13 @@ class UserEventSubscriber implements EventSubscriberInterface
             'user_validation',
             ['email' => $user->getEmail(),
                 'hash'=> $user->getHash()],
-            UrlGeneratorInterface::ABSOLUTE_URL);
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
 
         $this->mailer->sendEmail(
             $user->getEmail(),
             'Aktywacja Konta',
-            "<a href='$link'>Kliknij tutaj aby aktywować konto</a>");
+            "<a href='$link'>Kliknij tutaj aby aktywować konto</a>"
+        );
     }
 }

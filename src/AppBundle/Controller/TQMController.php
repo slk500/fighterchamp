@@ -28,7 +28,7 @@ class TQMController extends Controller
         $user = $this->getUser();
 
         $tasks = $em->getRepository(Task::class)->findAll();
-        $comments = $em->getRepository(Comment::class)->findBy([],['createdAt' => 'DESC']);
+        $comments = $em->getRepository(Comment::class)->findBy([], ['createdAt' => 'DESC']);
 
         $form = $this->createForm(CommentType::class, new Comment());
 

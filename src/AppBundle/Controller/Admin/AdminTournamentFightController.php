@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
-
 /**
  * @Route("/admin")
  */
@@ -73,7 +72,7 @@ class AdminTournamentFightController extends Controller
             ->getRepository('AppBundle:Fight')
             ->findAllTournamentFightsWhereFightersAreNotWeighted($tournament);
 
-        foreach($fightsWhereFightersAreNotWeighted as $fight){
+        foreach ($fightsWhereFightersAreNotWeighted as $fight) {
             $em->remove($fight);
             $em->flush();
         }
@@ -100,8 +99,7 @@ class AdminTournamentFightController extends Controller
 
         $signUps = [];
 
-        foreach($freeSignUpIds as $signUp)
-        {
+        foreach ($freeSignUpIds as $signUp) {
             $signUps [] = $this->getDoctrine()->getRepository('AppBundle:SignUpTournament')->find($signUp['id']);
         }
 
@@ -125,8 +123,7 @@ class AdminTournamentFightController extends Controller
 
         $signUps = [];
 
-        foreach($freeSignUpIds as $signUp)
-        {
+        foreach ($freeSignUpIds as $signUp) {
             $signUps [] = $this->getDoctrine()->getRepository('AppBundle:SignUpTournament')->find($signUp['id']);
         }
 
@@ -190,7 +187,7 @@ class AdminTournamentFightController extends Controller
         $userFight1 = $em->getRepository(UserFight::class)->find($fightId);
         $userFight2 = $userFight1->getOpponentUserFight();
 
-        switch ($result){
+        switch ($result) {
             case 'reset':
                 $userFight1->resetResult();
                 $userFight2->resetResult();
@@ -259,7 +256,6 @@ class AdminTournamentFightController extends Controller
      */
     public function toggleFightReady(Request $request, EntityManagerInterface $em)
     {
-
         $fightId = $request->request->get('fightId');
 
         $fight = $em->getRepository('AppBundle:Fight')
@@ -285,14 +281,14 @@ class AdminTournamentFightController extends Controller
             ->find($fightId);
 
         $sobota = (new \DateTime())
-            ->setDate(2019,6,1);
+            ->setDate(2019, 6, 1);
 
         $niedziela = (new \DateTime())
-            ->setDate(2019,6,2);
+            ->setDate(2019, 6, 2);
 
-        if($day == 'sob.') {
+        if ($day == 'sob.') {
             $fight->setDay($sobota);
-        }else{
+        } else {
             $fight->setDay($niedziela);
         }
 
@@ -324,6 +320,4 @@ class AdminTournamentFightController extends Controller
         }
         $em->flush();
     }
-
-
 }

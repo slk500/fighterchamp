@@ -21,7 +21,7 @@ class ImageController extends Controller
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $newFilename = Urlizer::urlize($originalFilename . '-' . uniqid()) . '.' . $uploadedFile->guessClientExtension();
 
-            $uploadedFile->move(
+        $uploadedFile->move(
                 $destination,
                 $newFilename
             );

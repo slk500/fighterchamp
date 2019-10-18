@@ -11,7 +11,7 @@ class PlaceFixtures extends BaseFixture
 {
     public function load(ObjectManager $manager)
     {
-        foreach (range(1,10) as $i) {
+        foreach (range(1, 10) as $i) {
             $place = new Place();
             $place->setCapacity($this->faker->numberBetween(10, 100));
             $place->setCity($this->faker->city);

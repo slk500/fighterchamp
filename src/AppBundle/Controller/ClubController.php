@@ -26,7 +26,9 @@ class ClubController extends Controller
      */
     public function showAction(Club $club, NormalizerInterface $normalizer)
     {
-        return $this->render('club/show.twig',
-            ['club' => $normalizer->normalize($club)]);
+        return $this->render(
+            'club/show.twig',
+            ['club' => $normalizer->normalize($club)]
+        );
     }
 }

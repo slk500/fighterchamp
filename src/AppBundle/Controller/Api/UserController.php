@@ -27,7 +27,6 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
-
 /**
  * @Route("/api"))
  */
@@ -47,9 +46,13 @@ class UserController extends Controller
      * @Route("/user-create", name="user_create")
      * @Method("POST")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher,
-                                 LoginFormAuthenticator $loginFormAuthenticator, GuardAuthenticatorHandler $guardAuthenticatorHandler)
-    {
+    public function createAction(
+        Request $request,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher,
+        LoginFormAuthenticator $loginFormAuthenticator,
+        GuardAuthenticatorHandler $guardAuthenticatorHandler
+    ) {
         $form = $this->createForm($this->getFormType($request), null, [
             'method' => 'POST',
             'action' => $this->generateUrl('user_create')
@@ -84,8 +87,10 @@ class UserController extends Controller
             );
 
             $this->addFlash('success', 'Sukces! Twój profil został utworzony! Jesteś zalogowany!');
-            $this->addFlash('danger',
-                "Na twój email {$user->getEmail()} został wysłany link który musisz kliknąć aby twoje konto było aktywne");
+            $this->addFlash(
+                'danger',
+                "Na twój email {$user->getEmail()} został wysłany link który musisz kliknąć aby twoje konto było aktywne"
+            );
 
             $guardAuthenticatorHandler
                 ->authenticateUserAndHandleSuccess(
@@ -96,15 +101,21 @@ class UserController extends Controller
                 );
 
             return new JsonResponse(
-                ['location' => $this->generateUrl('user_show', ['id' => $user->getId()])], 200);
+                ['location' => $this->generateUrl('user_show', ['id' => $user->getId()])],
+                200
+            );
         }
 
         return new JsonResponse(
             [
-                'form' => $this->renderView($this->getFormTypeView($request),
+                'form' => $this->renderView(
+                    $this->getFormTypeView($request),
                     [
                         'form' => $form->createView(),
-                    ])], 400);
+                    ]
+                )],
+            400
+        );
     }
 
 
@@ -152,10 +163,14 @@ class UserController extends Controller
 
         return new JsonResponse(
             [
-                'form' => $this->renderView($this->getFormTypeView($request),
+                'form' => $this->renderView(
+                    $this->getFormTypeView($request),
                     [
                         'form' => $form->createView(),
-                    ])], 400);
+                    ]
+                )],
+            400
+        );
     }
 
     /**
@@ -179,7 +194,6 @@ class UserController extends Controller
      */
     public function delete(User $user)
     {
-
     }
 
 

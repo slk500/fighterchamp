@@ -13,12 +13,12 @@ class RankController extends Controller
     /**
      * @Route("ranking/{year}/{age}", name="rank")
      */
-    public function indexAction(RankRepository $rankRepository,
-                                string $year = 'wszystkie-lata',
-                                string $age = 'wszystkie-kategorie-wiekowe')
-    {
-
-      $params = [
+    public function indexAction(
+        RankRepository $rankRepository,
+        string $year = 'wszystkie-lata',
+        string $age = 'wszystkie-kategorie-wiekowe'
+    ) {
+        $params = [
         'year' => $year,
         'age' => $age
       ];

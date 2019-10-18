@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Twig;
+
 use Twig_Extension;
 
 class AppExtension extends Twig_Extension
@@ -52,7 +53,8 @@ class AppExtension extends Twig_Extension
     }
 
 
-    function hoursToMins($time, $format = '%2d:%02d') {
+    public function hoursToMins($time, $format = '%2d:%02d')
+    {
         if ($time < 1) {
             return null;
         }

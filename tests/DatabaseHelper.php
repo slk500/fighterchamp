@@ -61,7 +61,7 @@ final class DatabaseHelper
         }
 
         if ($tablesNames) {
-            throw new \Exception(PHP_EOL . 'These tables are not empty:' . implode(',',$tablesNames));
+            throw new \Exception(PHP_EOL . 'These tables are not empty:' . implode(',', $tablesNames));
         }
 
         return true;
@@ -76,7 +76,6 @@ final class DatabaseHelper
         $isAllTablesAreEmpty = true;
 
         foreach ($tableNamesInDatabase as $tableName) {
-
             if (in_array($tableName, $exclude)) {
                 continue;
             }
@@ -121,7 +120,6 @@ final class DatabaseHelper
 
         $counter = 1;
         foreach ($result as $row) {
-
             array_unshift($row, $counter);
             $tbl->addRow($row);
 

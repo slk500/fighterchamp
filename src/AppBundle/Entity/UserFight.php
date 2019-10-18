@@ -88,10 +88,8 @@ class UserFight
     {
         $usersFight = $this->getFight()->getUsersFight();
 
-        return $usersFight->filter(function (UserFight $userFight)
-        {
-           return  $this !== $userFight;
-
+        return $usersFight->filter(function (UserFight $userFight) {
+            return  $this !== $userFight;
         })->first();
     }
 

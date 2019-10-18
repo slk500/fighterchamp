@@ -61,7 +61,6 @@ class CoachType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
     }
 
 
@@ -69,5 +68,4 @@ class CoachType extends AbstractType
     {
         return UserType::class;
     }
-
 }

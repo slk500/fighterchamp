@@ -23,10 +23,10 @@ class AddTermsAndPlainPasswordFieldsIfNewUser implements EventSubscriberInterfac
         $user = $event->getData();
 
         if (!$user || null === $user) {
-
             $form = $event->getForm();
 
-            $form->add('plain_password',
+            $form->add(
+                'plain_password',
                 RepeatedType::class,
                 [
                     'type' => PasswordType::class
@@ -37,10 +37,6 @@ class AddTermsAndPlainPasswordFieldsIfNewUser implements EventSubscriberInterfac
                     'mapped' => false,
                     'label' => ''))
             ;
-
         }
-
-
-
     }
 }

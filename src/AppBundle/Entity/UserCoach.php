@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,7 +30,7 @@ class UserCoach
      */
     private $fighter;
 
-    public function __construct(User $fighter, User $coach )
+    public function __construct(User $fighter, User $coach)
     {
         $this->fighter = $fighter;
         $this->coach = $coach;

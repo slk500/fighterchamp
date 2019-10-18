@@ -202,10 +202,9 @@ class Tournament
         return $this->userAdmin;
     }
 
-///coś tu jest pokręcone trzeba to zmienić
+    ///coś tu jest pokręcone trzeba to zmienić
     public function addUserAdmin(UserAdminTournament $userTournamentAdmin)
     {
-
         if ($this->userAdmin->contains($userTournamentAdmin)) {
             return;
         }
@@ -379,4 +378,3 @@ class Tournament
         $this->discipline = $discipline;
     }
 }
-

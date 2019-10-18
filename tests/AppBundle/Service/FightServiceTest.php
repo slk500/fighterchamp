@@ -6,13 +6,12 @@ use AppBundle\Entity\SignUpTournament;
 use AppBundle\Service\FightService;
 use PHPUnit\Framework\TestCase;
 
-
 class FightServiceTest extends TestCase
 {
     /**
      * @dataProvider additionProvider
      */
-    public function testGetHighestFormula($signUp0Formula,$signUp1Formula, $expected)
+    public function testGetHighestFormula($signUp0Formula, $signUp1Formula, $expected)
     {
         $signUp = $this->getMockBuilder(SignUpTournament::class)
             ->setMethods(['getFormula'])

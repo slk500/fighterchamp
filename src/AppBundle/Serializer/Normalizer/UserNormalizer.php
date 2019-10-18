@@ -28,7 +28,6 @@ class UserNormalizer implements NormalizerInterface
      */
     public function normalize($object, $format = null, array $context = array())
     {
-
         return [
             'id' => $object->getId(),
             'href' => $this->router->generate('user_show', ['id' => $object->getId()]),
@@ -53,7 +52,9 @@ class UserNormalizer implements NormalizerInterface
                         'club' => $this->club($user),
                         'type' => $user->getType(),
                     ];
-                }, $object->getFighters()->toArray()),
+                },
+                $object->getFighters()->toArray()
+            ),
             'fightersRecord' => $this->getFightersRecord($object),
             'fights' => array_map(
                 function (Fight $fight) {
@@ -76,7 +77,9 @@ class UserNormalizer implements NormalizerInterface
                                             return [
                                                 'name' => $award->getName(),
                                             ];
-                                        }, $userFight->getAwards()->toArray()),
+                                        },
+                                        $userFight->getAwards()->toArray()
+                                    ),
                                     'user' => [
                                         'href' => $this->router->generate('user_show', ['id' => $userFight->getUser()->getId()]),
                                         'name' => $userFight->getUser()->getName(),
@@ -88,9 +91,13 @@ class UserNormalizer implements NormalizerInterface
                                         'type' => $userFight->getUser()->getType(),
                                     ]
                                 ];
-                            }, $fight->getUsersFight()->toArray())
+                            },
+                            $fight->getUsersFight()->toArray()
+                        )
                     ];
-                }, $object->getFights()->toArray())
+                },
+                $object->getFights()->toArray()
+            )
         ];
     }
 
@@ -137,16 +144,13 @@ class UserNormalizer implements NormalizerInterface
 
 
         foreach ($object->getFighters() as $user) {
-
             $temp = $this->countRecord($user);
 
             $result['win'] += $temp['win'];
             $result['draw'] += $temp['draw'];
             $result['lose'] += $temp['lose'];
-
         }
 
         return $result;
     }
-
 }

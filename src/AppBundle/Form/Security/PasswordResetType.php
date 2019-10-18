@@ -13,5 +13,4 @@ class PasswordResetType extends AbstractType
             ->add('_username')
         ;
     }
-
 }

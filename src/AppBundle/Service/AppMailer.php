@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 use Swift_Mailer;
 
 class AppMailer
@@ -25,7 +24,7 @@ class AppMailer
 
     public function sendEmail($to, $subject, $body): int
     {
-            $message = (new \Swift_Message())
+        $message = (new \Swift_Message())
                 ->setSubject($subject)
                 ->setFrom('fighterchamp@fighterchamp.pl', 'FighterChamp')
                 ->setTo($to)

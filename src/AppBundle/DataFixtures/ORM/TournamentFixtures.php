@@ -2,20 +2,17 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Tournament;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 class TournamentFixtures extends BaseFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-
-        foreach (range(1,10) as $i) {
+        foreach (range(1, 10) as $i) {
             $tournament = new Tournament();
 
 
@@ -30,7 +27,6 @@ class TournamentFixtures extends BaseFixture implements DependentFixtureInterfac
             $manager->persist($tournament);
 
             $this->addReference(Tournament::class . '_' . $i, $tournament);
-
         }
 
         $manager->flush();

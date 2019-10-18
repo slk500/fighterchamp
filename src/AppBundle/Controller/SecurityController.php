@@ -17,7 +17,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
 
-
 class SecurityController extends Controller
 {
 
@@ -35,16 +34,15 @@ class SecurityController extends Controller
         $user = $em->getRepository(User::class)
             ->findOneBy(
                 ['email' => $email,
-                    'hash' => $hash]);
+                    'hash' => $hash]
+            );
 
         if ($user) {
             $user->validate();
             $em->flush();
-            $this->addFlash
-            ('success_info', 'Sukces. Twoje konto jest już aktywne.');
-        }else{
-            $this->addFlash
-            ('danger_info', 'Niepoprawne dane. Użyj linka który został wysłany na twojego maila.');
+            $this->addFlash('success_info', 'Sukces. Twoje konto jest już aktywne.');
+        } else {
+            $this->addFlash('danger_info', 'Niepoprawne dane. Użyj linka który został wysłany na twojego maila.');
         }
 
         return $this->render('security/validate.html.twig');
@@ -64,7 +62,8 @@ class SecurityController extends Controller
             '_username' => $lastUsername
         ]);
 
-        return $this->render('security/login.html.twig',
+        return $this->render(
+            'security/login.html.twig',
             [
                 'form' => $form->createView(),
                 'error' => $error,
@@ -78,13 +77,11 @@ class SecurityController extends Controller
      */
     public function passwordReset(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-
         $form = $this->createForm(PasswordResetType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $formData = $form->getData();
             $userEmail = $formData['_username'];
 
@@ -93,7 +90,6 @@ class SecurityController extends Controller
                 ->findOneBy(['email' => $userEmail]);
 
             if ($user) {
-
                 $new_password = time();
 
                 $encoded_password = $passwordEncoder->encodePassword($user, $new_password);
@@ -118,7 +114,6 @@ class SecurityController extends Controller
                 $numberOfSuccessfulSent = $mailer->send($message);
 
                 $this->addFlash('success_info', 'Sukces. Twoje nowe hasło zostało wysłane na ' . $userEmail);
-
             } else {
                 $this->addFlash('danger_info', 'Użytkownik o podanej nazwie nie istnieje.');
             }
@@ -137,7 +132,6 @@ class SecurityController extends Controller
      */
     public function logoutAction()
     {
-
     }
 
 
@@ -150,7 +144,6 @@ class SecurityController extends Controller
         $session->set('imageName', null);
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-
             $em = $this->getDoctrine()->getManager();
             $this->getUser()->removeFile();
             $em->flush();
@@ -158,6 +151,4 @@ class SecurityController extends Controller
 
         return new Response(200);
     }
-
-
 }

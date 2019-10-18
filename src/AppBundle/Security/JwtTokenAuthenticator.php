@@ -8,7 +8,6 @@
 
 namespace AppBundle\Security;
 
-
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;

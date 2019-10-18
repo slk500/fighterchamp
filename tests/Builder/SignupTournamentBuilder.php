@@ -2,7 +2,6 @@
 
 namespace Tests\Builder;
 
-
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
@@ -55,7 +54,7 @@ class SignupTournamentBuilder extends Builder
         return $this;
     }
 
-    public function withFormula (string $formula): self
+    public function withFormula(string $formula): self
     {
         $this->formula = $formula;
         return $this;

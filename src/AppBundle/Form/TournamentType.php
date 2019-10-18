@@ -32,5 +32,4 @@ class TournamentType extends AbstractType
             'data_class' => Tournament::class
         ]);
     }
-
 }

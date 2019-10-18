@@ -15,11 +15,11 @@ final class Database
 
     public function __construct(string $env)
     {
-            $dbServer = ($env == 'dev') ? 'db' : 'db_test';
-            $dbUser = 'test';
-            $dbPass = 'test';
-            $dbName = ($env == 'dev') ? 'test' : 'db_test';
-            $dbPort = 3306;
+        $dbServer = ($env == 'dev') ? 'db' : 'db_test';
+        $dbUser = 'test';
+        $dbPass = 'test';
+        $dbName = ($env == 'dev') ? 'test' : 'db_test';
+        $dbPort = 3306;
 
         $this->mysqli = new mysqli($dbServer, $dbUser, $dbPass, $dbName, $dbPort);
 
@@ -43,7 +43,8 @@ final class Database
     public function execute(string $query)
     {
         $this->mysqli->multi_query($query);
-        while ($this->mysqli->more_results() && $this->mysqli->next_result()) {;}
+        while ($this->mysqli->more_results() && $this->mysqli->next_result()) {
+            ;
+        }
     }
-
 }

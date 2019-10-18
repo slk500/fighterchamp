@@ -44,7 +44,7 @@ class SignUpController extends Controller
 
     public function list(Tournament $tournament, EntityManagerInterface $entityManager)
     {
-       return $entityManager->getRepository(SignUpTournament::class) //todo remove flags delete
+        return $entityManager->getRepository(SignUpTournament::class) //todo remove flags delete
             ->findBy(
                 [
                     'tournament' => $tournament,

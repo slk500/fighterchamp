@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -143,7 +144,4 @@ class Schedule
     {
         $this->type = $type;
     }
-
-
-
 }

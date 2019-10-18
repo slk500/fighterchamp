@@ -11,7 +11,6 @@ class ClubFixtures extends BaseFixture
     public function load(ObjectManager $manager)
     {
         foreach (range(1, 2) as $i) {
-
             $club = new Club();
             $club->setName($this->faker->company);
             $club->setCity($this->faker->city);

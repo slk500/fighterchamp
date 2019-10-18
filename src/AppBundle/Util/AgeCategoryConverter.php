@@ -8,7 +8,7 @@ class AgeCategoryConverter
 {
     public static function convert(\DateTime $userBirthday): string
     {
-        $years = (date_diff($userBirthday,\DateTime::createFromFormat('U', (string)time())))
+        $years = (date_diff($userBirthday, \DateTime::createFromFormat('U', (string)time())))
             ->format("%y");
 
 

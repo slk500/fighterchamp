@@ -22,7 +22,7 @@ class FightController extends Controller
     public function listAction(EntityManagerInterface $em, SerializerInterface $serializer)
     {
         $fights = $em->getRepository(Fight::class)
-            ->findBy(['isVisible' => true],['position'=>'ASC']);
+            ->findBy(['isVisible' => true], ['position'=>'ASC']);
 
         $result = $serializer->normalize($fights, 'json');
 

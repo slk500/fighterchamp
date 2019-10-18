@@ -94,15 +94,12 @@ class InsertYouTubeIdToFightCommand extends ContainerAwareCommand
             ->findBy(['tournament' => $tournament], ['position' => 'ASC']);
 
 
-      $i = 0;
-      foreach ($fights as $fight)
-      {
-          $fight->setYoutubeId($ytIds[$i]);
-          $i++;
-      }
+        $i = 0;
+        foreach ($fights as $fight) {
+            $fight->setYoutubeId($ytIds[$i]);
+            $i++;
+        }
 
-      $this->em->flush();
-
-
+        $this->em->flush();
     }
 }

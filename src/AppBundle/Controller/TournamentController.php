@@ -17,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-
 /**
  * @Route("/turnieje")
  */
@@ -32,10 +31,12 @@ class TournamentController extends Controller
             ->findBy([], ['id' => 'DESC']);
 
 
-        return $this->render('tournament/list.twig',
+        return $this->render(
+            'tournament/list.twig',
             [
                 'tournaments' => $tournaments,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -43,10 +44,12 @@ class TournamentController extends Controller
      */
     public function showAction(Tournament $tournament)
     {
-        return $this->render('tournament/show.twig',
+        return $this->render(
+            'tournament/show.twig',
             [
                 'tournament' => $tournament,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -54,10 +57,12 @@ class TournamentController extends Controller
      */
     public function rulesAction(Tournament $tournament)
     {
-        return $this->render("tournament/rules.html.twig",
+        return $this->render(
+            "tournament/rules.html.twig",
             [
                 'tournament' => $tournament,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -65,9 +70,11 @@ class TournamentController extends Controller
      */
     public function contactAction(Tournament $tournament)
     {
-        return $this->render('tournament/contact.html.twig',
+        return $this->render(
+            'tournament/contact.html.twig',
             [
             'tournament' => $tournament,
-        ]);
+        ]
+        );
     }
 }

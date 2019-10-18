@@ -89,7 +89,7 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function iCloseSymfonyDevToolbar()
     {
-        $this->getSession()->getPage()->find('css','.hide-button' )->click();
+        $this->getSession()->getPage()->find('css', '.hide-button')->click();
     }
 
     /**

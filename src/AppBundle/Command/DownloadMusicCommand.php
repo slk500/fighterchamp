@@ -34,8 +34,7 @@ class DownloadMusicCommand extends ContainerAwareCommand
         $string = '';
         $i = 0;
 
-        foreach ($signUps as $signUp)
-        {
+        foreach ($signUps as $signUp) {
             /**
              * @var $signUp SignUpTournament
              */
@@ -52,6 +51,5 @@ class DownloadMusicCommand extends ContainerAwareCommand
         }
 
         echo $string . PHP_EOL;
-
     }
 }

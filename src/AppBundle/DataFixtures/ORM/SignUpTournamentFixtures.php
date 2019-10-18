@@ -13,11 +13,8 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
 {
     public function load(ObjectManager $manager)
     {
-
-        foreach (range(1,10) as $i) {
-
-            foreach (range(1,10) as $j) {
-
+        foreach (range(1, 10) as $i) {
+            foreach (range(1, 10) as $j) {
                 $signUpTournament = new SignUpTournament(
                     $this->getReference(User::class . '_' . $i),
                     $this->getReference(Tournament::class . '_' . $j)
@@ -27,9 +24,6 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
 
                 $manager->persist($signUpTournament);
             }
-
-
-
         }
 
         $manager->flush();
@@ -42,6 +36,4 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
             TournamentFixtures::class
         );
     }
-
-
 }

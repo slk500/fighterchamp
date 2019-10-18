@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Fight;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
@@ -15,7 +14,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 /**
  * @Route("/turnieje")
  */
@@ -26,7 +24,7 @@ class TournamentFightController extends Controller
      */
     public function resultAction(Tournament $tournament)
     {
-        return $this->render('tournament/fights.html.twig',[
+        return $this->render('tournament/fights.html.twig', [
             'tournament' => $tournament
         ]);
     }

@@ -1,8 +1,8 @@
 <?php
 
 namespace AppBundle\Entity\Enum;
-use MyCLabs\Enum\Enum;
 
+use MyCLabs\Enum\Enum;
 
 /**
  * @method static UserFightResult WIN()

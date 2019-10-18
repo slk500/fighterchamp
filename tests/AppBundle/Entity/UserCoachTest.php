@@ -28,7 +28,7 @@ class UserCoachTest extends KernelTestCase
      */
     private $databaseHelper;
 
-    function setUp()
+    public function setUp()
     {
         $kernel = new AppKernel('dev', true);
         $kernel->boot();
@@ -41,7 +41,7 @@ class UserCoachTest extends KernelTestCase
     /**
      * @test
      */
-    function add_coach_to_fighter()
+    public function add_coach_to_fighter()
     {
         $fighter = $this->userBuilder
             ->withName('Fighter')

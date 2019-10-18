@@ -8,7 +8,6 @@
 
 namespace AppBundle\Serializer\Normalizer;
 
-
 class UserRecord implements \JsonSerializable
 {
     public $win = 0;

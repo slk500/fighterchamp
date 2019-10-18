@@ -37,10 +37,5 @@ class FacebookController extends Controller
      */
     public function connectCheckAction(Request $request)
     {
-
-
-
     }
-
 }
-
