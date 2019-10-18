@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.1/phpunit.xsd"
-        backupGlobals="false"
+        xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
         colors="true"
         bootstrap="vendor/autoload.php"
-        convertErrorsToException="true"
-        convertNoticesToException="true"
-        convertWarningsToException="true"
-        stopOnError="false"
-        stopOnFailure="false"
-        stopOnIncomplete="false"
-        stopOnSkipped="false"
-        timeoutForSmallTests="1"
-        timeoutForMediumTests="10"
         timeoutForLargeTests="30"
         verbose="true"
 >
