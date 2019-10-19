@@ -16,7 +16,6 @@ class CommentType extends AbstractType
             ->add('body', null, [
                 'constraints' => [new NotBlank()]
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -25,5 +24,4 @@ class CommentType extends AbstractType
             'data_class' => 'AppBundle\Entity\Comment'
         ]);
     }
-
 }

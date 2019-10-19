@@ -26,7 +26,6 @@ class TournamentSignUpController extends Controller
     public function signUpAction(Tournament $tournament, Request $request, EntityManagerInterface $em)
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') && ($this->getUser())->getType() != 3) {
-
             $user = $this->getUser();
 
             $age = AgeCategoryConverter::convert($user->getBirthDay());
@@ -35,7 +34,7 @@ class TournamentSignUpController extends Controller
             $sex = ($male) ? "male" : "female";
 
             $traitChoices = $em->getRepository('AppBundle:Ruleset')
-                ->findBy([$sex => true, $age => true],['weight' => 'ASC']);
+                ->findBy([$sex => true, $age => true], ['weight' => 'ASC']);
 
             $arr = [];
 
@@ -49,26 +48,26 @@ class TournamentSignUpController extends Controller
                         'tournament' => $tournament,
                         'user' => $user,
                         'deleted_at' => null
-                    ]);
+                    ]
+                );
 
             $signupTournament = $isAlreadySignUp ?? new SignUpTournament($user, $tournament);
 
-            $form = $this->createForm(SignUpTournamentType::class, $signupTournament,
-                    ['trait_choices' => $arr]
-                );
+            $form = $this->createForm(
+                SignUpTournamentType::class,
+                $signupTournament,
+                ['trait_choices' => $arr]
+            );
 
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $signupTournament = $form->getData();
 
-                if(!$isAlreadySignUp) {
-
+                if (!$isAlreadySignUp) {
                     $em->persist($signupTournament);
-
                 }
-                    $em->flush();
+                $em->flush();
 
                 return $this->redirectToRoute("tournament_sign_up", ['id' => $tournament->getId()]);
             }

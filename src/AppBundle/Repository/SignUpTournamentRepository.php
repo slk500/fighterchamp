@@ -6,11 +6,8 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Tournament;
 use Doctrine\ORM\EntityRepository;
 
-
 class SignUpTournamentRepository extends EntityRepository
 {
-
-
     public function findAllSignUpsPaidButDeleted($tournament)
     {
         $qb = $this->createQueryBuilder('signUpTournament')
@@ -106,12 +103,10 @@ WHERE f.tournament_id = $tournamentId)
         $stmt->execute();
 
         return $stmt->fetchAll();
-
     }
 
     public function findAllSignUpButNotPairYet(int $tournamentId)
     {
-
         $conn = $this->getEntityManager()
             ->getConnection();
 
@@ -130,7 +125,6 @@ WHERE f.tournament_id = $tournamentId)");
         $stmt->execute();
 
         return $stmt->fetchAll();
-
     }
 
 
@@ -185,5 +179,4 @@ WHERE f.tournament_id = $tournamentId)");
         $query = $qb->getQuery();
         return $query->execute();
     }
-
 }

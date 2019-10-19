@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-
 use Shopsys\HttpSmokeTesting\HttpSmokeTestCase;
 use Shopsys\HttpSmokeTesting\RequestDataSet;
 use Shopsys\HttpSmokeTesting\RouteConfig;
@@ -56,7 +55,6 @@ class SmokeTest extends HttpSmokeTestCase
     {
         $routeConfigCustomizer
             ->customize(function (RouteConfig $config, RouteInfo $info) {
-
                 $skipRoutes = [
                     'fights_not_weighted_remove',
                     'setWinner',
@@ -121,7 +119,7 @@ class SmokeTest extends HttpSmokeTestCase
                     $config->skipRoute();
                 }
 
-                if(in_array($info->getRouteName(), $requireType)) {
+                if (in_array($info->getRouteName(), $requireType)) {
                     $config->changeDefaultRequestDataSet()
                         ->setParameter('type', 1);
                 }
@@ -130,9 +128,15 @@ class SmokeTest extends HttpSmokeTestCase
                         ->setParameter('id', 1);
 
 
-                if(in_array($info->getRouteName(), $requireId)) $config->skipRoute();
-                if(in_array($info->getRouteName(), $skipRoutes)) $config->skipRoute();
-                if(in_array($info->getRouteName(), $postRoute)) $config->skipRoute();
+                if (in_array($info->getRouteName(), $requireId)) {
+                    $config->skipRoute();
+                }
+                if (in_array($info->getRouteName(), $skipRoutes)) {
+                    $config->skipRoute();
+                }
+                if (in_array($info->getRouteName(), $postRoute)) {
+                    $config->skipRoute();
+                }
             });
     }
 }

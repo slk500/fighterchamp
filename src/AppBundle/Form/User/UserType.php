@@ -32,7 +32,6 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-
 class UserType extends AbstractType
 {
     /**
@@ -47,12 +46,13 @@ class UserType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-            ->add('type', HiddenType::class,[
+            ->add('type', HiddenType::class, [
                 'data' => 3])
             ->add('imageName', HiddenType::class)
-            ->add('email', EmailType::class,
+            ->add(
+                'email',
+                EmailType::class,
                 [
                     'constraints' => [
                         new Email(),
@@ -69,7 +69,7 @@ class UserType extends AbstractType
             ->add('name', TextType::class, [
                 'constraints' => [new NotBlank()]
             ])
-            ->add('surname', TextType::class,[
+            ->add('surname', TextType::class, [
                 'constraints' => [new NotBlank()]
             ])
 
@@ -77,7 +77,7 @@ class UserType extends AbstractType
                 'required' => false,
                 'empty_data'  => null,
                 'class' => 'AppBundle:Club',
-                'query_builder' => function(EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 }])
@@ -85,9 +85,9 @@ class UserType extends AbstractType
 
         ;
 
-        $builder->addEventSubscriber(new CreateClubIfNotExist($this->em));;
+        $builder->addEventSubscriber(new CreateClubIfNotExist($this->em));
+        ;
         $builder->addEventSubscriber(new AddTermsAndPlainPasswordFieldsIfNewUser());
-
     }
 
 
@@ -96,7 +96,7 @@ class UserType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => User::class
-            ]);
+            ]
+        );
     }
-
 }

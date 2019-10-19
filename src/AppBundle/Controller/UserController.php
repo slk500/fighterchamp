@@ -34,10 +34,12 @@ class UserController extends Controller
      */
     public function showAction(User $user, SerializerInterface $serializer)
     {
-        return $this->render($this->getShowViewType($user),
+        return $this->render(
+            $this->getShowViewType($user),
             [
                 'user' => $serializer->normalize($user)
-            ]);
+            ]
+        );
     }
 
 
@@ -47,14 +49,15 @@ class UserController extends Controller
     public function updateAction(SerializerInterface $serializer)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-
             return $this->redirectToRoute("login");
         }
 
-        return $this->render('user/edit.html.twig',
+        return $this->render(
+            'user/edit.html.twig',
             [
                 'user' => $serializer->normalize($this->getUser())
-            ]);
+            ]
+        );
     }
 
 
@@ -65,7 +68,6 @@ class UserController extends Controller
     public function newAction()
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-
             return $this->redirectToRoute('homepage');
         }
 
@@ -84,7 +86,8 @@ class UserController extends Controller
             'action' => $this->generateUrl('user_create')
         ]);
 
-        return $this->render($this->getFormTypeView($type),
+        return $this->render(
+            $this->getFormTypeView($type),
             [
                 'form' => $form->createView()
             ]
@@ -104,7 +107,8 @@ class UserController extends Controller
             'method' => 'POST'
         ]);
 
-        return $this->render($this->getFormTypeUpdateView($type),
+        return $this->render(
+            $this->getFormTypeUpdateView($type),
             [
                 'form' => $form->createView()
             ]
@@ -165,6 +169,4 @@ class UserController extends Controller
                 return 'Nie ma takiego typu';
         }
     }
-
-
 }

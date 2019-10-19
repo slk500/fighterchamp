@@ -8,7 +8,6 @@
 
 namespace AppBundle\Serializer\Normalizer;
 
-
 use AppBundle\Entity\Club;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\User;
@@ -64,7 +63,7 @@ class SignUpNormalizer implements NormalizerInterface
 
     private function club(User $user)
     {
-        if(!$user->getClub()){
+        if (!$user->getClub()) {
             return null;
         }
         return [

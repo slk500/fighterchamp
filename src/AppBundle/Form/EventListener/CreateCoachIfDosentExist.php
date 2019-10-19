@@ -40,7 +40,7 @@ class CreateCoachIfDosentExist implements EventSubscriberInterface
             return;
         }
 
-        if(!$userId) {
+        if (!$userId) {
             return;
         }
 

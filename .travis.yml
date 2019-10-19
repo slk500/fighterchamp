@@ -13,4 +13,5 @@ install:
 script:
     - composer validate || return 0 # TODO: fix warnings
     - composer normalize --dry-run
+    - PHP_CS_FIXER_FUTURE_MODE=1 ./vendor/bin/php-cs-fixer fix --diff --dry-run --verbose
 #    - docker-compose exec php vendor/bin/phpunit

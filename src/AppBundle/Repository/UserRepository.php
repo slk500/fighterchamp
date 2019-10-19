@@ -74,5 +74,4 @@ order by u.male, formula, weight, win desc, draw desc, lose')
         $query = $qb->getQuery();
         return $query->execute();
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Form\ContactType;
 use AppBundle\Service\AppMailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,4 +44,3 @@ class JustRenderViewController extends Controller
         return $this->render('about/index.html.twig');
     }
 }
-

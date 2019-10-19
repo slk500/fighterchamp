@@ -51,14 +51,15 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
      */
     public function iHaveThePayload(PyStringNode $requestPayload)
     {
-        if(!$this->isJson($requestPayload)){
+        if (!$this->isJson($requestPayload)) {
             throw new Exception('Not Json');
         }
 
         $this->requestPayload = $requestPayload;
     }
 
-    public function isJson($string) {
+    public function isJson($string)
+    {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
     }
@@ -70,10 +71,12 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
     {
         $request = new Request($method, $uri);
 
-        $this->response = $this->client->send($request,
+        $this->response = $this->client->send(
+            $request,
             [
                 'body' => $this->requestPayload
-            ]);
+            ]
+        );
 
         $this->content = $this->response->getBody()->getContents();
     }
@@ -123,13 +126,13 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
     {
         $data = json_decode($this->content, true);
 
-        if($expectedPropertyValue == 'true'){
+        if ($expectedPropertyValue == 'true') {
             $expectedPropertyValue = true;
-        }elseif ($expectedPropertyValue == 'false'){
+        } elseif ($expectedPropertyValue == 'false') {
             $expectedPropertyValue = false;
         }
 
-        TestCase::assertEquals($data[$property],$expectedPropertyValue);
+        TestCase::assertEquals($data[$property], $expectedPropertyValue);
     }
 
     /**
@@ -139,7 +142,8 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
     {
         TestCase::assertEquals(
             count($this->getContentDecode()[$property1]),
-            $numberOfElements);
+            $numberOfElements
+        );
     }
 
     public function getContentDecode(): array
@@ -169,7 +173,8 @@ class FeatureMyRestContext implements Context, \Behat\Behat\Context\SnippetAccep
     public function theResponseShouldBe(PyStringNode $string)
     {
         TestCase::assertJsonStringEqualsJsonString(
-         $this->content, $string->getRaw()
+            $this->content,
+            $string->getRaw()
         );
     }
 

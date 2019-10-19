@@ -2,7 +2,6 @@
 
 namespace Tests\Builder;
 
-
 use AppBundle\Entity\Tournament;
 
 class TournamentBuilder extends Builder

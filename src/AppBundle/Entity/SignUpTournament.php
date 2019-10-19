@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Faker\Provider\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class SignUpTournament
 {
-
     public function __construct(User $user, Tournament $tournament)
     {
         $this->user = $user;
@@ -212,7 +210,7 @@ class SignUpTournament
 
     public function getStazTreningowy()
     {
-        if($this->getTrainingTime()){
+        if ($this->getTrainingTime()) {
             return '(staż ' . $this->getTrainingTime() . "miesiące) ";
         }
         return null;

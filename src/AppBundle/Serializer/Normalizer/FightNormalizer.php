@@ -57,7 +57,9 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
                             'type' => $userFight->getUser()->getType(),
                         ]
                     ];
-                }, $object->getUsersFight()->toArray())
+                },
+                $object->getUsersFight()->toArray()
+            )
         ];
     }
 
@@ -68,7 +70,7 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
 
     private function club(User$user)
     {
-        if(!$user->getClub()){
+        if (!$user->getClub()) {
             return null;
         }
         return [

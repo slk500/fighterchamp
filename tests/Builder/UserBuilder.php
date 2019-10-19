@@ -2,7 +2,6 @@
 
 namespace Tests\Builder;
 
-
 use AppBundle\Entity\User;
 
 class UserBuilder extends Builder

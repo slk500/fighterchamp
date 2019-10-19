@@ -19,8 +19,6 @@ use League\OAuth2\Client\Provider\FacebookUser;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\User;
 
-
-
 class FacebookAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
@@ -28,9 +26,12 @@ class FacebookAuthenticator extends SocialAuthenticator
     private $router;
     private $container;
 
-    public function __construct(ClientRegistry $clientRegistry,
-        ContainerInterface $container, EntityManagerInterface $em, RouterInterface $router)
-    {
+    public function __construct(
+        ClientRegistry $clientRegistry,
+        ContainerInterface $container,
+        EntityManagerInterface $em,
+        RouterInterface $router
+    ) {
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
         $this->router = $router;
@@ -54,42 +55,42 @@ class FacebookAuthenticator extends SocialAuthenticator
         $facebook = $this->em->getRepository(Facebook::class)
                     ->findOneBy(['facebookId' => $facebookUser->getId()]);
 
-        if($facebook){
+        if ($facebook) {
             return $facebook->getUser();
         }
 
-        if(!$facebookUser->getEmail()){
-            return NULL;
+        if (!$facebookUser->getEmail()) {
+            return null;
         }
 
-            $facebook = new Facebook(
-                    $facebookUser->getId(),
-                    $facebookUser->getFirstName(),
-                    $facebookUser->getLastName(),
-                    $facebookUser->getEmail(),
-                   true
-                );
+        $facebook = new Facebook(
+                $facebookUser->getId(),
+                $facebookUser->getFirstName(),
+                $facebookUser->getLastName(),
+                $facebookUser->getEmail(),
+                true
+            );
 
-            $user = $this->em->getRepository(User::class)
+        $user = $this->em->getRepository(User::class)
                 ->findOneBy(['email' => $facebook->getEmail()]);
 
-            if(!$user){
-                $user = new User();
-                $user->setName($facebook->getName());
-                $user->setSurname($facebook->getSurname());
-                $user->setEmail($facebook->getEmail());
-                $user->setMale(true);
-                $user->setType(3);
-                $user->setHash(hash('sha256', md5((string)rand())));
+        if (!$user) {
+            $user = new User();
+            $user->setName($facebook->getName());
+            $user->setSurname($facebook->getSurname());
+            $user->setEmail($facebook->getEmail());
+            $user->setMale(true);
+            $user->setType(3);
+            $user->setHash(hash('sha256', md5((string)rand())));
 
-                $this->em->persist($user);
-            }
+            $this->em->persist($user);
+        }
 
-            $this->em->persist($facebook);
-            $facebook->setUser($user);
+        $this->em->persist($facebook);
+        $facebook->setUser($user);
 
 
-            $this->em->flush();
+        $this->em->flush();
 
 
         return $user;
@@ -114,9 +115,5 @@ class FacebookAuthenticator extends SocialAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-
-
     }
-
-
 }

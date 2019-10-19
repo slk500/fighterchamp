@@ -90,7 +90,7 @@ class User implements UserInterface, Serializable
 
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->email,
             $this->password,
@@ -425,14 +425,14 @@ class User implements UserInterface, Serializable
 
     public function getCoaches(): ArrayCollection
     {
-        return $this->userCoachCoaches->map(function (UserCoach $userCoach){
-           return $userCoach->getCoach();
+        return $this->userCoachCoaches->map(function (UserCoach $userCoach) {
+            return $userCoach->getCoach();
         });
     }
 
     public function getFighters(): ArrayCollection
     {
-        return $this->userCoachFighters->map(function (UserCoach $userCoach){
+        return $this->userCoachFighters->map(function (UserCoach $userCoach) {
             return $userCoach->getFighter();
         });
     }
@@ -479,16 +479,12 @@ class User implements UserInterface, Serializable
 
     public function getFights() : Collection
     {
-
         $fights = new ArrayCollection();
 
-        foreach ($this->userFights as $userFight)
-        {
-            if($userFight->getFight()->getIsVisible()){
-
+        foreach ($this->userFights as $userFight) {
+            if ($userFight->getFight()->getIsVisible()) {
                 $fights[]= $userFight->getFight();
             }
-
         }
 
         return $fights;

@@ -21,8 +21,8 @@ class FightService
 
     public function toggleCorners(Fight $fight): array
     {
-        $fight->getUsersFight()->map(function (UserFight $userFight){
-           $userFight->changeCorner();
+        $fight->getUsersFight()->map(function (UserFight $userFight) {
+            $userFight->changeCorner();
         });
 
         return $fight->getUsersFight()->toArray();
@@ -67,8 +67,7 @@ class FightService
     public function splitFightsBasedOnDay(array $fights): array
     {
         $result = [];
-        foreach ($fights as $fight)
-        {
+        foreach ($fights as $fight) {
             $current = $fight->getDay();
 
             $result[$current->format('Y-m-d')][] = $fight;

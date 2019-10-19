@@ -60,14 +60,14 @@ class Facebook
      */
     private $user;
 
-        public function __construct(string $facebookId, string $name, string $surname, ?string $email, bool $male)
-        {
-            $this->facebookId = $facebookId;
-            $this->name = $name;
-            $this->surname = $surname;
-            $this->email = $email;
-            $this->male = $male;
-        }
+    public function __construct(string $facebookId, string $name, string $surname, ?string $email, bool $male)
+    {
+        $this->facebookId = $facebookId;
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->email = $email;
+        $this->male = $male;
+    }
 
     public function getId(): int
     {

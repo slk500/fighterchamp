@@ -26,7 +26,7 @@ final class RankRepository
         $addAge = ($params['age'] == 'junior' || $params['age'] == 'senior');
 
         $sqlYear = null;
-        if($addYear){
+        if ($addYear) {
             $sqlYear = ' where year(f.day) = ? ';
         }
 
@@ -36,9 +36,9 @@ final class RankRepository
                 '  TIMESTAMPDIFF(YEAR, u.birth_day, CURDATE()) > 18 ';
         }
 
-        if($sqlYear && $sqlAge){
+        if ($sqlYear && $sqlAge) {
             $sqlAge = ' and ' . $sqlAge;
-        }elseif($sqlAge){
+        } elseif ($sqlAge) {
             $sqlAge = ' where ' . $sqlAge;
         }
 

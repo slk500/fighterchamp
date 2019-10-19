@@ -8,7 +8,8 @@ use Doctrine\ORM\EntityRepository;
 
 class TournamentRepository extends EntityRepository
 {
-    public function findNewestOne() {
+    public function findNewestOne()
+    {
         return $this->createQueryBuilder('t')->
         orderBy('t.start', 'DESC')->
         setMaxResults(1)->

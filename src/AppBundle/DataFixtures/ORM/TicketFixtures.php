@@ -2,21 +2,17 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Tournament;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
-class TicketFixtures extends BaseFixture  implements DependentFixtureInterface
+class TicketFixtures extends BaseFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-
-        foreach (range(1,10) as $i) {
-
+        foreach (range(1, 10) as $i) {
             $ticketNotAdult = new Ticket();
             $ticketNotAdult->setPrice(10);
             $ticketNotAdult->setUserType('fighter');

@@ -19,7 +19,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 class AdminTournamentSignUp extends Controller
 {
-
     private function getAgeAtTournament($birthday, $tournamentDay)
     {
         if (!$birthday || !$tournamentDay instanceof \DateTime) {
@@ -60,24 +59,27 @@ class AdminTournamentSignUp extends Controller
 //            ['trait_choices' => $weights]
 //        );
 
-       $seniors = 0;
-       $seniorsPaid = 0;
-       $juniors = 0;
-       $juniorsPaid = 0;
+        $seniors = 0;
+        $seniorsPaid = 0;
+        $juniors = 0;
+        $juniorsPaid = 0;
 
-        foreach ($signUpsTournament as $signUp){
+        foreach ($signUpsTournament as $signUp) {
             $user = $signUp->getUser();
 
             $age = $this->getAgeAtTournament($user->getBirthDay(), $tournament->getStart());
 
-            if($age > 18){
+            if ($age > 18) {
                 $seniors++;
-                if($signUp->isPaid()) $seniorsPaid++;
-            }else{
+                if ($signUp->isPaid()) {
+                    $seniorsPaid++;
+                }
+            } else {
                 $juniors++;
-                if($signUp->isPaid()) $juniorsPaid++;
+                if ($signUp->isPaid()) {
+                    $juniorsPaid++;
+                }
             }
-
         }
 
         $finance = [
@@ -102,11 +104,13 @@ class AdminTournamentSignUp extends Controller
     /**
      * @Route("/turnieje/{id}/lista/dodaj", name="admin_create_signUp")
      */
-    public function createSignUp(EntityManagerInterface $em, Tournament $tournament,
-                                 NormalizerInterface $serializer)
-    {
+    public function createSignUp(
+        EntityManagerInterface $em,
+        Tournament $tournament,
+        NormalizerInterface $serializer
+    ) {
         $users = $em->getRepository(User::class)
-            ->findBy([],['surname' => 'asc']);
+            ->findBy([], ['surname' => 'asc']);
 
         $weights = $em->getRepository('AppBundle:Ruleset')
             ->getWeight();
@@ -117,7 +121,6 @@ class AdminTournamentSignUp extends Controller
             'weights' => $weights,
             'tournament' => $tournament
         ]);
-
     }
 
 
@@ -148,7 +151,7 @@ class AdminTournamentSignUp extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('admin_tournament_pair',[
+        return $this->redirectToRoute('admin_tournament_pair', [
             'id' => $signUpTournament->getTournament()->getId()
         ]); //todo change to 200 and js reload page
     }
@@ -158,7 +161,9 @@ class AdminTournamentSignUp extends Controller
     {
         $signUpsPaid = 0;
         foreach ($signUpsTournament as $signUp) {
-            if ($signUp->isPaid()) $signUpsPaid++;
+            if ($signUp->isPaid()) {
+                $signUpsPaid++;
+            }
         }
         return $signUpsPaid;
     }

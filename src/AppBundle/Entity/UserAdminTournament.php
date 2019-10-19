@@ -4,14 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="user_tournament_admin")
  */
 class UserAdminTournament
 {
-
     public function __construct()
     {
         $this->createdAt = new \DateTime();

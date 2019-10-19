@@ -5,7 +5,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 class FixturesReloadCommand extends Command
 {
     protected function configure()
@@ -69,6 +68,5 @@ class FixturesReloadCommand extends Command
         //Loading Fixtures
         $options = array('command' => 'doctrine:fixtures:load',"--no-interaction" => true);
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
-
     }
 }

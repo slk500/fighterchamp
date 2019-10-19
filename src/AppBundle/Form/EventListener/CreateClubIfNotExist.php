@@ -35,7 +35,7 @@ class CreateClubIfNotExist implements EventSubscriberInterface
 
         $clubId = $data['club'];
 
-        if(!$clubId) {
+        if (!$clubId) {
             return;
         }
 

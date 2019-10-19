@@ -21,10 +21,12 @@ class FightController extends Controller
      */
     public function showAction(Fight $fight, SerializerInterface $serializer)
     {
-        return $this->render('fight/show.html.twig',
+        return $this->render(
+            'fight/show.html.twig',
             [
                 'fight' => $serializer->normalize($fight)
-            ]);
+            ]
+        );
     }
 
     /**

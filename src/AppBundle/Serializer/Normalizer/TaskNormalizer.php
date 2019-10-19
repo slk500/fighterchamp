@@ -8,7 +8,6 @@
 
 namespace AppBundle\Serializer\Normalizer;
 
-
 use AppBundle\Entity\Club;
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
@@ -52,5 +51,4 @@ class TaskNormalizer implements NormalizerInterface
     {
         return $data instanceof Task;
     }
-
 }

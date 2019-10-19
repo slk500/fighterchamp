@@ -14,10 +14,9 @@ class UserFightFixtures extends BaseFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-            $usersInFight = $this->startArrayFromOne($this->getUsersInFight());
+        $usersInFight = $this->startArrayFromOne($this->getUsersInFight());
 
         foreach (range(1, 50) as $i) {
-
             $userFightResults = $this->faker->boolean() ?
                 [UserFightResult::WIN(), UserFightResult::LOSE()] :
                 [UserFightResult::LOSE(), UserFightResult::WIN()];
@@ -41,11 +40,11 @@ class UserFightFixtures extends BaseFixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    function getUsersInFight()
+    public function getUsersInFight()
     {
         return array_map(function () {
             return array_rand(array_flip(range(1, 10)), 2);
-        }, range(1,50));
+        }, range(1, 50));
     }
 
     public function startArrayFromOne(array $array): array

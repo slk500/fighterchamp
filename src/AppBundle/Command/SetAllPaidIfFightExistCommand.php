@@ -45,22 +45,25 @@ class SetAllPaidIfFightExistCommand extends ContainerAwareCommand
         /**
          * @var $fight Fight
          */
-        foreach ($fights as $fight)
-        {
+        foreach ($fights as $fight) {
             /**
              * @var $userFight UserFight
              */
-           foreach ($fight->getUsersFight() as $userFight){
-               $signUpTournament = $userFight->getUser()->getSignUpTournament($tournament);
+            foreach ($fight->getUsersFight() as $userFight) {
+                $signUpTournament = $userFight->getUser()->getSignUpTournament($tournament);
 
 
-               if(!$signUpTournament) var_dump($userFight->getUser()->getSurname());
+                if (!$signUpTournament) {
+                    var_dump($userFight->getUser()->getSurname());
+                }
 
-               /**
-                * @var $signUpTournament SignUpTournament
-                */
-               if (! $signUpTournament->isPaid()) $signUpTournament->setIsPaid(true);
-           }
+                /**
+                 * @var $signUpTournament SignUpTournament
+                 */
+                if (! $signUpTournament->isPaid()) {
+                    $signUpTournament->setIsPaid(true);
+                }
+            }
         }
         $em->flush();
     }

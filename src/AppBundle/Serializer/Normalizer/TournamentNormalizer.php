@@ -34,11 +34,11 @@ class TournamentNormalizer implements NormalizerInterface, SerializerAwareInterf
     public function normalize($object, $format = null, array $context = array())
     {
         return [
-            'href' => $this->router->generate('tournament_show',['id' => $object->getId()]),
+            'href' => $this->router->generate('tournament_show', ['id' => $object->getId()]),
             'name'   => $object->getName(),
             'fights' => array_map(function (Fight $fight) {
                 return $this->serializer->normalize($fight);
-                },$object->getFights()->toArray())
+            }, $object->getFights()->toArray())
         ];
     }
 
@@ -51,9 +51,8 @@ class TournamentNormalizer implements NormalizerInterface, SerializerAwareInterf
     {
         $win = $draw = $lose = 0;
 
-        foreach ($users as $user){
-
-           $record =  $this->countRecord($user);
+        foreach ($users as $user) {
+            $record =  $this->countRecord($user);
 
             $win += $record['win'];
             $draw += $record['draw'];

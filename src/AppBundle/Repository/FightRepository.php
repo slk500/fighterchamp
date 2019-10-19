@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
@@ -8,7 +9,6 @@ use Doctrine\ORM\EntityRepository;
 
 class FightRepository extends EntityRepository
 {
-
     public function findAllFightsForTournamentAdmin($tournament)
     {
         $qb = $this->createQueryBuilder('fight')
@@ -20,10 +20,9 @@ class FightRepository extends EntityRepository
         
         $query = $qb->getQuery();
         return $query->execute();
-
     }
 
-    public function findAllFightByDayAdmin($tournament,$day)
+    public function findAllFightByDayAdmin($tournament, $day)
     {
         $qb = $this->createQueryBuilder('fight')
             ->addOrderBy('fight.position')
@@ -35,7 +34,6 @@ class FightRepository extends EntityRepository
 
         $query = $qb->getQuery();
         return $query->execute();
-
     }
 
     public function fightAllInDayOrderBy($tournament)
@@ -87,7 +85,6 @@ class FightRepository extends EntityRepository
 
     public function setAllFightsReady($tournament)
     {
-
         $em = $this->getEntityManager();
 
         $q = $em->createQuery('update AppBundle:Fight fight set fight.is_visible = ?1 where fight.is_visible = ?2 and fight.tournament = ?3')

@@ -56,13 +56,11 @@ class FighterType extends AbstractType
                         ->orderBy('u.name', 'ASC');
                 }])
             ->add('pesel', TextType::class, ['label' => 'Pesel']);
-
     }
 
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
     }
 
 
@@ -70,5 +68,4 @@ class FighterType extends AbstractType
     {
         return UserType::class;
     }
-
 }
