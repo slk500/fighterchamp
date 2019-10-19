@@ -28,7 +28,7 @@ class SignUpTournamentType extends AbstractType
             ->add('trainingTime', IntegerType::class)
             ->add('weight', ChoiceType::class, [
                 'choices'  => $trait
-                ])
+            ])
             ->add('discipline', ChoiceType::class, [
                 'choices'  => [
                     'BJJ' => 'BJJ',

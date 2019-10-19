@@ -34,9 +34,9 @@ class UserRecord implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-          'W' => $this->win,
-          'D' => $this->draw,
-          'L' => $this->lose
+            'W' => $this->win,
+            'D' => $this->draw,
+            'L' => $this->lose
         ];
     }
 }

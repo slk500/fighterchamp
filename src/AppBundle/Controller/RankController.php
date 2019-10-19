@@ -19,9 +19,9 @@ class RankController extends Controller
         string $age = 'wszystkie-kategorie-wiekowe'
     ) {
         $params = [
-        'year' => $year,
-        'age' => $age
-      ];
+            'year' => $year,
+            'age' => $age
+        ];
 
         $users = $rankRepository->findAllByYearAndAge($params);
 

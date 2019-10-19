@@ -73,8 +73,8 @@ class TournamentController extends Controller
         return $this->render(
             'tournament/contact.html.twig',
             [
-            'tournament' => $tournament,
-        ]
+                'tournament' => $tournament,
+            ]
         );
     }
 }
