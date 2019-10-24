@@ -22,9 +22,9 @@ class ImageController extends Controller
         $newFilename = Urlizer::urlize($originalFilename . '-' . uniqid()) . '.' . $uploadedFile->guessClientExtension();
 
         $uploadedFile->move(
-                $destination,
-                $newFilename
-            );
+            $destination,
+            $newFilename
+        );
 
         return new Response($newFilename);
     }
