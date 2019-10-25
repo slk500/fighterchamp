@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: slk
- * Date: 4/13/18
- * Time: 1:44 PM
- */
 
 namespace AppBundle\Event;
 
