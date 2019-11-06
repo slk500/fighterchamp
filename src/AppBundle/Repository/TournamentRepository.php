@@ -28,7 +28,9 @@ class TournamentRepository extends EntityRepository
     public static function createSignsUpTournamentNotDeleted()
     {
         return Criteria::create()
-        ->where(Criteria::expr()->eq('deleted_at', null));
+        ->where(Criteria::expr()->eq('deleted_at', null))
+            ->andWhere(Criteria::expr()->eq('deletedAtByAdmin', null))
+            ;
     }
 
     public function findAllForAdmin()

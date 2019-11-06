@@ -129,7 +129,7 @@ class Tournament
 
     public function isAvailableSeats(): bool
     {
-        return $this->signUpTournament->count() < $this->capacity;
+        return $this->getSignUpTournament()->count() < $this->capacity;
     }
 
     public function getPaymentInfo(): string
