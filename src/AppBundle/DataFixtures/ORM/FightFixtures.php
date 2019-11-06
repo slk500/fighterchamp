@@ -16,14 +16,14 @@ class FightFixtures extends BaseFixture implements DependentFixtureInterface
     {
         foreach (range(1, 50) as $i) {
             $fight = new Fight(
-                    $this->faker->randomElement(['A', 'B', 'C']),
-                    $this->faker->numberBetween(50, 100)
-                );
+                $this->faker->randomElement(['A', 'B', 'C']),
+                $this->faker->numberBetween(50, 100)
+            );
 
             $fight->setTournament(
-                    $this->getReference(Tournament::class . '_' .
+                $this->getReference(Tournament::class . '_' .
                         $this->faker->numberBetween(1, 10))
-                );
+            );
             $fight->setIsVisible(true);
             $fight->setDay(new \DateTime);
 

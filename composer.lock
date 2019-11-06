@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "484f6959b1d6f168662712d465909d9f",
+    "content-hash": "ed8cb16f6219ab1f56dde75989c78e2b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5356,6 +5356,58 @@
                 "schema"
             ],
             "time": "2019-09-25T14:49:45+00:00"
+        },
+        {
+            "name": "kubawerlos/php-cs-fixer-custom-fixers",
+            "version": "v1.15.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kubawerlos/php-cs-fixer-custom-fixers.git",
+                "reference": "44e13a965520814fadfbdebb2765ee4f48837a7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kubawerlos/php-cs-fixer-custom-fixers/zipball/44e13a965520814fadfbdebb2765ee4f48837a7d",
+                "reference": "44e13a965520814fadfbdebb2765ee4f48837a7d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "php": "^7.1",
+                "symfony/finder": "^3.0 || ^4.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "infection/infection": "^0.13.3",
+                "johnkary/phpunit-speedtrap": "^3.1",
+                "kubawerlos/types-checker": "^1.1",
+                "phpunit/phpunit": "^7.4 || ^8.0",
+                "sebastian/diff": "^3.0",
+                "symfony/console": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCsFixerCustomFixers\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuba Werłos",
+                    "email": "werlos@gmail.com"
+                }
+            ],
+            "description": "A set of custom fixers for PHP CS Fixer",
+            "keywords": [
+                "fixer",
+                "php-cs-fixer"
+            ],
+            "time": "2019-08-26T19:21:54+00:00"
         },
         {
             "name": "localheinz/composer-json-normalizer",

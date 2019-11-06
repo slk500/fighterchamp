@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: slk500
- * Date: 22.04.17
- * Time: 21:49
- */
 
 namespace AppBundle\Serializer\Normalizer;
 

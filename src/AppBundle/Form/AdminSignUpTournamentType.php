@@ -25,7 +25,7 @@ class AdminSignUpTournamentType extends AbstractType
             ->add('trainingTime', IntegerType::class)
             ->add('weight', ChoiceType::class, [
                 'choices'  => $trait
-                ])
+            ])
             ->add('youtubeId', TextType::class)
             ->add('musicArtistAndTitle', TextType::class)
 

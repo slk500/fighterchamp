@@ -97,7 +97,7 @@ class AdminTournamentSignUp extends Controller
             'howManyWeighted' => $howManyWeighted,
             'finance' => $finance,
             'signUpsDeleted' => $signUpsDeleted
-//            'fightsWhereFightersAreNotWeighted' => $fightsWhereFightersAreNotWeighted
+            //            'fightsWhereFightersAreNotWeighted' => $fightsWhereFightersAreNotWeighted
         ]);
     }
 
@@ -117,7 +117,7 @@ class AdminTournamentSignUp extends Controller
 
         return $this->render('admin/sign-up/create.html.twig', [
             'users' => $users,
-               // $serializer->normalize($users),
+            // $serializer->normalize($users),
             'weights' => $weights,
             'tournament' => $tournament
         ]);

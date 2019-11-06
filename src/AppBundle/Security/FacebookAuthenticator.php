@@ -64,12 +64,12 @@ class FacebookAuthenticator extends SocialAuthenticator
         }
 
         $facebook = new Facebook(
-                $facebookUser->getId(),
-                $facebookUser->getFirstName(),
-                $facebookUser->getLastName(),
-                $facebookUser->getEmail(),
-                true
-            );
+            $facebookUser->getId(),
+            $facebookUser->getFirstName(),
+            $facebookUser->getLastName(),
+            $facebookUser->getEmail(),
+            true
+        );
 
         $user = $this->em->getRepository(User::class)
                 ->findOneBy(['email' => $facebook->getEmail()]);

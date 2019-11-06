@@ -9,6 +9,9 @@ return PhpCsFixer\Config::create()
             ->in(__DIR__ . '/tests')
             ->append([__FILE__])
     )
+    ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
     ->setRules([
         '@PSR2' => true,
+        'array_indentation' => true,
+        PhpCsFixerCustomFixers\Fixer\NoPhpStormGeneratedCommentFixer::name() => true,
     ]);

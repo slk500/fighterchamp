@@ -53,7 +53,7 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-          ClubFixtures::class
+            ClubFixtures::class
         ];
     }
 }

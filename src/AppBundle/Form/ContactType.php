@@ -18,10 +18,10 @@ class ContactType extends AbstractType
                 'email',
                 EmailType::class,
                 ['attr' => ['placeholder' => 'Twój adres email'],
-                'constraints' => [
-                    new NotBlank(["message" => "Please provide a valid email"]),
-                    new Email(["message" => "Your email doesn't seems to be valid"]),
-                ]
+                    'constraints' => [
+                        new NotBlank(["message" => "Please provide a valid email"]),
+                        new Email(["message" => "Your email doesn't seems to be valid"]),
+                    ]
                 ]
             )
         ;

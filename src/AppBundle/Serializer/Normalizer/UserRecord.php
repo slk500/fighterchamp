@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: slk
- * Date: 1/28/18
- * Time: 9:58 PM
- */
 
 namespace AppBundle\Serializer\Normalizer;
 
@@ -34,9 +28,9 @@ class UserRecord implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-          'W' => $this->win,
-          'D' => $this->draw,
-          'L' => $this->lose
+            'W' => $this->win,
+            'D' => $this->draw,
+            'L' => $this->lose
         ];
     }
 }
