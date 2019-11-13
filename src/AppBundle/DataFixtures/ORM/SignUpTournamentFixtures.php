@@ -21,6 +21,8 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
                 );
                 $signUpTournament->setWeight($this->faker->numberBetween(50, 100));
                 $signUpTournament->setFormula($this->faker->randomElement(['A', 'B', 'C']));
+                $signUpTournament->setDiscipline($this->faker->randomElement(['boks', 'K1', 'kick-boxing']));
+                $signUpTournament->setTrainingTime($this->faker->numberBetween(1, 100));
 
                 $manager->persist($signUpTournament);
             }

@@ -126,6 +126,7 @@ class AdminTournamentFightController extends Controller
         foreach ($freeSignUpIds as $signUp) {
             $signUps [] = $this->getDoctrine()->getRepository('AppBundle:SignUpTournament')->find($signUp['id']);
         }
+        //todo should be one query
 
         return $this->render(':admin:pair.html.twig', array(
             'freeUsers' => $serializer->normalize($signUps),

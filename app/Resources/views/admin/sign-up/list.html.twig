@@ -80,13 +80,11 @@
                     <td> {{ signUp.User.male ?  'M' : 'K' }} </td>
                     <td> {{ signUp.User.birthDay |getAge }} </td>
                     <td>
-                        {% if signUp.User.phone %}
                             <span data-div="{{ loop.index }}"
                                   class="expand">Pokaż</span>
-                            <div style="display: none" id="{{ loop.index }}">{{ signUp.User.phone }}
-                                <br> {{ signUp.User.email }}
+                            <div style="display: none" id="{{ loop.index }}"> {{ signUp.User.phone? signUp.User.phone : '' }}
+                                <br> {{ signUp.User.email? signUp.User.email? : '' }}
                             </div>
-                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -6,15 +6,14 @@
 {#        <th>Zapłacone?</th>#}
         <th>Zważony?</th>
         <th>Dyscyplina</th>
-        <th>Nazwisko i Imię</th>
-        <th>Rekord</th>
         <th>Płeć</th>
-        <th>Klasa</th>
+        <th>Nazwisko i Imię</th>
         <th>Kat. Wagowa</th>
-        <th>Staż [miesiące]</th>
+        <th>Klasa</th>
         <th>Wiek</th>
+        <th>Rekord</th>
+        <th>Staż [miesiące]</th>
 {#        <th>Licencja PZB</th>#}
-        <th>Klub</th>
     </tr>
     </thead>
     <tbody>
@@ -28,21 +27,20 @@
 {#                <td> {{ signUp.isPaid ? 'Tak' : 'Nie' }} </td>#}
                 <td> {{ signUp.weighted ? 'Tak' : 'Nie' }} </td>
                 <td> {{ signUp.discipline }} </td>
-                <td><a href="{{ signUp.user.href }}"> {{ signUp.user.surname }} {{ signUp.user.name }}</a></td>
+                <td> {{ signUp.user.male ?  'M' : 'K' }} </td>
+                <td><a href="{{ signUp.user.href }}"> {{ signUp.user.surname }} {{ signUp.user.name }}</a><br>
+                    {% if signUp.user.club %}
+                        {{ signUp.user.club.name }}
+                    {% endif %}
+                </td>
+                <td> {{ signUp.weighted ?: signUp.weight }} </td>
+                <td> {{ signUp.formula }} </td>
+                <td> {{ signUp.user.birthDay |getAge }} </td>
                 <td>
                     {{ macro.record(signUp.user) }}
                 </td>
-                <td> {{ signUp.user.male ?  'M' : 'K' }} </td>
-                <td> {{ signUp.formula }} </td>
-                <td> {{ signUp.weighted ?: signUp.weight }} </td>
                 <td> {{ signUp.trainingTime }} </td>
-                <td> {{ signUp.user.birthDay |getAge }} </td>
 {#                <td> {{ signUp.isLicence ? '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' }} </td>#}
-                <td>
-                    {% if signUp.user.club %}
-                        <a href="{{ signUp.user.club.href }}"> {{ signUp.user.club.name }} </a>
-                    {% endif %}
-                </td>
             </tr>
         {% endif %}
     {% endfor %}

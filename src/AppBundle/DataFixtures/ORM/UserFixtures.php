@@ -4,7 +4,9 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Club;
+use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserAdminTournament;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -20,8 +22,12 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
         $admin->setMale(true);
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPlainPassword('password');
+        $userTournamentAdmin = new UserAdminTournament();
+        $userTournamentAdmin->setUser($admin);
+        $userTournamentAdmin->setTournament($this->getReference(Tournament::class . '_' . 1));
 
         $manager->persist($admin);
+        $manager->persist($userTournamentAdmin);
 
         $user = new User();
         $user->setHash($this->faker->sha1);
@@ -42,6 +48,7 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
             $user->setSurname($this->faker->lastName);
             $user->setMale($this->faker->boolean());
             $user->setClub($this->getReference(Club::class . '_' . rand(1, 2)));
+            $user->setBirthDay($this->faker->dateTimeBetween('-40 years', '-13 years'));
             $manager->persist($user);
 
             $this->addReference(User::class . '_' . $i, $user);
@@ -53,7 +60,8 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            ClubFixtures::class
+            ClubFixtures::class,
+            TournamentFixtures::class,
         ];
     }
 }
