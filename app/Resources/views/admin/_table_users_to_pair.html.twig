@@ -7,11 +7,10 @@
         <th>Zważony?</th>
         <th>Dyscyplina</th>
         <th>Płeć</th>
+        <th>Wiek</th>
         <th>Nazwisko i Imię</th>
         <th>Kat. Wagowa</th>
         <th>Klasa</th>
-        <th>Wiek</th>
-        <th>Rekord</th>
         <th>Staż [miesiące]</th>
 {#        <th>Licencja PZB</th>#}
     </tr>
@@ -28,17 +27,15 @@
                 <td> {{ signUp.weighted ? 'Tak' : 'Nie' }} </td>
                 <td> {{ signUp.discipline }} </td>
                 <td> {{ signUp.user.male ?  'M' : 'K' }} </td>
+                <td> {{ signUp.user.birthDay |getAge }} </td>
                 <td><a href="{{ signUp.user.href }}"> {{ signUp.user.surname }} {{ signUp.user.name }}</a><br>
+                    {{ macro.record(signUp.user) }} <br>
                     {% if signUp.user.club %}
                         {{ signUp.user.club.name }}
                     {% endif %}
                 </td>
                 <td> {{ signUp.weighted ?: signUp.weight }} </td>
                 <td> {{ signUp.formula }} </td>
-                <td> {{ signUp.user.birthDay |getAge }} </td>
-                <td>
-                    {{ macro.record(signUp.user) }}
-                </td>
                 <td> {{ signUp.trainingTime }} </td>
 {#                <td> {{ signUp.isLicence ? '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' }} </td>#}
             </tr>
