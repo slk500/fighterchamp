@@ -7,8 +7,6 @@ use AppBundle\Form\Security\LoginForm;
 use AppBundle\Form\Security\PasswordResetType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Swift_Mailer;
-use Swift_SmtpTransport;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,13 +93,13 @@ class SecurityController extends Controller
                 $user->setPassword($encoded_password);
                 $em->flush();
 
-                $transport = (new Swift_SmtpTransport('smtp.zenbox.pl', 587))
+                $transport = (new \Swift_SmtpTransport('smtp.zenbox.pl', 587))
                     ->setUsername('fighterchamp@fighterchamp.pl')
                     ->setPassword(
                         $this->container->getParameter('mailer_password')
                     );
 
-                $mailer = new Swift_Mailer($transport);
+                $mailer = new \Swift_Mailer($transport);
 
                 $message = (new \Swift_Message())
                     ->setSubject('Password Reset')

@@ -2,8 +2,6 @@
 
 namespace AppBundle\Service;
 
-use Swift_Mailer;
-
 class AppMailer
 {
     /**
@@ -11,7 +9,7 @@ class AppMailer
      */
     private $mailer;
 
-    public function __construct(Swift_Mailer $_mailer)
+    public function __construct(\Swift_Mailer $_mailer)
     {
         $this->mailer = $_mailer;
     }

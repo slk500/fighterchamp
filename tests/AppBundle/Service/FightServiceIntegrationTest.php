@@ -5,7 +5,6 @@ namespace Tests\AppBundle\Service;
 use AppBundle\Entity\Fight;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Service\FightService;
-use AppKernel;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\Builder\TournamentBuilder;
@@ -42,7 +41,7 @@ class FightServiceIntegrationTest extends TestCase
 
     public function setUp()
     {
-        $kernel = new AppKernel('dev', true);
+        $kernel = new \AppKernel('dev', true);
         $kernel->boot();
 
         $container = $kernel->getContainer();
