@@ -13,5 +13,6 @@ return PhpCsFixer\Config::create()
     ->setRules([
         '@PSR2' => true,
         'array_indentation' => true,
+        'no_unused_imports' => true,
         PhpCsFixerCustomFixers\Fixer\NoPhpStormGeneratedCommentFixer::name() => true,
     ]);

@@ -4,9 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Fight;
-use AppBundle\Entity\Place;
 use AppBundle\Entity\Tournament;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 

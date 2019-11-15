@@ -7,7 +7,6 @@ namespace AppBundle\Security;
 use AppBundle\Entity\Facebook;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;

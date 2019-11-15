@@ -2,16 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Fight;
-use AppBundle\Entity\Info;
-use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Tournament;
-use AppBundle\Entity\User;
-use AppBundle\Form\SignUpTournamentType;
-use AppBundle\Entity\SignUpTournament;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\EntityManagerInterface;

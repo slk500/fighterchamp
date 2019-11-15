@@ -2,11 +2,8 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Club;
 use Doctrine\DBAL\Driver\Connection;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 
 final class RankRepository
 {

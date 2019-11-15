@@ -3,8 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Fight;
-use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

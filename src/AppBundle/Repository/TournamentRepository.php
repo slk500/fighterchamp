@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Tournament;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityRepository;
 
