@@ -5,7 +5,6 @@ namespace AppBundle\Serializer\Normalizer;
 use AppBundle\Entity\Fight;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserFight;
-use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerAwareInterface;

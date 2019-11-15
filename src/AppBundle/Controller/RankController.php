@@ -2,9 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
 use AppBundle\Repository\RankRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 

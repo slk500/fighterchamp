@@ -4,13 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Task;
-use AppBundle\Entity\UserTask;
 use AppBundle\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class TQMController extends Controller
 {

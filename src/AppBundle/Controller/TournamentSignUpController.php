@@ -6,12 +6,10 @@ use AppBundle\Entity\Tournament;
 use AppBundle\Form\SignUpTournamentType;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Util\AgeCategoryConverter;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Serializer\SerializerInterface;
 
 //todo REFACTOR split on create & update
 

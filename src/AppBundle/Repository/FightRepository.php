@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
-use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 class FightRepository extends EntityRepository

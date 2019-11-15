@@ -4,10 +4,8 @@ namespace Tests\AppBundle\Service;
 
 use AppBundle\Entity\Fight;
 use AppBundle\Entity\SignUpTournament;
-use AppBundle\Entity\UserFight;
 use AppBundle\Service\FightService;
 use AppKernel;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\Builder\TournamentBuilder;

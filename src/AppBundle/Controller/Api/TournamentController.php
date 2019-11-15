@@ -2,12 +2,9 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Fight;
 use AppBundle\Entity\Tournament;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class TournamentController extends Controller

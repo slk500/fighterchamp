@@ -6,12 +6,9 @@ use AppBundle\Entity\User;
 use AppBundle\Form\User\CoachType;
 use AppBundle\Form\User\FighterType;
 use AppBundle\Form\User\UserType;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**

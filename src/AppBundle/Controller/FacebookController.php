@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
