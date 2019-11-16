@@ -45,19 +45,11 @@ class AdminTournamentSignUp extends Controller
         $signUpsDeleted = $this->getDoctrine()
             ->getRepository(SignUpTournament::class)->signUpsDeleted($tournament);
 
-//        $fightsWhereFightersAreNotWeighted = $this->getDoctrine()
-//            ->getRepository('AppBundle:Fight')
-//            ->findAllTournamentFightsWhereFightersAreNotWeighted($tournament);
-
         $howManyWeighted = $this->howManyWeighted($signUpsTournament);
 
         $weights = $this->getDoctrine()
             ->getRepository('AppBundle:Ruleset')
             ->getWeight();
-
-//        $form = $this->createForm(SignUpTournamentType::class, null,
-//            ['trait_choices' => $weights]
-//        );
 
         $seniors = 0;
         $seniorsPaid = 0;
@@ -97,7 +89,6 @@ class AdminTournamentSignUp extends Controller
             'howManyWeighted' => $howManyWeighted,
             'finance' => $finance,
             'signUpsDeleted' => $signUpsDeleted
-            //            'fightsWhereFightersAreNotWeighted' => $fightsWhereFightersAreNotWeighted
         ]);
     }
 
