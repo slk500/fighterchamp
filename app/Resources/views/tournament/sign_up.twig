@@ -92,6 +92,12 @@
 
                 <p class="text-center"> Liczba zapisanych: {{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</p>
 
+                <div class="col-sm-6 col-sm-offset-3 user-type">
+                    <form class="user-type text-center">
+                        <label class="radio-inline"><input type="radio" checked value="{{ path('api_signup_list', {id: tournament.id}) }}" name="user-type">Wszyscy</label>
+                        <label class="radio-inline"><input type="radio" value="{{ path('api_signup_list_not_pair', {id: tournament.id}) }}" name="user-type">Niesparowani</label>
+                    </form>
+                </div>
                 <div class="col-xs-12">
                     <table id="table-signups" class="table table-striped">
                         <thead>
@@ -200,6 +206,11 @@
                     cell.innerHTML = i + 1;
                 });
             }).draw();
+
+            $(".radio-inline").change(function () {
+               var url =  $('input:radio:checked').val();
+                t.ajax.url(url).load();
+            });
 
 
         </script>

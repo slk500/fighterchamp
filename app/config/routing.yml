@@ -34,6 +34,14 @@ api_signup_list:
     requirements:
         id: '\d+'
 
+api_signup_list_not_pair:
+    path:     /api/tournaments/{id}/signups-not-pair
+    controller: AppBundle\Controller\Api\SignUpController::listNotPair
+    methods: GET
+#    condition: 'request.isXmlHttpRequest()'
+    requirements:
+        id: '\d+'
+
 api_signup_new:
     path:     /api/zapisy/
     controller: AppBundle\Controller\Api\SignUpController::newAction

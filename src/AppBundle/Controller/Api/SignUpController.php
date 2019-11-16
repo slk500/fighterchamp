@@ -54,6 +54,20 @@ class SignUpController extends Controller
             );
     }
 
+    public function listNotPair(Tournament $tournament, EntityManagerInterface $entityManager)
+    {
+        $freeSignUpIdsRaw = $entityManager
+            ->getRepository('AppBundle:SignUpTournament')->findAllSignUpButNotPairYet($tournament->getId());
+
+        $freeSignUpIds = array_map(function (array $arr) {
+            return $arr['id'];
+        }, $freeSignUpIdsRaw);
+
+        return $this->getDoctrine()
+            ->getRepository('AppBundle:SignUpTournament')
+            ->findBy(['id' => $freeSignUpIds]);
+    }
+
     public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
     {
         $signUpTournament->delete();
