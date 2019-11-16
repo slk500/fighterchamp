@@ -2,13 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\ContactType;
-use AppBundle\Service\AppMailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class JustRenderViewController extends Controller
 {

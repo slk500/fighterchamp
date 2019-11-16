@@ -6,26 +6,18 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\UserCoach;
 use AppBundle\Event\Events;
 use AppBundle\Event\UserCreatedEvent;
-use AppBundle\Event\UserEvent;
 use AppBundle\Form\User\CoachType;
 use AppBundle\Form\User\UserType;
 use AppBundle\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\User\FighterType;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/api"))

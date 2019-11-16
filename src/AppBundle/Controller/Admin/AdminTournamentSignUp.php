@@ -5,7 +5,6 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
-use AppBundle\Repository\SignUpTournamentRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -2,18 +2,14 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Fight;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class SignUpController extends Controller
 {

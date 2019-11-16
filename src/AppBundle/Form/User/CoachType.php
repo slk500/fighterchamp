@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form\User;
 
-use AppBundle\Form\EventListener\CreateCoachIfDosentExist;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

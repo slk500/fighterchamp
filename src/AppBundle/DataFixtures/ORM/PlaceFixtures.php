@@ -4,7 +4,6 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Place;
-use AppBundle\Entity\Tournament;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class PlaceFixtures extends BaseFixture

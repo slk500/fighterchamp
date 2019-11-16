@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\Admin\Api;
 
 use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
