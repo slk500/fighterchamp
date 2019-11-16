@@ -61,7 +61,7 @@ class SignUpController extends Controller
 
         return $this->getDoctrine()
             ->getRepository('AppBundle:SignUpTournament')
-            ->findBy(['id' => $freeSignUpIds]);
+            ->findBy(['id' => $freeSignUpIds, 'deletedAtByAdmin' => null]);
     }
 
     public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
