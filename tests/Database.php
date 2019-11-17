@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use mysqli;
-
 final class Database
 {
     /**
-     * @var $mysqli mysqli
+     * @var $\mysqli \mysqli
      */
     public $mysqli;
 
@@ -21,7 +19,7 @@ final class Database
         $dbName = ($env == 'dev') ? 'test' : 'db_test';
         $dbPort = 3306;
 
-        $this->mysqli = new mysqli($dbServer, $dbUser, $dbPass, $dbName, $dbPort);
+        $this->mysqli = new \mysqli($dbServer, $dbUser, $dbPass, $dbName, $dbPort);
 
         if ($this->mysqli->connect_errno) {
             echo "Failed to connect to MySQL: " . $this->mysqli->connect_error;
