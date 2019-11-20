@@ -43,7 +43,7 @@ class FightService
 
         $fight->setTournament($tournament);
 
-        $numberOfFights = $tournament->getSignUpTournament()->count(); //todo should count fights not signups
+        $numberOfFights = $tournament->getFights()->count();
 
         $fight->setPosition($numberOfFights + 1);
         $fight->setDay($tournament->getStart());
