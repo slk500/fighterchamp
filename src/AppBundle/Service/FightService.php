@@ -47,6 +47,9 @@ class FightService
 
         $fight->setPosition($numberOfFights + 1);
         $fight->setDay($tournament->getStart());
+        $fight->setDiscipline(
+            $this->getDiscipline($signUp1, $signUp2)
+        );
 
         $this->entityManager->persist($fight);
         $this->entityManager->persist($userFight1);
@@ -62,6 +65,15 @@ class FightService
     public function getHighestWeight(SignUpTournament $signUp0, SignUpTournament $signUp1): string
     {
         return ($signUp0->getWeight() >= $signUp1->getWeight()) ? $signUp0->getWeight() : $signUp1->getWeight();
+    }
+
+    public function getDiscipline(SignUpTournament $signUp0, SignUpTournament $signUp1): ?string
+    {
+        if ($signUp0->getDiscipline() === 'Boks'|| $signUp1->getDiscipline() === 'Boks') {
+            return 'Boks';
+        }
+
+        return $signUp0->getDiscipline();
     }
 
     public function splitFightsBasedOnDay(array $fights): array

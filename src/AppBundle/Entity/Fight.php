@@ -86,6 +86,12 @@ class Fight
      */
     private $licence = false;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $discipline = false;
+
     public function isLicence(): bool
     {
         return $this->licence;
@@ -100,7 +106,6 @@ class Fight
     {
         return $this->id;
     }
-
 
     public function addUserFight(UserFight $userFight)
     {
@@ -201,5 +206,15 @@ class Fight
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getDiscipline(): ?string
+    {
+        return $this->discipline;
+    }
+
+    public function setDiscipline(string $discipline): void
+    {
+        $this->discipline = $discipline;
     }
 }
