@@ -9,8 +9,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
-use DateTime;
-use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="Użytkownik o podanym adresie email jest już zarejestrowany!")
  *
  */
-class User implements UserInterface, Serializable
+class User implements UserInterface, \Serializable
 {
     use TimestampableTrait;
 
@@ -355,7 +353,7 @@ class User implements UserInterface, Serializable
     }
 
 
-    public function setBirthDay(DateTime $birthDay)
+    public function setBirthDay(\DateTime $birthDay)
     {
         $this->birthDay = $birthDay;
     }

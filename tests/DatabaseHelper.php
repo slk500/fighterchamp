@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Console_Table;
-
 final class DatabaseHelper
 {
     private $database;
@@ -111,7 +109,7 @@ final class DatabaseHelper
 
     private function printTable($table, $result)
     {
-        $tbl = new Console_Table();
+        $tbl = new \Console_Table();
         $headers = array_keys(reset($result));
         array_unshift($headers, '#');
         $tbl->setHeaders($headers);
