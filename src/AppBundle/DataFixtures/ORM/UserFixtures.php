@@ -7,8 +7,8 @@ use AppBundle\Entity\Club;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAdminTournament;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class UserFixtures extends BaseFixture implements DependentFixtureInterface
 {

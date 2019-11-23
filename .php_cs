@@ -14,6 +14,7 @@ return PhpCsFixer\Config::create()
         '@PSR2' => true,
         'array_indentation' => true,
         'no_unused_imports' => true,
+        'ordered_imports' => true,
         PhpCsFixerCustomFixers\Fixer\NoImportFromGlobalNamespaceFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\NoPhpStormGeneratedCommentFixer::name() => true,
     ]);
