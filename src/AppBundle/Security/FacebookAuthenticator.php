@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace AppBundle\Security;
 
 use AppBundle\Entity\Facebook;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
+use League\OAuth2\Client\Provider\FacebookUser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
-use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use League\OAuth2\Client\Provider\FacebookUser;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Entity\User;
 
 class FacebookAuthenticator extends SocialAuthenticator
 {

@@ -7,6 +7,7 @@ use AppBundle\Entity\UserCoach;
 use AppBundle\Event\Events;
 use AppBundle\Event\UserCreatedEvent;
 use AppBundle\Form\User\CoachType;
+use AppBundle\Form\User\FighterType;
 use AppBundle\Form\User\UserType;
 use AppBundle\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\User\FighterType;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
