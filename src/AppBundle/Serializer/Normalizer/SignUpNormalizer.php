@@ -19,7 +19,7 @@ class SignUpNormalizer implements NormalizerInterface
         $this->router = $router;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         return [
             'id' => $object->getId(),

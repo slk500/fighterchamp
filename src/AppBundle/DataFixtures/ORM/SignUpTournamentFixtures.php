@@ -33,9 +33,9 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
 
     public function getDependencies()
     {
-        return array(
+        return [
             UserFixtures::class,
             TournamentFixtures::class
-        );
+        ];
     }
 }

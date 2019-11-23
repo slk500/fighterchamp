@@ -23,7 +23,7 @@ class SmokeTest extends HttpSmokeTestCase
 
         $options["-e"] = "test";
         $options["-q"] = null;
-        $options = array_merge($options, array('command' => "doctrine:fixtures:load"));
+        $options = array_merge($options, ['command' => "doctrine:fixtures:load"]);
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
     }
 

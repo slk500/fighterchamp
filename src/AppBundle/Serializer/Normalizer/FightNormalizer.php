@@ -22,7 +22,7 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
         $this->router = $router;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         return [
             'href' => $this->router->generate('fight_show', ['id' => $object->getId()]),

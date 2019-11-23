@@ -20,7 +20,7 @@ class ClubNormalizer implements NormalizerInterface, SerializerAwareInterface
         $this->router = $router;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         /**
          * @var $object Club

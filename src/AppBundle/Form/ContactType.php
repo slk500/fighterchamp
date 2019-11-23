@@ -29,8 +29,8 @@ class ContactType extends AbstractType
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'error_bubbling' => true
-        ));
+        ]);
     }
 }
