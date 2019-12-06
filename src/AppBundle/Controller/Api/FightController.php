@@ -3,28 +3,20 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Fight;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
+use AppBundle\Repository\FightRepository;
 
-class FightController extends Controller
+class FightController
 {
-    public function showAction(Fight $fight, SerializerInterface $serializer)
+    public function show(Fight $fight)
     {
-        $result = $serializer->serialize($fight, 'json');
-
-        return new Response($result, 200, ['Content-Type' => 'application/json']);
+        return $fight;
     }
 
-    public function listAction(EntityManagerInterface $em, SerializerInterface $serializer)
+    public function list(FightRepository $fightRepository)
     {
-        $fights = $em->getRepository(Fight::class)
-            ->findBy(['isVisible' => true], ['position'=>'ASC']);
-
-        $result = $serializer->normalize($fights, 'json');
-
-        return new JsonResponse(['data' => $result]);
+        return $fightRepository->findBy(
+            ['isVisible' => true],
+            ['position'=>'ASC']
+        );
     }
 }

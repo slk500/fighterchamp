@@ -76,9 +76,11 @@ class FightServiceIntegrationTest extends TestCase
         $signUp1 = new SignUpTournament($user1, $tournament);
         $signUp1->setWeight(69);
         $signUp1->setFormula('A');
+        $signUp1->setDiscipline('boks');
         $signUp2 = new SignUpTournament($user2, $tournament);
         $signUp2->setWeight(69);
         $signUp2->setFormula('A');
+        $signUp2->setDiscipline('boks');
 
         $this->em->persist($user1);
         $this->em->persist($user2);

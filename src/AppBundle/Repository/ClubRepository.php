@@ -40,7 +40,7 @@ final class ClubRepository
 FROM club c
   LEFT JOIN user u ON u.club_id = c.id
   LEFT JOIN user_fight AS uf ON uf.user_id = u.id
-group by c.id;SELECT * FROM query_clubs')
+group by c.id;')
             ->fetchAll();
     }
 }

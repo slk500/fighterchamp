@@ -6,16 +6,18 @@ fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 api_fight_show:
-    path:     /api/walki/{id}
-    controller: AppBundle\Controller\Api\FightController::showAction
+    path:     /api/fights/{id}
+    controller: AppBundle\Controller\Api\FightController::show
     condition: 'request.isXmlHttpRequest()'
+    methods: GET
     requirements:
             id: '\d+'
 
 api_fight_list:
-    path:     /api/turnieje/walki
-    controller: AppBundle\Controller\Api\FightController::listAction
+    path:     /api/fights
+    controller: AppBundle\Controller\Api\FightController::list
     condition: 'request.isXmlHttpRequest()'
+    methods: GET
     requirements:
         id: '\d+'
 
@@ -55,19 +57,22 @@ api_signup_delete:
         id: '\d+'
 
 api_club_list:
-    path:     /api/kluby
+    path:     /api/clubs
     condition: 'request.isXmlHttpRequest()'
-    controller: AppBundle\Controller\Api\ClubController::listAction
+    controller: AppBundle\Controller\Api\ClubController::list
+    methods: GET
 
 api_tournament_show:
-    path:     /api/turnieje/{id}
+    path:     /api/tournaments/{id}
     condition: 'request.isXmlHttpRequest()'
-    controller: AppBundle\Controller\Api\TournamentController::showAction
+    controller: AppBundle\Controller\Api\TournamentController::show
+    methods: GET
 
 api_tournament_fight_list:
-    path:     /api/turnieje/{id}/walki
+    path:     /api/tournaments/{id}/fights
     controller: AppBundle\Controller\Api\TournamentController::showFights
     condition: 'request.isXmlHttpRequest()'
+    methods: GET
     requirements:
         id: '\d+'
 
@@ -75,6 +80,11 @@ admin_api_user_list:
     path:     /admin/api/users
     condition: 'request.isXmlHttpRequest()'
     controller: AppBundle\Controller\Admin\Api\UserController::indexAction
+
+api_user_show:
+    path:     /api/users/{id}
+    condition: 'request.isXmlHttpRequest()'
+    controller: AppBundle\Controller\Api\UserController::show
 
 admin_api_tournament_list:
     path:     /admin/api/tournaments

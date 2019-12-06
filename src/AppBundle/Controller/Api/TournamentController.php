@@ -3,23 +3,16 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Tournament;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\SerializerInterface;
 
-class TournamentController extends Controller
+class TournamentController
 {
-    public function showAction(Tournament $tournament, SerializerInterface $serializer)
+    public function show(Tournament $tournament)
     {
-        $result = $serializer->normalize($tournament, 'json');
-
-        return new JsonResponse(['data' => $result]);
+        return $tournament;
     }
 
-    public function showFights(Tournament $tournament, SerializerInterface $serializer)
+    public function showFights(Tournament $tournament)
     {
-        $result = $serializer->normalize($tournament->getFightsReady(), 'json');
-
-        return new JsonResponse(['data' => $result]);
+        return $tournament->getFightsReady();
     }
 }

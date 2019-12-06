@@ -3,14 +3,11 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Repository\ClubRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ClubController extends Controller
+class ClubController
 {
-    public function listAction(ClubRepository $clubRepository)
+    public function list(ClubRepository $clubRepository)
     {
-        $clubs = $clubRepository->findAll();
-
-        return $clubs;
+        return $clubRepository->findAll();
     }
 }

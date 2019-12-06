@@ -24,15 +24,10 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
  */
 class UserController extends Controller
 {
-    /**
-     * @Route("/ludzie/{id}", name="api_user_show")
-     * @Method("GET")
-     */
-    public function showAction(User $user)
+    public function show(User $user)
     {
         return $user;
     }
-
 
     /**
      * @Route("/user-create", name="user_create")

@@ -2,11 +2,18 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Fight;
 use AppBundle\Entity\Tournament;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
-class FightRepository extends EntityRepository
+class FightRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Fight::class);
+    }
+
     public function findAllFightsForTournamentAdmin($tournament)
     {
         $qb = $this->createQueryBuilder('fight')
