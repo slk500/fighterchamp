@@ -76,20 +76,10 @@ api_tournament_fight_list:
     requirements:
         id: '\d+'
 
-admin_api_user_list:
-    path:     /admin/api/users
-    condition: 'request.isXmlHttpRequest()'
-    controller: AppBundle\Controller\Admin\Api\UserController::indexAction
-
 api_user_show:
     path:     /api/users/{id}
     condition: 'request.isXmlHttpRequest()'
     controller: AppBundle\Controller\Api\UserController::show
-
-admin_api_tournament_list:
-    path:     /admin/api/tournaments
-    condition: 'request.isXmlHttpRequest()'
-    controller: AppBundle\Controller\Admin\Api\TournamentController::list
 
 api_image_upload:
     path:     /api/images
