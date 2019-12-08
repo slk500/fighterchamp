@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TournamentSignUpController extends Controller
 {
     /**
-     * @Route("/{id}/zapisy", name="tournament_sign_up")
+     * @Route("/{id}/zapisy", name="view_tournament_signup")
      */
     public function signUpAction(Tournament $tournament, Request $request, EntityManagerInterface $em)
     {
@@ -67,7 +67,7 @@ class TournamentSignUpController extends Controller
                 }
                 $em->flush();
 
-                return $this->redirectToRoute("tournament_sign_up", ['id' => $tournament->getId()]);
+                return $this->redirectToRoute("view_tournament_signup", ['id' => $tournament->getId()]);
             }
 
             return $this->render('tournament/sign_up.twig', [

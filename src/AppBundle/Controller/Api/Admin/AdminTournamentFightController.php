@@ -78,7 +78,7 @@ class AdminTournamentFightController extends Controller
         $this->refreshFightPosition($fights);
 
 
-        return $this->redirectToRoute('admin_tournament_sign_up', ['id' => $tournament->getId()]);
+        return $this->redirectToRoute('admin_view_tournament_signup', ['id' => $tournament->getId()]);
     }
 
     /**

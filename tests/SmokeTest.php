@@ -99,7 +99,7 @@ class SmokeTest extends HttpSmokeTestCase
                     'fight_show',
                     'api_user_show',
                     'admin_tournament_pair',
-                    'admin_tournament_sign_up',
+                    'admin_view_tournament_signup',
                     'admin_create_signUp',
                     'api_fight_show',
                     'api_tournament_show'

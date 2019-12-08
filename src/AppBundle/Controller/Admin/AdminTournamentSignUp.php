@@ -30,7 +30,7 @@ class AdminTournamentSignUp extends Controller
 
 
     /**
-     * @Route("/turnieje/{id}/lista", name="admin_tournament_sign_up")
+     * @Route("/turnieje/{id}/lista", name="admin_view_tournament_signup")
      */
     public function signUp(Tournament $tournament)
     {
