@@ -61,7 +61,7 @@
                 <li {{ (app.request.attributes.get('_route') == 'fight_list') ? 'class="active"' }}><a
                             href="{{ path ('fight_list') }}">Walki</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'tqm_nowosci') ? 'class="active"' }}><a
-                            href="{{ path ('ideas') }}">Pomysły</a></li>
+                            href="{{ path ('view_ideas') }}">Pomysły</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'rank') ? 'class="active"' }}><a
                             href="{{ path ('rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'about') ? 'class="active"' }}><a

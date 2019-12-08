@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TQMController extends Controller
 {
     /**
-     * @Route("/pomysly", name="ideas")
+     * @Route("/pomysly", name="view_ideas")
      */
     public function listAction(EntityManagerInterface $em, Request $request)
     {
@@ -37,7 +37,7 @@ class TQMController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('ideas');
+            return $this->redirectToRoute('view_ideas');
         }
 
         return $this->render('tqm/news.html.twig', [
