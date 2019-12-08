@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user-create", name="user_create")
+     * @Route("/users", name="user_create")
      * @Method("POST")
      */
     public function createAction(
@@ -107,7 +107,8 @@ class UserController extends Controller
 
 
     /**
-     * @Route("/user-update", name="api_user_update")
+     * @Route("/users", name="api_user_update")
+     * @Method("PATCH")
      */
     public function updateAction(Request $request, EntityManagerInterface $em)
     {
@@ -161,7 +162,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/ludzie", name="api_user_list")
+     * @Route("/users", name="api_user_list")
      * @Method("GET")
      */
     public function listAction(Request $request, EntityManagerInterface $em)
@@ -176,7 +177,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/ludzie/{id}", name="api_user_delete")
+     * @Route("/users/{id}", name="api_user_delete")
      * @Method("DELETE")
      */
     public function delete(User $user)

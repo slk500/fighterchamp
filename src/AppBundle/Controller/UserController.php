@@ -101,7 +101,7 @@ class UserController extends Controller
 
         $form = $this->createForm($this->getFormType($type), $user, [
             'action' => $this->generateUrl('api_user_update'),
-            'method' => 'POST'
+            'method' => 'PATCH'
         ]);
 
         return $this->render(
