@@ -8,8 +8,6 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class SignUpController extends Controller
 {

@@ -45,8 +45,12 @@ class ControllerEventSubscriber implements EventSubscriberInterface
 
     public function getStatusCode(string $method): int
     {
-        if('GET' === $method) return 200;
-        if('POST' === $method) return 201;
+        if ('GET' === $method) {
+            return 200;
+        }
+        if ('POST' === $method) {
+            return 201;
+        }
 
         return 200;
     }
