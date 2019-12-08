@@ -79,7 +79,7 @@ class SmokeTest extends HttpSmokeTestCase
                     'admin_tournament_toggle_delete_by_admin', // todo remove redirect from controller, just js reload page
                     'club_list', // need fixtures
                     'club_show', // need fixtures
-                    'user_create_view'
+                    'view_user_create'
                 ];
 
                 $postRoute = [

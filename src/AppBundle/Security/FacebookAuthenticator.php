@@ -104,7 +104,7 @@ class FacebookAuthenticator extends SocialAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        return new RedirectResponse($this->container->get('router')->generate('user_create_view'));
+        return new RedirectResponse($this->container->get('router')->generate('view_user_create'));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
