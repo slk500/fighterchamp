@@ -13,12 +13,12 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class SignUpController extends Controller
 {
-    public function showAction(SignUpTournament $signUp)
+    public function show(SignUpTournament $signUp)
     {
         return $signUp;
     }
 
-    public function newAction(Request $request, EntityManagerInterface $entityManager)
+    public function create(Request $request, EntityManagerInterface $entityManager)
     {
         $userId = $request->request->get('userId');
         $formula = $request->request->get('formula');
@@ -28,14 +28,14 @@ class SignUpController extends Controller
         $user = $entityManager->getReference(User::class, $userId);
         $tournament = $entityManager->getReference(Tournament::class, $tournamentId);
 
-        $signUpTournament = new SignUpTournament($user, $tournament);
-        $signUpTournament->setFormula($formula);
-        $signUpTournament->setWeight($weight);
+        $signupTournament = new SignUpTournament($user, $tournament);
+        $signupTournament->setFormula($formula);
+        $signupTournament->setWeight($weight);
 
-        $entityManager->persist($signUpTournament);
+        $entityManager->persist($signupTournament);
         $entityManager->flush();
 
-        return new Response();
+        return $signupTournament;
     }
 
     public function list(Tournament $tournament, EntityManagerInterface $entityManager)
@@ -64,7 +64,7 @@ class SignUpController extends Controller
             ->findBy(['id' => $freeSignUpIds, 'deletedAtByAdmin' => null]);
     }
 
-    public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
+    public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager)
     {
         $signUpTournament->delete();
         $entityManager->flush();

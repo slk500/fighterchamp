@@ -32,10 +32,22 @@ class ControllerEventSubscriber implements EventSubscriberInterface
     {
         $value = $event->getControllerResult();
 
+        $method = $event->getRequest()->getMethod(); //todo shitfix -> should be based on controller not request
+
+        $statusCode = $this->getStatusCode($method);
+
         $json = $this->serializer->normalize($value);
 
-        $response = new JsonResponse(['data' => $json]);
+        $response = new JsonResponse(['data' => $json], $statusCode);
 
         $event->setResponse($response);
+    }
+
+    public function getStatusCode(string $method): int
+    {
+        if('GET' === $method) return 200;
+        if('POST' === $method) return 201;
+
+        return 200;
     }
 }

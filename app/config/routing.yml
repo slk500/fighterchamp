@@ -23,7 +23,7 @@ api_fight_list:
 
 api_signup_show:
     path:     /api/zapisy/{id}
-    controller: AppBundle\Controller\Api\SignUpController::showAction
+    controller: AppBundle\Controller\Api\SignUpController::show
     condition: 'request.isXmlHttpRequest()'
     requirements:
             id: '\d+'
@@ -44,9 +44,9 @@ api_signup_list_not_pair:
     requirements:
         id: '\d+'
 
-api_signup_new:
-    path:     /api/zapisy/
-    controller: AppBundle\Controller\Api\SignUpController::newAction
+api_signup_create:
+    path:     /api/signups
+    controller: AppBundle\Controller\Api\SignUpController::create
     condition: 'request.isXmlHttpRequest()'
 
 api_signup_delete:
