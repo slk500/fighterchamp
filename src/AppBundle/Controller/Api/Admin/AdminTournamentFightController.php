@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin")
+ * @Route("/api/admin")
  */
 class AdminTournamentFightController extends Controller
 {
@@ -98,24 +98,19 @@ class AdminTournamentFightController extends Controller
     }
 
     /**
-     * @Route("/walki", name="admin_remove_fight")
+     * @Route("fights/{id}", options={"expose"=true}, name="api_admin_delete_fight")
      * @Method("DELETE")
      */
-    public function deleteFight(Request $request, EntityManagerInterface $entityManager)
+    public function delete(Fight $fight, EntityManagerInterface $entityManager)
     {
-        $fightId = $request->request->get('fightId');
-
-        $fightRepository = $entityManager->getRepository(Fight::class);
-
-        $fight = $fightRepository->find($fightId);
-
         $entityManager->remove($fight);
         $entityManager->flush();
+
+        $fightRepository = $entityManager->getRepository(Fight::class);
 
         $fights = $fightRepository->findAllFightsForTournamentAdmin($fight->getTournament());
 
         $this->refreshFightPosition($fights);
-
 
         return new Response(null, 204);
     }

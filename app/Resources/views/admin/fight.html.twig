@@ -79,8 +79,7 @@
 
         $.ajax({
             type: 'DELETE',
-            url: "{{ path('admin_remove_fight') }}",
-            data: {fightId: this.value},
+            url: Routing.generate('api_admin_delete_fight', {id: this.value}),
             success: function () {
                 location.reload();
             }
