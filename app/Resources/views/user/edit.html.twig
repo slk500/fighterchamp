@@ -81,7 +81,7 @@
         function insertForm(type) {
             $.ajax({
                 type: 'GET',
-                url: Routing.generate('user_update_form_view', {type: type}),
+                url: Routing.generate('view_user_update_form', {type: type}),
                 success: function (data) {
                     $(".js-form-register").html(data);
 

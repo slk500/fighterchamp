@@ -92,7 +92,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/update-form/{type}", options={"expose"=true}, name="user_update_form_view")
+     * @Route("/update-form/{type}", options={"expose"=true}, name="view_user_update_form")
      * @Method("GET")
      */
     public function formUpdateAction($type)

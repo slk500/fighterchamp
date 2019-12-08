@@ -41,7 +41,7 @@ fos.Router.setData({
             "methods": ["GET"],
             "schemes": []
         },
-        "user_update_form_view": {
+        "view_user_update_form": {
             "tokens": [["variable", "\/", "[^\/]++", "type"], ["text", "\/ludzie\/update-form"]],
             "defaults": [],
             "requirements": [],

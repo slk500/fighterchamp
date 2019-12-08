@@ -109,7 +109,7 @@ class SmokeTest extends HttpSmokeTestCase
 
                 $requireType = [
                     'view_user_register_form',
-                    'user_update_form_view'
+                    'view_user_update_form'
                 ];
 
                 if (!$info->isHttpMethodAllowed('GET')) {
