@@ -73,7 +73,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/register-form/{type}", options={"expose"=true}, name="user_register_form_view")
+     * @Route("/register-form/{type}", options={"expose"=true}, name="view_user_register_form")
      * @Method("GET")
      */
     public function formAction($type)

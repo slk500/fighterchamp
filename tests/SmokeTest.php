@@ -108,7 +108,7 @@ class SmokeTest extends HttpSmokeTestCase
                 ];
 
                 $requireType = [
-                    'user_register_form_view',
+                    'view_user_register_form',
                     'user_update_form_view'
                 ];
 

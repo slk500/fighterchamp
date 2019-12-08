@@ -33,7 +33,7 @@ fos.Router.setData({
             "methods": ["GET"],
             "schemes": []
         },
-        "user_register_form_view": {
+        "view_user_register_form": {
             "tokens": [["variable", "\/", "[^\/]++", "type"], ["text", "\/ludzie\/register-form"]],
             "defaults": [],
             "requirements": [],

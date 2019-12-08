@@ -81,7 +81,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: Routing.generate('user_register_form_view', { type: type}),
+                url: Routing.generate('view_user_register_form', { type: type}),
                 success: function (data) {
                     $(".js-form-register").html(data);
                     $('.select2').select2({tags: true});
