@@ -91,7 +91,7 @@ class SmokeTest extends HttpSmokeTestCase
                     'admin_tournament_create',
                     'set_is_licence',
                     'toggle_corners',
-                    'api_signup_new'
+                    'api_signup_create'
                 ];
 
                 $requireId = [

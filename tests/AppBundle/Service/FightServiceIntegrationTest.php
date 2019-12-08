@@ -41,7 +41,7 @@ class FightServiceIntegrationTest extends TestCase
 
     public function setUp()
     {
-        $kernel = new \AppKernel('dev', true);
+        $kernel = new \AppKernel('test', true);
         $kernel->boot();
 
         $container = $kernel->getContainer();
@@ -51,7 +51,7 @@ class FightServiceIntegrationTest extends TestCase
         $this->userBuilder = new UserBuilder();
         $this->tournamentBuilder = new TournamentBuilder();
 
-        $this->databaseHelper = new DatabaseHelper(new Database('dev'));
+        $this->databaseHelper = new DatabaseHelper(new Database('test'));
         $this->databaseHelper->truncateAllTables();
     }
 

@@ -29,11 +29,11 @@ class UserCoachTest extends KernelTestCase
 
     public function setUp()
     {
-        $kernel = new \AppKernel('dev', true);
+        $kernel = new \AppKernel('test', true);
         $kernel->boot();
         $this->em = $kernel->getContainer()->get('doctrine')->getManager();
         $this->userBuilder = new UserBuilder();
-        $this->databaseHelper = new DatabaseHelper(new Database('dev'));
+        $this->databaseHelper = new DatabaseHelper(new Database('test'));
         $this->databaseHelper->truncateAllTables();
     }
 
