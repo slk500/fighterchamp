@@ -69,7 +69,7 @@ class SmokeTest extends HttpSmokeTestCase
                     'connect_facebook',
                     'connect_facebook_check',
                     'logout',
-                    'user_edit_view',
+                    'view_user_edit',
                     'admin_api_user_list',
                     'admin_api_tournament_list',
                     'admin_tournament_fights',

@@ -41,7 +41,7 @@ class UserController extends Controller
 
 
     /**
-     * @Route("/mojprofil", name="user_edit_view")
+     * @Route("/mojprofil", name="view_user_edit")
      */
     public function updateAction(SerializerInterface $serializer)
     {
