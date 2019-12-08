@@ -13,7 +13,7 @@
     <tbody>
     {% for user in users %}
     <tr {% if is_granted('ROLE_USER') %} {{ user.id == app.user.id ? "class='success black'" }} {% endif %}>
-        <td class="text-left"><a href="{{ path('user_show', {'id': user.id }) }}">
+        <td class="text-left"><a href="{{ path('view_user_show', {'id': user.id }) }}">
                 {{ user.surname }} {{ user.name }}</a>
         </td>
         <td>

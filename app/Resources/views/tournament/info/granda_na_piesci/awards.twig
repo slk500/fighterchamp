@@ -3,7 +3,7 @@
     {% for award in tournament.awards %}
         <li>{{ award.name }}
             {% if award.userFight %} - <a
-                    href="{{ path('user_show', {'id': award.userFight.user. id}) }}">{{ award.userFight.user }}</a> {% endif %}
+                    href="{{ path('view_user_show', {'id': award.userFight.user. id}) }}">{{ award.userFight.user }}</a> {% endif %}
         </li>
     {% endfor %}
 </ul>

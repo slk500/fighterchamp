@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserController extends Controller
 {
     /**
-     * @Route("", name="user_list")
+     * @Route("", name="view_user_list")
      * @Method("GET")
      */
     public function listAction()
@@ -26,7 +26,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="user_show", requirements={"id": "\d+"}, options={"expose"=true})
+     * @Route("/{id}", name="view_user_show", requirements={"id": "\d+"}, options={"expose"=true})
      * @Method("GET")
      */
     public function showAction(User $user, SerializerInterface $serializer)

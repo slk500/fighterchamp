@@ -27,7 +27,7 @@ class UserNormalizer implements NormalizerInterface
     {
         return [
             'id' => $object->getId(),
-            'href' => $this->router->generate('user_show', ['id' => $object->getId()]),
+            'href' => $this->router->generate('view_user_show', ['id' => $object->getId()]),
             'name' => $object->getName(),
             'surname' => $object->getSurname(),
             'male' => $object->getMale(),
@@ -40,7 +40,7 @@ class UserNormalizer implements NormalizerInterface
             'fighters' => array_map(
                 function (User $user) {
                     return [
-                        'href' => $this->router->generate('user_show', ['id' => $user->getId()]),
+                        'href' => $this->router->generate('view_user_show', ['id' => $user->getId()]),
                         'name' => $user->getName(),
                         'surname' => $user->getSurname(),
                         'male' => $user->getMale(),

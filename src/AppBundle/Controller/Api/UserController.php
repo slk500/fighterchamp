@@ -88,7 +88,7 @@ class UserController extends Controller
                 );
 
             return new JsonResponse(
-                ['location' => $this->generateUrl('user_show', ['id' => $user->getId()])],
+                ['location' => $this->generateUrl('view_user_show', ['id' => $user->getId()])],
                 200
             );
         }

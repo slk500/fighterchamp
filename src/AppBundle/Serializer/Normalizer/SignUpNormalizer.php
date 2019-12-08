@@ -36,7 +36,7 @@ class SignUpNormalizer implements NormalizerInterface
             'discipline' => $object->getDiscipline(),
             'deletedAt' => $object->getDeletedAt(),
             'user'=> [
-                'href' => $this->router->generate('user_show', ['id' => $object->getUser()->getId()]),
+                'href' => $this->router->generate('view_user_show', ['id' => $object->getUser()->getId()]),
                 'name' => $object->getUser()->getName(),
                 'surname' => $object->getUser()->getSurname(),
                 'male' => $object->getUser()->getMale(),

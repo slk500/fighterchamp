@@ -70,7 +70,7 @@
                 {% endif %}
 
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id }) }}"> {{ user.name }} {{ user.surname }}
+                    <a href="{{ path('view_user_show', {'id': user.id }) }}"> {{ user.name }} {{ user.surname }}
 
                         {{ macro.fightResultForUserFight(userFight) }}
 

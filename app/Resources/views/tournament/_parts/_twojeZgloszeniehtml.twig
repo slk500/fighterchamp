@@ -13,7 +13,7 @@
         <tbody>
         {% for signUp in signUpTournament %}
             <tr>
-                <td><a href="{{ path('user_show', {'id': signUp.User.id }) }}"> {{ signUp.User.surname }} {{ signUp.User.name }}</a></td>
+                <td><a href="{{ path('view_user_show', {'id': signUp.User.id }) }}"> {{ signUp.User.surname }} {{ signUp.User.name }}</a></td>
                 <td class="text-center"> {{ signUp.discipline }} </td>
                 <td class="text-center"> {{ signUp.User.male ?  'M' : 'K' }} </td>
                 <td class="text-center"> {{ signUp.formula }} </td>

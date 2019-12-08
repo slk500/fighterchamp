@@ -47,7 +47,7 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
                         'isRedCorner' => $userFight->isRedCorner(),
                         'result' => $userFight->getResult(),
                         'user' => [
-                            'href' => $this->router->generate('user_show', ['id' => $userFight->getUser()->getId()]),
+                            'href' => $this->router->generate('view_user_show', ['id' => $userFight->getUser()->getId()]),
                             'name' => $userFight->getUser()->getName(),
                             'surname' => $userFight->getUser()->getSurname(),
                             'male' => $userFight->getUser()->getMale(),

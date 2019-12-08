@@ -14,7 +14,7 @@
     <tbody>
     {% for signUp in signUps %}
         <tr>
-            <td><a href="{{ path('user_show', {'id': signUp.User.id }) }}">
+            <td><a href="{{ path('view_user_show', {'id': signUp.User.id }) }}">
                     {{ signUp.User.surname }} {{ signUp.User.name }}</a></td>
             <td>{{ signUp.deletedAt| date('d-m-Y H:i:s') }}</td>
             <td>{{ signUp.isPaid ? 'Tak' : 'Nie' }}</td>

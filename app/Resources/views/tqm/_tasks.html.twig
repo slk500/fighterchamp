@@ -17,12 +17,12 @@
         <td>
         {% for userTask in task.userTasks %}
 
-            <a href="{{ path('user_show', {id: userTask.User.id}) }}">{{ userTask.User }}</a>
+            <a href="{{ path('view_user_show', {id: userTask.User.id}) }}">{{ userTask.User }}</a>
 
         {%  endfor %}
         </td>
         <td>
-            <a href="{{ path('user_show', { id: 481 }) }}"> Sławomir Grochowski</a>
+            <a href="{{ path('view_user_show', { id: 481 }) }}"> Sławomir Grochowski</a>
         </td>
         <td>{{ task.minutes }}</td>
         <td>{{ task.createdAt|date('d-m-Y') }}</td>
