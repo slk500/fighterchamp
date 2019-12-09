@@ -6,11 +6,11 @@ class AppExtension extends \Twig_Extension
 {
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('getAge', array($this, 'getAgefilter')),
-            new \Twig_SimpleFilter('hoursToMins', array($this, 'hoursToMins')),
-            new \Twig_SimpleFilter('getAgeAtTournament', array($this, 'getAgeAtTournament')),
-        );
+        return [
+            new \Twig_SimpleFilter('getAge', [$this, 'getAgefilter']),
+            new \Twig_SimpleFilter('hoursToMins', [$this, 'hoursToMins']),
+            new \Twig_SimpleFilter('getAgeAtTournament', [$this, 'getAgeAtTournament']),
+        ];
     }
 
     public function getAgeFilter($date)

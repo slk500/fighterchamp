@@ -56,9 +56,9 @@ class AdminTournamentFightController extends Controller
         }
         //todo should be one query
 
-        return $this->render(':admin:pair.html.twig', array(
+        return $this->render(':admin:pair.html.twig', [
             'freeUsers' => $serializer->normalize($signUps),
             'tournament' => $tournament
-        ));
+        ]);
     }
 }

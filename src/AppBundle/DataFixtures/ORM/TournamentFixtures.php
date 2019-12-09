@@ -34,8 +34,8 @@ class TournamentFixtures extends BaseFixture implements DependentFixtureInterfac
 
     public function getDependencies()
     {
-        return array(
+        return [
             PlaceFixtures::class,
-        );
+        ];
     }
 }

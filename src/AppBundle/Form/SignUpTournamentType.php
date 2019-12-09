@@ -44,11 +44,11 @@ class SignUpTournamentType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => SignUpTournament::class,
             'trait_choices' => null,
             'user_id' => null,
             'csrf_protection'   => false,
-        ));
+        ]);
     }
 }
