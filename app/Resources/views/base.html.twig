@@ -80,7 +80,7 @@
                         <li {{ (app.request.attributes.get('_route') == 'admin_view_tournament_signup') ? 'class="active"' }}><a
                                     href="{{ path ('admin_view_tournament_signup',{'id' : tournamentAdmin.tournament.id  }) }}">Admin</a></li>
                     {% endif %}
-                    <li {{ (app.request.attributes.get('_route') == 'logout') ? 'class="active"' }}><a
+                    <li {{ (app.request.attributes.get('_route') == 'view_logout') ? 'class="active"' }}><a
                                 href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
                 {% else %}
