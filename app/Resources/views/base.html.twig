@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                 </div>
             </button>
-            <a href="{{ path('homepage') }}"><img src="{{ asset('img/logo/logo_blackbg.svg') }}" class='navbar-brand center logo'></a>
+            <a href="{{ path('view_homepage') }}"><img src="{{ asset('img/logo/logo_blackbg.svg') }}" class='navbar-brand center logo'></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -68,8 +68,8 @@
                             href="{{ path ('view_about') }}">O Serwisie</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'rules') ? 'class="active"' }}><a
                             href="{{ path ('rules') }}">Regulamin</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'contact') ? 'class="active"' }}><a
-                            href="{{ path ('contact') }}">Kontakt</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'view_contact') ? 'class="active"' }}><a
+                            href="{{ path ('view_contact') }}">Kontakt</a></li>
                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')  %}
                     {% if is_granted('ROLE_USER') %}
                         <li {{ (app.request.attributes.get('_route') == 'view_user_edit') ? 'class="active"' }}><a

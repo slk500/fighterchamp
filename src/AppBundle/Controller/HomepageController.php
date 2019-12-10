@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomepageController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="view_homepage")
      */
     public function resultAction(EntityManagerInterface $em)
     {

@@ -65,7 +65,7 @@ class UserController extends Controller
     public function newAction()
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('view_homepage');
         }
 
 
