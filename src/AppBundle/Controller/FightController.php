@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class FightController extends Controller
 {
     /**
-     * @Route("/{id}", name="fight_show")
+     * @Route("/{id}", name="view_fight_show")
      * @Method("GET")
      */
     public function showAction(Fight $fight, SerializerInterface $serializer)
@@ -28,7 +28,8 @@ class FightController extends Controller
     }
 
     /**
-     * @Route("", name="fight_list")
+     * @Route("", name="view_fight_list")
+     * @Method("GET")
      */
     public function listAction()
     {

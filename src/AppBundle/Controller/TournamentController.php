@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 class TournamentController extends Controller
 {
     /**
-     * @Route("", name="tournament_list")
+     * @Route("", name="view_tournament_list")
      */
-    public function listAction(EntityManagerInterface $em): Response
+    public function list(EntityManagerInterface $em): Response
     {
         $tournaments = $em->getRepository(Tournament::class)
             ->findBy([], ['id' => 'DESC']);
@@ -31,9 +31,9 @@ class TournamentController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="tournament_show")
+     * @Route("/{id}", name="view_tournament_show")
      */
-    public function showAction(Tournament $tournament)
+    public function show(Tournament $tournament)
     {
         return $this->render(
             'tournament/show.twig',
@@ -44,9 +44,9 @@ class TournamentController extends Controller
     }
 
     /**
-     * @Route("/{id}/regulamin", name="tournament_rules")
+     * @Route("/{id}/regulamin", name="view_tournament_rules")
      */
-    public function rulesAction(Tournament $tournament)
+    public function rules(Tournament $tournament)
     {
         return $this->render(
             "tournament/rules.html.twig",
@@ -57,9 +57,9 @@ class TournamentController extends Controller
     }
 
     /**
-     * @Route("/{id}/kontakt", name="tournament_contact")
+     * @Route("/{id}/kontakt", name="view_tournament_contact")
      */
-    public function contactAction(Tournament $tournament)
+    public function contact(Tournament $tournament)
     {
         return $this->render(
             'tournament/contact.html.twig',
@@ -67,5 +67,15 @@ class TournamentController extends Controller
                 'tournament' => $tournament,
             ]
         );
+    }
+
+    /**
+     * @Route("/{id}/walki", name="view_tournament_fights")
+     */
+    public function fights(Tournament $tournament)
+    {
+        return $this->render('tournament/fights.html.twig', [
+            'tournament' => $tournament
+        ]);
     }
 }

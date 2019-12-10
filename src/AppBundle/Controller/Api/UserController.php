@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/users", name="user_create")
+     * @Route("/users", name="api_user_create")
      * @Method("POST")
      */
     public function createAction(
@@ -42,7 +42,7 @@ class UserController extends Controller
     ) {
         $form = $this->createForm($this->getFormType($request), null, [
             'method' => 'POST',
-            'action' => $this->generateUrl('user_create')
+            'action' => $this->generateUrl('api_user_create')
         ]);
 
         $form->handleRequest($request);

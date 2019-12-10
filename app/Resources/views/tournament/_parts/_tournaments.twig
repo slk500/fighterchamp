@@ -15,7 +15,7 @@
     {% for tournament in tournaments %}
         <tr>
             <td>{{ loop.revindex }}</td>
-            <td><a href="{{ path('tournament_show', {'id': tournament.id }) }}">{{ tournament.name }}</a></td>
+            <td><a href="{{ path('view_tournament_show', {'id': tournament.id }) }}">{{ tournament.name }}</a></td>
             <td>{{ tournament.discipline }}</td>
             <td>{{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</td>
             <td>{{ tournament.start|date('d-m-Y') }}</td>

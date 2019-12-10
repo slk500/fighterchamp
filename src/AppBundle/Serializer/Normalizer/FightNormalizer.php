@@ -25,13 +25,13 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
     public function normalize($object, $format = null, array $context = [])
     {
         return [
-            'href' => $this->router->generate('fight_show', ['id' => $object->getId()]),
+            'href' => $this->router->generate('view_fight_show', ['id' => $object->getId()]),
             'id' => $object->getId(),
             'formula' => $object->getFormula(),
             'weight' => $object->getWeight(),
             'youtubeId' => $object->getYoutubeId(),
             'tournament' => [
-                'href' => $this->router->generate('tournament_show', ['id' => $object->getTournament()->getId()]),
+                'href' => $this->router->generate('view_tournament_show', ['id' => $object->getTournament()->getId()]),
                 'name' => $object->getTournament()->getName(),
                 'start' => $object->getTournament()->getStart()
             ],

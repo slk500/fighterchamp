@@ -56,12 +56,12 @@ class UserNormalizer implements NormalizerInterface
             'fights' => array_map(
                 function (Fight $fight) {
                     return [
-                        'href' => $this->router->generate('fight_show', ['id' => $fight->getId()]),
+                        'href' => $this->router->generate('view_fight_show', ['id' => $fight->getId()]),
                         'formula' => $fight->getFormula(),
                         'weight' => $fight->getWeight(),
                         'youtubeId' => $fight->getYoutubeId(),
                         'tournament' => [
-                            'href' => $this->router->generate('tournament_show', ['id' => $fight->getTournament()->getId()]),
+                            'href' => $this->router->generate('view_tournament_show', ['id' => $fight->getTournament()->getId()]),
                             'name' => $fight->getTournament()->getName()
                         ],
                         'usersFight' => array_map(

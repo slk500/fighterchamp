@@ -80,7 +80,7 @@ class UserController extends Controller
     {
         $form = $this->createForm($this->getFormType($type), null, [
             'method' => 'POST',
-            'action' => $this->generateUrl('user_create')
+            'action' => $this->generateUrl('api_user_create')
         ]);
 
         return $this->render(
