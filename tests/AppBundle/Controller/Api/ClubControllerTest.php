@@ -3,7 +3,6 @@
 
 namespace Tests\AppBundle\Controller\Api;
 
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ClubControllerTest extends WebTestCase
