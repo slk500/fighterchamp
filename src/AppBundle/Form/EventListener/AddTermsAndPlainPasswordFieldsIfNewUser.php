@@ -14,7 +14,7 @@ class AddTermsAndPlainPasswordFieldsIfNewUser implements EventSubscriberInterfac
 {
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SET_DATA => 'preSetData');
+        return [FormEvents::PRE_SET_DATA => 'preSetData'];
     }
 
     public function preSetData(FormEvent $event)
@@ -31,10 +31,10 @@ class AddTermsAndPlainPasswordFieldsIfNewUser implements EventSubscriberInterfac
                     'type' => PasswordType::class
                 ]
             )
-                ->add('terms', CheckboxType::class, array(
-                    'constraints'=>new IsTrue(array('message'=>'Aby się zarejestrować musisz zaakceptować regulamin')),
+                ->add('terms', CheckboxType::class, [
+                    'constraints'=>new IsTrue(['message'=>'Aby się zarejestrować musisz zaakceptować regulamin']),
                     'mapped' => false,
-                    'label' => ''))
+                    'label' => ''])
             ;
         }
     }

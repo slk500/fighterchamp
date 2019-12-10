@@ -21,7 +21,7 @@ class TournamentNormalizer implements NormalizerInterface, SerializerAwareInterf
         $this->router = $router;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         return [
             'href' => $this->router->generate('tournament_show', ['id' => $object->getId()]),

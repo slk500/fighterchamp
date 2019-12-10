@@ -36,8 +36,8 @@ class FightFixtures extends BaseFixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return array(
+        return [
             TournamentFixtures::class,
-        );
+        ];
     }
 }

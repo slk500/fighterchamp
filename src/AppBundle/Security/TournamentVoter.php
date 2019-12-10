@@ -22,7 +22,7 @@ class TournamentVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, array(self::CAN_TOURNAMENT_ACTON))) {
+        if (!in_array($attribute, [self::CAN_TOURNAMENT_ACTON])) {
             return false;
         }
 
@@ -35,7 +35,7 @@ class TournamentVoter extends Voter
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         if (
-            $this->decisionManager->decide($token, array('ROLE_USER')) &&
+            $this->decisionManager->decide($token, ['ROLE_USER']) &&
             $token->getUser()->getType() != 3
         ) {
             return true;

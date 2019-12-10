@@ -49,14 +49,14 @@ class UserFightFixtures extends BaseFixture implements DependentFixtureInterface
 
     public function startArrayFromOne(array $array): array
     {
-        return array_filter(array_merge(array(0), $array));
+        return array_filter(array_merge([0], $array));
     }
 
     public function getDependencies()
     {
-        return array(
+        return [
             UserFixtures::class,
             FightFixtures::class
-        );
+        ];
     }
 }

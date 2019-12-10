@@ -33,7 +33,7 @@ class FixturesReloadCommand extends Command
             '',
         ]);
 
-        $options = array('command' => 'doctrine:database:drop',"--force" => true);
+        $options = ['command' => 'doctrine:database:drop',"--force" => true];
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
 
 
@@ -44,7 +44,7 @@ class FixturesReloadCommand extends Command
             '',
         ]);
 
-        $options = array('command' => 'doctrine:database:create',"--if-not-exists" => true);
+        $options = ['command' => 'doctrine:database:create',"--if-not-exists" => true];
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
 
         $output->writeln([
@@ -55,7 +55,7 @@ class FixturesReloadCommand extends Command
         ]);
 
         //Create de Schema
-        $options = array('command' => 'doctrine:schema:update',"--force" => true);
+        $options = ['command' => 'doctrine:schema:update',"--force" => true];
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
 
         $output->writeln([
@@ -66,7 +66,7 @@ class FixturesReloadCommand extends Command
         ]);
 
         //Loading Fixtures
-        $options = array('command' => 'doctrine:fixtures:load',"--no-interaction" => true);
+        $options = ['command' => 'doctrine:fixtures:load',"--no-interaction" => true];
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
     }
 }
