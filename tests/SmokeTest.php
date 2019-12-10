@@ -68,7 +68,7 @@ class SmokeTest extends HttpSmokeTestCase
                     'admin_user_new',
                     'connect_facebook',
                     'connect_facebook_check',
-                    'logout',
+                    'view_logout',
                     'view_user_edit',
                     'admin_api_user_list',
                     'admin_api_tournament_list',
@@ -85,7 +85,7 @@ class SmokeTest extends HttpSmokeTestCase
                 $postRoute = [
                     'user_create',
                     'api_user_update',
-                    'setNullOnImage',
+                    'api_setNullOnImage',
                     'api_image_upload',
                     'admin_user_list',
                     'admin_tournament_create',

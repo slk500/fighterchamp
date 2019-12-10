@@ -78,7 +78,7 @@ class UserNormalizer implements NormalizerInterface
                                         $userFight->getAwards()->toArray()
                                     ),
                                     'user' => [
-                                        'href' => $this->router->generate('user_show', ['id' => $userFight->getUser()->getId()]),
+                                        'href' => $this->router->generate('view_user_show', ['id' => $userFight->getUser()->getId()]),
                                         'name' => $userFight->getUser()->getName(),
                                         'surname' => $userFight->getUser()->getSurname(),
                                         'male' => $userFight->getUser()->getMale(),
@@ -119,7 +119,7 @@ class UserNormalizer implements NormalizerInterface
 
         return $user->getCoaches()->map(function (User $coach) {
             return [
-                'href' => $this->router->generate('user_show', ['id' => $coach->getId()]),
+                'href' => $this->router->generate('view_user_show', ['id' => $coach->getId()]),
                 'name' => $coach->getName(),
                 'surname' => $coach->getSurname()
             ];

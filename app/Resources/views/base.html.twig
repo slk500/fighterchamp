@@ -84,8 +84,8 @@
                                 href="{{ path('view_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
                 {% else %}
-                    <li {{ (app.request.attributes.get('_route') == 'login') ? 'class="active"' }}><a
-                                href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    <li {{ (app.request.attributes.get('_route') == 'view_login') ? 'class="active"' }}><a
+                                href="{{ path('view_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 {% endif %}
             </ul>

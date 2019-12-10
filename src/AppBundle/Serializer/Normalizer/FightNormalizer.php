@@ -74,7 +74,7 @@ class FightNormalizer implements NormalizerInterface, SerializerAwareInterface
             return null;
         }
         return [
-            'href' => $this->router->generate('club_show', ['id' => $user->getClub()->getId()]),
+            'href' => $this->router->generate('view_club_show', ['id' => $user->getClub()->getId()]),
             'name' => $user->getClub()->getName(),
         ];
     }
