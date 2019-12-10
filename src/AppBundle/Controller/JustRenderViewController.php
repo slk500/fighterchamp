@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class JustRenderViewController extends Controller
 {
     /**
-     * @Route("/kontakt", name="contact")
+     * @Route("/kontakt", name="view_contact")
      */
     public function contactController(Request $request)
     {
