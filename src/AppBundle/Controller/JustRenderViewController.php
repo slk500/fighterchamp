@@ -4,20 +4,19 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class JustRenderViewController extends Controller
 {
     /**
      * @Route("/kontakt", name="view_contact")
      */
-    public function contactController(Request $request)
+    public function contactController()
     {
         return $this->render('contact/contact.html.twig');
     }
 
     /**
-     * @Route("/regulamin", name="rules")
+     * @Route("/regulamin", name="view_rules")
      */
     public function rulesController()
     {
@@ -25,7 +24,7 @@ class JustRenderViewController extends Controller
     }
 
     /**
-     * @Route("/wesprzyj-projekt", name="support_project")
+     * @Route("/wesprzyj-projekt", name="view_support_project")
      */
     public function supportController()
     {
