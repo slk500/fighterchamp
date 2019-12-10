@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class ClubController extends Controller
 {
     /**
-     * @Route("", name="club_list")
+     * @Route("", name="view_club_list")
      */
     public function listAction()
     {
@@ -21,7 +21,7 @@ class ClubController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="club_show", options={"expose"=true})
+     * @Route("/{id}", name="view_club_show", options={"expose"=true})
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Club $club, NormalizerInterface $normalizer)

@@ -100,7 +100,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: "{{ path('setNullOnImage') }}",
+                    url: "{{ path('api_setNullOnImage') }}",
                     success: function () {
                         location.reload();
                     }

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RankController extends Controller
 {
     /**
-     * @Route("ranking/{year}/{age}", name="rank")
+     * @Route("ranking/{year}/{age}", name="view_rank")
      */
     public function indexAction(
         RankRepository $rankRepository,

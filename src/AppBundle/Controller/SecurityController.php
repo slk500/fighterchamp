@@ -17,7 +17,7 @@ class SecurityController extends Controller
 {
 
     /**
-     * @Route("/walidacja", name="user_validation")
+     * @Route("/walidacja", name="view_user_validation")
      */
     public function validateAction(EntityManagerInterface $em, Request $request)
     {
@@ -69,7 +69,7 @@ class SecurityController extends Controller
 
 
     /**
-     * @Route("/reset", name="passwordReset")
+     * @Route("/reset", name="view_password_reset")
      */
     public function passwordReset(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -124,7 +124,7 @@ class SecurityController extends Controller
 
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout", name="view_logout")
      */
     public function logoutAction()
     {
@@ -132,7 +132,7 @@ class SecurityController extends Controller
 
 
     /**
-     * @Route("/setnullonimage", name="setNullOnImage", options={"expose"=true})
+     * @Route("/api/setnullonimage", name="api_setNullOnImage", options={"expose"=true})
      */
     public function setNullOnImageFile()
     {

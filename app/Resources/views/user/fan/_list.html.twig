@@ -17,7 +17,7 @@
             <td> {{ user.male ?  'M' : 'K' }}</td>
             <td> {{ user.birthDay |getAge }} </td>
             <td> {% if user.club %}
-                    <a href="{{ path('club_show', {'id': user.club.id }) }}"> {{ user.getClub() }}</a>
+                    <a href="{{ path('view_club_show', {'id': user.club.id }) }}"> {{ user.getClub() }}</a>
                 {% endif %}
             </td>
         </tr>

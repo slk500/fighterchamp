@@ -20,7 +20,7 @@
                 <td class="text-center"> {{ signUp.weight }} </td>
                 <td class="text-center"> {{ signUp.User.birthDay |getAge }} </td>
                 <td class="text-center"> {% if signUp.User.club %}
-                    <a href="{{ path('club_show', {'id': signUp.User.club.id }) }}"> {{ signUp.User.getClub() }}</a></td>
+                    <a href="{{ path('view_club_show', {'id': signUp.User.club.id }) }}"> {{ signUp.User.getClub() }}</a></td>
                 {% endif %}
                 {#<td class="text-center"> {{ signUp.isPaid ? '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' }} </td>#}
             </tr>

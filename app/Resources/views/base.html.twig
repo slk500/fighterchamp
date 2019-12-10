@@ -56,16 +56,16 @@
                             href="{{ path ('tournament_list' ) }}">Turnieje</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_user_list') ? 'class="active"' }}><a
                             href="{{ path ('view_user_list') }}">Ludzie</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'club_list') ? 'class="active"' }}><a
-                            href="{{ path ('club_list') }}">Kluby</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'view_club_list') ? 'class="active"' }}><a
+                            href="{{ path ('view_club_list') }}">Kluby</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'fight_list') ? 'class="active"' }}><a
                             href="{{ path ('fight_list') }}">Walki</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'tqm_nowosci') ? 'class="active"' }}><a
                             href="{{ path ('view_ideas') }}">Pomysły</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'rank') ? 'class="active"' }}><a
-                            href="{{ path ('rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'about') ? 'class="active"' }}><a
-                            href="{{ path ('about') }}">O Serwisie</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'view_rank') ? 'class="active"' }}><a
+                            href="{{ path ('view_rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'view_about') ? 'class="active"' }}><a
+                            href="{{ path ('view_about') }}">O Serwisie</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'rules') ? 'class="active"' }}><a
                             href="{{ path ('rules') }}">Regulamin</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'contact') ? 'class="active"' }}><a
@@ -81,7 +81,7 @@
                                     href="{{ path ('admin_view_tournament_signup',{'id' : tournamentAdmin.tournament.id  }) }}">Admin</a></li>
                     {% endif %}
                     <li {{ (app.request.attributes.get('_route') == 'view_logout') ? 'class="active"' }}><a
-                                href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                                href="{{ path('view_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
                 {% else %}
                     <li {{ (app.request.attributes.get('_route') == 'login') ? 'class="active"' }}><a

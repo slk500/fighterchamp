@@ -33,7 +33,7 @@ class JustRenderViewController extends Controller
     }
 
     /**
-     * @Route("/o-serwisie", name="about")
+     * @Route("/o-serwisie", name="view_about")
      */
     public function aboutController()
     {
