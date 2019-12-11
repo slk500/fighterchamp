@@ -112,40 +112,6 @@ class AdminTournamentSignUp extends Controller
         ]);
     }
 
-
-    /**
-     * @Route("/set-is-paid", name="set_is_paid")
-     */
-    public function isPaid(Request $request, EntityManagerInterface $em)
-    {
-        $signUpId = $request->request->get('signUpId');
-        $isPaid =  $request->request->get('isPaid');
-
-        $signUp = $em->getRepository(SignUpTournament::class)
-            ->find($signUpId);
-
-        $signUp->setIsPaid($isPaid);
-
-        $em->flush();
-
-        return new Response(200);
-    }
-
-    /**
-     * @Route("/sign-up-delete-by-admin/{id}", name="admin_tournament_toggle_delete_by_admin")
-     */
-    public function toggleDeleteByAdminAction(SignUpTournament $signUpTournament, EntityManagerInterface $em)
-    {
-        $signUpTournament->setDeleteByAdmin($signUpTournament->getDeletedAtByAdmin() ? null : new \DateTime('now'));
-
-        $em->flush();
-
-        return $this->redirectToRoute('admin_tournament_pair', [
-            'id' => $signUpTournament->getTournament()->getId()
-        ]); //todo change to 200 and js reload page
-    }
-
-
     private function getSignUpsPaid($signUpsTournament): int
     {
         $signUpsPaid = 0;

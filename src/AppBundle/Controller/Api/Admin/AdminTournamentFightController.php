@@ -21,24 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminTournamentFightController extends Controller
 {
     /**
-     * @Route("/set-is-licence", name="set_is_licence")
-     */
-    public function setLicence(Request $request, EntityManagerInterface $em)
-    {
-        $fightId = $request->request->get('fightId');
-        $isLicence =  $request->request->get('isLicence');
-
-        $fight = $em->getRepository(Fight::class)
-            ->find($fightId);
-
-        $fight->setLicence($isLicence);
-
-        $em->flush();
-
-        return new Response(200);
-    }
-
-    /**
      * @Route("/toggle-corner", name="toggle_corners")
      */
     public function toggleCornersAction(EntityManagerInterface $em, FightService $fightService, Request $request)
@@ -52,32 +34,6 @@ class AdminTournamentFightController extends Controller
         $em->flush();
 
         return new Response(null, 200);
-    }
-
-    /**
-     * @Route("/fights-not-weighted-remove", name="fights_not_weighted_remove")
-     */
-    public function removeFightsWithNotWeighted()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $tournament = $em->getRepository('AppBundle:Tournament')
-            ->find(8);
-
-        $fightsWhereFightersAreNotWeighted = $this->getDoctrine()
-            ->getRepository('AppBundle:Fight')
-            ->findAllTournamentFightsWhereFightersAreNotWeighted($tournament);
-
-        foreach ($fightsWhereFightersAreNotWeighted as $fight) {
-            $em->remove($fight);
-            $em->flush();
-        }
-
-        $fights = $em->getRepository('AppBundle:Fight')
-            ->findAllFightsForTournamentAdmin($tournament);
-        $this->refreshFightPosition($fights);
-
-
-        return $this->redirectToRoute('admin_view_tournament_signup', ['id' => $tournament->getId()]);
     }
 
     /**
@@ -96,25 +52,7 @@ class AdminTournamentFightController extends Controller
 
         return new Response(null, 201);
     }
-
-    /**
-     * @Route("fights/{id}", options={"expose"=true}, name="api_admin_delete_fight")
-     * @Method("DELETE")
-     */
-    public function delete(Fight $fight, EntityManagerInterface $entityManager)
-    {
-        $entityManager->remove($fight);
-        $entityManager->flush();
-
-        $fightRepository = $entityManager->getRepository(Fight::class);
-
-        $fights = $fightRepository->findAllFightsForTournamentAdmin($fight->getTournament());
-
-        $this->refreshFightPosition($fights);
-
-        return new Response(null, 204);
-    }
-
+    
     /**
      * @Route("/fight/set-winner", name="setWinner")
      */
