@@ -2,6 +2,7 @@ version: "3"
 services:
   php:
     build: docker/php
+    container_name: fighterchamp_php
     volumes:
       - ./:/var/www/html/
 
