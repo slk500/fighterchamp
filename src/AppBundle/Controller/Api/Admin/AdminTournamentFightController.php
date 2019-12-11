@@ -243,14 +243,4 @@ class AdminTournamentFightController extends Controller
         }
         $em->flush();
     }
-
-    /**
-     * @Route("/{id}/setwalki", name="allFightsReady")
-     */
-    public function publishFights(Tournament $tournament, EntityManagerInterface $em)
-    {
-        $em->getRepository('AppBundle:Fight')->setAllFightsReady($tournament);
-
-        return $this->redirectToRoute('admin_tournament_fights', ['id' => $tournament->getId()]);
-    }
 }
