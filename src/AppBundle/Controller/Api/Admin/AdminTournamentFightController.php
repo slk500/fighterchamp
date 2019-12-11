@@ -177,22 +177,6 @@ class AdminTournamentFightController extends Controller
         return new Response(200);
     }
 
-    /**
-     * @Route("/fight/toggleready", name="toggleFightReady")
-     */
-    public function toggleFightReady(Request $request, EntityManagerInterface $em)
-    {
-        $fightId = $request->request->get('fightId');
-
-        $fight = $em->getRepository('AppBundle:Fight')
-            ->findOneBy(['id' => $fightId]);
-
-        $fight->toggleReady();
-        $em->flush();
-
-        return new Response(200);
-    }
-
     public function refreshFightPosition($fights): void
     {
         $em = $this->getDoctrine()->getManager();

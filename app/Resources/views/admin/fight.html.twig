@@ -49,7 +49,7 @@
     $( ".checkbox_ready" ).change(function() {
         $.ajax({
             type: 'POST',
-            url: "{{ path('toggleFightReady') }}",
+            url: "",
             data: {fightId: this.value},
             success: function () {
 
