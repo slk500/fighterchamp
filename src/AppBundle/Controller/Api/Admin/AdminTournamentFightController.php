@@ -193,43 +193,6 @@ class AdminTournamentFightController extends Controller
         return new Response(200);
     }
 
-    /**
-     * @Route("/fight/setday", name="setDay")
-     * @return Response
-     */
-    public function setDayAction(Request $request, EntityManagerInterface $em)
-    {
-        $fightId = $request->request->get('fightId');
-        $day = $request->request->get('day');
-
-        $fight = $em->getRepository(Fight::class)
-            ->find($fightId);
-
-        $sobota = (new \DateTime())
-            ->setDate(2019, 6, 1);
-
-        $niedziela = (new \DateTime())
-            ->setDate(2019, 6, 2);
-
-        if ($day == 'sob.') {
-            $fight->setDay($sobota);
-        } else {
-            $fight->setDay($niedziela);
-        }
-
-        $tournament = $fight->getTournament();
-        $fights = $em->getRepository('AppBundle:Fight')
-            ->findAllFightByDayAdmin($tournament, $fight->getDay());
-
-        $fight->setPosition(count($fights) + 1);
-
-        $em->flush();
-
-        $this->refreshFightPosition($fights);
-
-        return new Response(200);
-    }
-
     public function refreshFightPosition($fights): void
     {
         $em = $this->getDoctrine()->getManager();

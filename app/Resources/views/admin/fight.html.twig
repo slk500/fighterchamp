@@ -14,24 +14,6 @@
 {{ parent() }}
     <script src="{{ asset('js/admin_select_tournament.js') }}"></script>
 <script>
-
-    $( ".select_day" ).change(function() {
-
-        var values = this.value;
-        var arrValues = values.split("|");
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ path('setDay') }}",
-            data: {fightId: arrValues[0], day: arrValues[1]},
-            success: function () {
-
-                location.reload();
-            }
-        });
-    });
-
-
     $( ".select_order" ).change(function() {
 
         var values = this.value;
