@@ -17,7 +17,7 @@ class TokenController extends Controller
      * @Route("/api/tokens")
      * @Method("POST")
      */
-    public function newTokenAction(Request $request, EntityManagerInterface $em)
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $user = $em->getRepository(User::class)->findOneBy(['name' => $request->getUser()]);
 
