@@ -4,6 +4,19 @@
     <div class="container">
         <div class="row">
 
+            <nav class="row navbar navbar-inverse navbar-admin">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                    <ul class="nav navbar-nav nav-tabs nav-justified">
+                        <li {{ (app.request.attributes.get('_route') == 'tqm_nowosci') ? 'class="active"' }}><a
+                                    href="{{ path ('view_ideas') }}">Pomysły</a></li>
+
+                        <li {{ (app.request.attributes.get('_route') == 'view_rules') ? 'class="active"' }}><a
+                                    href="{{ path ('view_rules') }}">Regulamin</a></li>
+                        <li {{ (app.request.attributes.get('_route') == 'view_contact') ? 'class="active"' }}><a
+                                    href="{{ path ('view_contact') }}">Kontakt</a></li>
+                    </ul>
+                </div>
+            </nav>
 
             <div class="text-center">Serwis powstał aby zawodnicy mogli w łatwy i wygodny sposób zapisać się na turniej
                 bokserski,
@@ -76,18 +89,16 @@
 
             <ul>
 
+                <li> w czasie rzeczywistym widać ile osób się zapisało w danej kat. wagowej i formule - czy zawodnik będzie miał z kim walczyć </li>
+
+                <li> gromadzenie danych dotyczących przebiegu walk oraz możliwość obejrzenia nagrania video z konkretnej walki </li>
+
+                <li> umożliwia automatyczne tworzenie statystyk dla zawodników, klubów, trenerów </li>
+
+                <li> osadzenie zawodnika w środowisku konkurencji, podjęcia próby ustawienia swojej dotychczasowej wartości i
+                    ukazanie możliwości pnięcia się wyżej w swojej sportowej karierze </li>
 
             </ul>
-
-
-            <li> w czasie rzeczywistym widać ile osób się zapisało w danej kat. wagowej i formule - czy zawodnik będzie miał z kim walczyć </li>
-
-            <li> gromadzenie danych dotyczących przebiegu walk oraz możliwość obejrzenia nagrania video z konkretnej walki </li>
-
-            <li> umożliwia automatyczne tworzenie statystyk dla zawodników, klubów, trenerów </li>
-
-            <li> osadzenie zawodnika w środowisku konkurencji, podjęcia próby ustawienia swojej dotychczasowej wartości i
-                ukazanie możliwości pnięcia się wyżej w swojej sportowej karierze </li>
 
             <h2>Dla Kibiców</h2>
             ...

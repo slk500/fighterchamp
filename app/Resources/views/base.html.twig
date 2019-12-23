@@ -60,16 +60,11 @@
                             href="{{ path ('view_club_list') }}">Kluby</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_fight_list') ? 'class="active"' }}><a
                             href="{{ path ('view_fight_list') }}">Walki</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'tqm_nowosci') ? 'class="active"' }}><a
-                            href="{{ path ('view_ideas') }}">Pomysły</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_rank') ? 'class="active"' }}><a
                             href="{{ path ('view_rank', {'year' : 'wszystkie-lata' }) }}">Ranking</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_about') ? 'class="active"' }}><a
                             href="{{ path ('view_about') }}">O Serwisie</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'view_rules') ? 'class="active"' }}><a
-                            href="{{ path ('view_rules') }}">Regulamin</a></li>
-                <li {{ (app.request.attributes.get('_route') == 'view_contact') ? 'class="active"' }}><a
-                            href="{{ path ('view_contact') }}">Kontakt</a></li>
+
                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')  %}
                     {% if is_granted('ROLE_USER') %}
                         <li {{ (app.request.attributes.get('_route') == 'view_user_edit') ? 'class="active"' }}><a
