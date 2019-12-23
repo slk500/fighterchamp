@@ -13,6 +13,16 @@ api_fight_show:
     requirements:
             id: '\d+'
 
+api_fight_delete:
+    path:     /api/fights/{id}
+    controller: AppBundle\Controller\Api\FightController::delete
+    condition: 'request.isXmlHttpRequest()'
+    options:
+        expose: true
+    methods: DELETE
+    requirements:
+        id: '\d+'
+
 api_fight_list:
     path:     /api/fights
     controller: AppBundle\Controller\Api\FightController::list

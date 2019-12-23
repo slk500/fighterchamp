@@ -207,10 +207,9 @@
     });
 
     $( ".js-fight-delete" ).click(function() {
-
         $.ajax({
             type: 'DELETE',
-            url: Routing.generate('api_admin_delete_fight', {id: this.value}),
+            url: Routing.generate('api_fight_delete', {id: this.value}),
             success: function () {
                 location.reload();
             }

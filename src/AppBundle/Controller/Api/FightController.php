@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Fight;
 use AppBundle\Repository\FightRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 class FightController
 {
@@ -18,5 +19,11 @@ class FightController
             ['isVisible' => true],
             ['position'=>'ASC']
         );
+    }
+
+    public function delete(Fight $fight, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($fight);
+        $entityManager->flush();
     }
 }
