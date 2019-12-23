@@ -1,10 +1,5 @@
 [![Build status](https://img.shields.io/travis/slk500/fighterchamp/master.svg)](https://travis-ci.org/slk500/fighterchamp)
 
-## JWT keys setup
-To setup encryption keys for JWT auth, run `make setup-keys`, enter your passphrase and set that passphrase under `jwt_key_pass_phrase` key in parameters.yml.
-
-To setup project just run 'make setup-project'
-
 ## Behat
 To run behat tests just run command "make behat". 
 With tests that have @javascript annotation like login.feature -> Scenario: Register as Fighter you can see live how
