@@ -126,7 +126,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ path('set_is_paid') }}",
+                {#url: "{{ path('set_is_paid') }}",#}
                 data: {signUpId: arrValues[0], isPaid: arrValues[1]},
                 success: function () {
                     location.reload(); }
@@ -140,7 +140,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ path('set_weighted') }}",
+                {#url: "{{ path('set_weighted') }}",#}
                 data: {signUpId: arrValues[0], weighted: arrValues[1]},
                 success: function () {
 

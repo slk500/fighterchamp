@@ -21,8 +21,8 @@
         {% if signUp.deletedAtByAdmin %}
             <tr id="{{ signUp.id }}">
                 <td>
-                    <a href="{{ path("admin_tournament_toggle_delete_by_admin", {'id' : signUp.id }) }}"
-                       class="btn btn-success"><i class="fa fa-repeat fa-lg"></i> Przywróć</a>
+{#                    <a href="{{ path("admin_tournament_toggle_delete_by_admin", {'id' : signUp.id }) }}"#}
+{#                       class="btn btn-success"><i class="fa fa-repeat fa-lg"></i> Przywróć</a>#}
                 </td>
 {#                <td> {{ signUp.isPaid ? 'Tak' : 'Nie' }} </td>#}
                 <td> {{ signUp.discipline }} </td>
