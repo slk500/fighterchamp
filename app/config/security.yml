@@ -26,7 +26,6 @@ security:
                 authenticator:
                    - AppBundle\Security\LoginFormAuthenticator
                    - AppBundle\Security\FacebookAuthenticator
-                   - AppBundle\Security\JwtTokenAuthenticator
                 entry_point: AppBundle\Security\LoginFormAuthenticator
 
             logout:
