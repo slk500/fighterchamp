@@ -61,8 +61,8 @@
                         return element.id
                     }).get();
 
-                    $.post("{{ path('admin_tournament_create_fight') }}",
-                        {ids: ids}, function (data, status) {
+                    $.post("{{ path('api_fight_create') }}",
+                        {signup_1: ids[0], signup_2: ids[1]}, function (data, status) {
 
                         });
 

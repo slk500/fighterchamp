@@ -37,23 +37,6 @@ class AdminTournamentFightController extends Controller
     }
 
     /**
-     * @Route("/walki", name="admin_tournament_create_fight")
-     * @Method("POST")
-     */
-    public function createFight(Request $request, FightService $fightService, EntityManagerInterface $entityManager)
-    {
-        $data = $request->request->all();
-
-        $signUpRepo = $entityManager->getRepository(SignUpTournament::class);
-        $signUp0 = $signUpRepo->find($data['ids'][0]);
-        $signUp1 = $signUpRepo->find($data['ids'][1]);
-
-        $fightService->createFightFromSignUps($signUp0, $signUp1);
-
-        return new Response(null, 201);
-    }
-    
-    /**
      * @Route("/fight/set-winner", name="setWinner")
      */
     public function setWinnerAction(Request $request, EntityManagerInterface $em)

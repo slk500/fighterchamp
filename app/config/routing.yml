@@ -5,6 +5,12 @@ app:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+api_fight_create:
+    path:     /api/fights
+    controller: AppBundle\Controller\Api\FightController::create
+    condition: 'request.isXmlHttpRequest()'
+    methods: POST
+
 api_fight_show:
     path:     /api/fights/{id}
     controller: AppBundle\Controller\Api\FightController::show

@@ -28,7 +28,7 @@ class FightService
         return $fight->getUsersFight()->toArray();
     }
 
-    public function createFightFromSignUps(SignUpTournament $signUp1, SignUpTournament $signUp2): void
+    public function createFightFromSignUps(SignUpTournament $signUp1, SignUpTournament $signUp2): Fight
     {
         $formula = $this->getHighestFormula($signUp1, $signUp2);
         $weight = $this->getHighestWeight($signUp1, $signUp2);
@@ -55,6 +55,8 @@ class FightService
         $this->entityManager->persist($userFight1);
         $this->entityManager->persist($userFight2);
         $this->entityManager->flush();
+
+        return $fight;
     }
 
     public function getHighestFormula(SignUpTournament $signUp0, SignUpTournament $signUp1): string

@@ -32,7 +32,8 @@ class SignupTournamentBuilder extends Builder
     {
         $signup = new SignUpTournament($this->user, $this->tournament);
         $signup->setWeight('100');
-        $signup->setFormula('boks');
+        $signup->setFormula('A');
+        $signup->setDiscipline('boks');
         return $signup;
     }
 
