@@ -28,12 +28,17 @@ class SignupTournamentBuilder extends Builder
      */
     private $formula;
 
+    /**
+     * @var string
+     */
+    private $discipline;
+
     public function build(): SignUpTournament
     {
         $signup = new SignUpTournament($this->user, $this->tournament);
         $signup->setWeight('100');
         $signup->setFormula('A');
-        $signup->setDiscipline('boks');
+        $signup->setDiscipline('Boks');
         return $signup;
     }
 
@@ -58,6 +63,12 @@ class SignupTournamentBuilder extends Builder
     public function withFormula(string $formula): self
     {
         $this->formula = $formula;
+        return $this;
+    }
+
+    public function withDiscipline(string $discipline): self
+    {
+        $this->discipline = $discipline;
         return $this;
     }
 }

@@ -137,11 +137,12 @@
 
             var values = this.value;
             var arrValues = values.split("|");
-
-            $.ajax({
-                type: 'POST',
-                {#url: "{{ path('set_weighted') }}",#}
-                data: {signUpId: arrValues[0], weighted: arrValues[1]},
+                $.ajax({
+                type: 'PATCH',
+                url: Routing.generate('api_signup_update', {id: arrValues[0]}),
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({weighted: arrValues[1]}),
                 success: function () {
 
                     location.reload();

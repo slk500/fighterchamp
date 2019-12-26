@@ -106,7 +106,7 @@ class SignUpTournament
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      */
     private $discipline;
 
@@ -263,7 +263,7 @@ class SignUpTournament
         $this->deletedAtByAdmin = $dateTime;
     }
 
-    public function getDiscipline(): ?string
+    public function getDiscipline(): string
     {
         return $this->discipline;
     }

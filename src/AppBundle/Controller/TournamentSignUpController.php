@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Form\SignUpTournamentType;
+use AppBundle\Service\RulesetService;
 use AppBundle\Util\AgeCategoryConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,24 +22,12 @@ class TournamentSignUpController extends Controller
     /**
      * @Route("/{id}/zapisy", name="view_tournament_signup")
      */
-    public function signUpAction(Tournament $tournament, Request $request, EntityManagerInterface $em)
+    public function signUpAction(Tournament $tournament, Request $request, EntityManagerInterface $em, RulesetService $rulesetService)
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') && ($this->getUser())->getType() != 3) {
             $user = $this->getUser();
 
-            $age = AgeCategoryConverter::convert($user->getBirthDay());
-
-            $male = $user->getMale();
-            $sex = ($male) ? "male" : "female";
-
-            $traitChoices = $em->getRepository('AppBundle:Ruleset')
-                ->findBy([$sex => true, $age => true], ['weight' => 'ASC']);
-
-            $arr = [];
-
-            foreach ($traitChoices as $key => $value) {
-                $arr = $arr + [$value->getWeight() => $value->getWeight()];
-            }
+            $weights = $rulesetService->getWeights($em, $user);
 
             $isAlreadySignUp = $em->getRepository('AppBundle:SignUpTournament')
                 ->findOneBy(
@@ -54,7 +43,7 @@ class TournamentSignUpController extends Controller
             $form = $this->createForm(
                 SignUpTournamentType::class,
                 $signupTournament,
-                ['trait_choices' => $arr]
+                ['trait_choices' => $weights]
             );
 
             $form->handleRequest($request);

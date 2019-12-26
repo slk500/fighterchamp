@@ -26,10 +26,19 @@ class AdminSignUpTournamentType extends AbstractType
             ->add('weight', ChoiceType::class, [
                 'choices'  => $trait
             ])
-            ->add('youtubeId', TextType::class)
-            ->add('musicArtistAndTitle', TextType::class)
-
-           ;
+            ->add('discipline', ChoiceType::class, [
+                'choices'  => [
+                    'BJJ' => 'BJJ',
+                    'Boks' => 'Boks',
+                    'MMA' => 'MMA',
+                    'Karate' => 'Karate',
+                    'K1 ProAm' => 'K1 ProAm'
+                ]])
+            ->add('weighted')
+//            ->add('isLicence', CheckboxType::class)
+//            ->add('youtubeId', TextType::class)
+//            ->add('musicArtistAndTitle', TextType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

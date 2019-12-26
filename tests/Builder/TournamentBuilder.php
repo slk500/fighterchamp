@@ -19,7 +19,7 @@ class TournamentBuilder extends Builder
         $tournament->setName($this->name);
         $tournament->setStart(new \DateTime());
         $tournament->setCapacity(10);
-        $tournament->setDiscipline('boks');
+        $tournament->setDiscipline('Boks');
 
         return $tournament;
     }

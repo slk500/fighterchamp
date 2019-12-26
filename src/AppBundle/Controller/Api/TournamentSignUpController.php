@@ -5,11 +5,15 @@ namespace AppBundle\Controller\Api;
 use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
+use AppBundle\Form\AdminSignUpTournamentType;
+use AppBundle\Form\SignUpTournamentType;
+use AppBundle\Service\ApiFormService;
+use AppBundle\Service\RulesetService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class SignUpController extends Controller
+class TournamentSignUpController extends Controller
 {
     public function show(SignUpTournament $signUp)
     {
@@ -18,17 +22,15 @@ class SignUpController extends Controller
 
     public function create(Request $request, EntityManagerInterface $entityManager)
     {
-        $userId = $request->request->get('userId');
-        $formula = $request->request->get('formula');
-        $weight = $request->request->get('weight');
-        $tournamentId = $request->request->get('tournamentId');
+        $data = json_decode($request->getContent(), true);
 
-        $user = $entityManager->getReference(User::class, $userId);
-        $tournament = $entityManager->getReference(Tournament::class, $tournamentId);
+        $user = $entityManager->getReference(User::class, $data['userId']);
+        $tournament = $entityManager->getReference(Tournament::class, $data['tournamentId']);
 
         $signupTournament = new SignUpTournament($user, $tournament);
-        $signupTournament->setFormula($formula);
-        $signupTournament->setWeight($weight);
+        $signupTournament->setFormula($data['formula']);
+        $signupTournament->setWeight($data['weight']);
+        $signupTournament->setDiscipline($data['discipline']);
 
         $entityManager->persist($signupTournament);
         $entityManager->flush();
@@ -39,13 +41,13 @@ class SignUpController extends Controller
     public function list(Tournament $tournament, EntityManagerInterface $entityManager)
     {
         return $entityManager->getRepository(SignUpTournament::class) //todo remove flags delete
-            ->findBy(
-                [
-                    'tournament' => $tournament,
-                    'deleted_at' => null,
-                    'deletedAtByAdmin' => null
-                ]
-            );
+        ->findBy(
+            [
+                'tournament' => $tournament,
+                'deleted_at' => null,
+                'deletedAtByAdmin' => null
+            ]
+        );
     }
 
     public function listNotPair(Tournament $tournament, EntityManagerInterface $entityManager)
@@ -65,6 +67,27 @@ class SignUpController extends Controller
     public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager)
     {
         $signUpTournament->delete();
+        $entityManager->flush();
+
+        return $signUpTournament;
+    }
+
+    public function update(
+        SignUpTournament $signUpTournament,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        ApiFormService $apiForm,
+        RulesetService $rulesetService
+    ) {
+        $weights = $rulesetService->getWeights($entityManager, $signUpTournament->getUser());
+
+        $form = $this->createForm(AdminSignUpTournamentType::class, $signUpTournament, ['trait_choices' => $weights]);
+        $apiForm->processForm($request, $form);
+
+        if (!$form->isValid()) {
+            $apiForm->throwValidationErrorsResponse($form, $request);
+        }
+
         $entityManager->flush();
 
         return $signUpTournament;

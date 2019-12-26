@@ -39,14 +39,14 @@ api_fight_list:
 
 api_signup_show:
     path:     /api/zapisy/{id}
-    controller: AppBundle\Controller\Api\SignUpController::show
+    controller: AppBundle\Controller\Api\TournamentSignUpController::show
     condition: 'request.isXmlHttpRequest()'
     requirements:
             id: '\d+'
 
 api_signup_list:
     path:     /api/tournaments/{id}/signups
-    controller: AppBundle\Controller\Api\SignUpController::list
+    controller: AppBundle\Controller\Api\TournamentSignUpController::list
     methods: GET
     condition: 'request.isXmlHttpRequest()'
     requirements:
@@ -54,20 +54,31 @@ api_signup_list:
 
 api_signup_list_not_pair:
     path:     /api/tournaments/{id}/signups-not-pair
-    controller: AppBundle\Controller\Api\SignUpController::listNotPair
+    controller: AppBundle\Controller\Api\TournamentSignUpController::listNotPair
     methods: GET
-#    condition: 'request.isXmlHttpRequest()'
+    condition: 'request.isXmlHttpRequest()'
     requirements:
         id: '\d+'
 
 api_signup_create:
     path:     /api/signups
-    controller: AppBundle\Controller\Api\SignUpController::create
+    controller: AppBundle\Controller\Api\TournamentSignUpController::create
     condition: 'request.isXmlHttpRequest()'
+    methods: POST
+
+api_signup_update:
+    path:     /api/signups/{id}
+    controller: AppBundle\Controller\Api\TournamentSignUpController::update
+    condition: 'request.isXmlHttpRequest()'
+    methods: PATCH
+    options:
+        expose: true
+    requirements:
+        id: '\d+'
 
 api_signup_delete:
     path:     /api/signups/{id}
-    controller: AppBundle\Controller\Api\SignUpController::delete
+    controller: AppBundle\Controller\Api\TournamentSignUpController::delete
     condition: 'request.isXmlHttpRequest()'
     requirements:
         id: '\d+'
