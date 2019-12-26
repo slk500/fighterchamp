@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\ApiProblem;
+
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -13,12 +14,12 @@ class ApiProblem
     const TYPE_CREDENTIALS_MISSING = 'missing_credentials';
     const TYPE_CREDENTIALS_INVALID = 'invalid_credentials';
 
-    private static $titles = array(
+    private static $titles = [
         self::TYPE_VALIDATION_ERROR => 'There was a validation error',
         self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
         self::TYPE_CREDENTIALS_MISSING => 'Authentication Required',
         self::TYPE_CREDENTIALS_INVALID => 'Invalid credentials'
-    );
+    ];
 
     private $statusCode;
 
@@ -26,7 +27,7 @@ class ApiProblem
 
     private $title;
 
-    private $extraData = array();
+    private $extraData = [];
 
     public function __construct(int $statusCode, $type = null)
     {
@@ -55,11 +56,11 @@ class ApiProblem
     {
         return array_merge(
             $this->extraData,
-            array(
+            [
                 'status' => $this->statusCode,
                 'type' => $this->type,
                 'title' => $this->title,
-            )
+            ]
         );
     }
 

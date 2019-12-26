@@ -6,7 +6,6 @@ use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Form\SignUpTournamentType;
 use AppBundle\Service\RulesetService;
-use AppBundle\Util\AgeCategoryConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

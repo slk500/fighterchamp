@@ -4,12 +4,10 @@ namespace AppBundle\Controller\Api\Admin;
 
 use AppBundle\Entity\Enum\UserFightResult;
 use AppBundle\Entity\Fight;
-use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\UserFight;
 use AppBundle\Service\FightService;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminTournamentFightController extends Controller
 {
     /**
-     * @Route("/toggle-corner", name="toggle_corners")
+     * @Route("/toggle-corner", name="api_fight_toggle_corners")
      */
     public function toggleCornersAction(EntityManagerInterface $em, FightService $fightService, Request $request)
     {
@@ -37,7 +35,7 @@ class AdminTournamentFightController extends Controller
     }
 
     /**
-     * @Route("/fight/set-winner", name="setWinner")
+     * @Route("/fight/set-winner", name="api_fight_set_winner")
      */
     public function setWinnerAction(Request $request, EntityManagerInterface $em)
     {
@@ -75,7 +73,7 @@ class AdminTournamentFightController extends Controller
     }
 
     /**
-     * @Route("/{id}/fight/change-position-fight", name="changePositionFight")
+     * @Route("/{id}/fight/change-position-fight", name="api_fight_change_position")
      */
     public function changeOrderFight(Request $request, Tournament $tournament)
     {

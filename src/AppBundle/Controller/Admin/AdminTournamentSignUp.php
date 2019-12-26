@@ -8,8 +8,6 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -30,7 +28,7 @@ class AdminTournamentSignUp extends Controller
 
 
     /**
-     * @Route("/turnieje/{id}/lista", name="admin_view_tournament_signup")
+     * @Route("/turnieje/{id}/lista", name="view_admin_tournament_signup")
      */
     public function signUp(Tournament $tournament)
     {
@@ -91,7 +89,7 @@ class AdminTournamentSignUp extends Controller
     }
 
     /**
-     * @Route("/turnieje/{id}/lista/dodaj", name="admin_create_signUp")
+     * @Route("/turnieje/{id}/lista/dodaj", name="view_admin_create_signup")
      */
     public function createSignUp(
         EntityManagerInterface $em,

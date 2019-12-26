@@ -171,7 +171,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ path('changePositionFight', {'id': tournament.id }) }}",
+            url: "{{ path('api_fight_change_position', {'id': tournament.id }) }}",
             data: {wantedPosition: arrValues[0], fightId:arrValues[1], position: this.id},
             success: function () {
                  location.reload();
@@ -186,7 +186,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{  path('setWinner') }}",
+            url: "{{  path('api_fight_set_winner') }}",
             data: {userFightId: arrValues[0], result: arrValues[1] },
             success: function () {
                 location.reload();
@@ -222,7 +222,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ path('toggle_corners') }}",
+            url: "{{ path('api_fight_toggle_corners') }}",
             data: {fightId: fightId},
             success: function () {
                 location.reload();

@@ -41,7 +41,7 @@ class AdminTournamentFightController extends Controller
     }
 
     /**
-     * @Route("/turnieje/{id}/parowanie", name="admin_tournament_pair")
+     * @Route("/turnieje/{id}/parowanie", name="view_admin_tournament_pair")
      * @Method("GET")
      */
     public function pairAction(Tournament $tournament, SerializerInterface $serializer)

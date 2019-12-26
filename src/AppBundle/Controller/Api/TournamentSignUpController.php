@@ -6,7 +6,6 @@ use AppBundle\Entity\SignUpTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use AppBundle\Form\AdminSignUpTournamentType;
-use AppBundle\Form\SignUpTournamentType;
 use AppBundle\Service\ApiFormService;
 use AppBundle\Service\RulesetService;
 use Doctrine\ORM\EntityManagerInterface;

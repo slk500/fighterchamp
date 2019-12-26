@@ -19,13 +19,11 @@ class FightService
         $this->entityManager = $entityManager;
     }
 
-    public function toggleCorners(Fight $fight): array
+    public function toggleCorners(Fight $fight): void
     {
         $fight->getUsersFight()->map(function (UserFight $userFight) {
             $userFight->changeCorner();
         });
-
-        return $fight->getUsersFight()->toArray();
     }
 
     public function createFightFromSignUps(SignUpTournament $signUp1, SignUpTournament $signUp2): Fight
