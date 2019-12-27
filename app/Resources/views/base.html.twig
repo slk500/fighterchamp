@@ -73,7 +73,7 @@
                     {% if is_granted('ROLE_ADMIN') and app.user.tournamentAdmin|first %}
                         {% set tournamentAdmin = app.user.tournamentAdmin|first %}
                         <li {{ (app.request.attributes.get('_route') == 'admin_view_tournament_signup') ? 'class="active"' }}><a
-                                    href="{{ path ('admin_view_tournament_signup',{'id' : tournamentAdmin.tournament.id  }) }}">Admin</a></li>
+                                    href="{{ path ('view_admin_tournament_signup',{'id' : tournamentAdmin.tournament.id  }) }}">Admin</a></li>
                     {% endif %}
                     <li {{ (app.request.attributes.get('_route') == 'view_logout') ? 'class="active"' }}><a
                                 href="{{ path('view_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
