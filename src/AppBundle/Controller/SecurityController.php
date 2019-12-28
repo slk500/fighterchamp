@@ -9,8 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends Controller
@@ -130,21 +128,16 @@ class SecurityController extends Controller
     {
     }
 
-
+    //todo remove
     /**
      * @Route("/api/setnullonimage", name="api_setNullOnImage", options={"expose"=true})
      */
     public function setNullOnImageFile()
     {
-        $session = new Session();
-        $session->set('imageName', null);
-
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $em = $this->getDoctrine()->getManager();
             $this->getUser()->removeFile();
             $em->flush();
         }
-
-        return new Response(200);
     }
 }
