@@ -62,7 +62,6 @@ class UserController extends Controller
                 $em->persist($userCoach);
             }
 
-
             $user->setHash(hash('sha256', md5(rand())));
 
             $em->persist($user);
@@ -114,7 +113,10 @@ class UserController extends Controller
     {
         $user = $this->getUser();
 
-        $form = $this->createForm($this->getFormType($request), $user);
+        $form = $this->createForm($this->getFormType($request), $user, [
+            'method' => 'PATCH',
+            'action' => $this->generateUrl('api_user_create')
+        ]);
 
         $form->handleRequest($request);
 
@@ -190,7 +192,6 @@ class UserController extends Controller
         $data = $request->request->all();
         $type = $data['fighter']['type'] ?? $data['coach']['type'] ?? $data['user']['type'];
 
-
         switch ($type) {
             case '1':
                 return FighterType::class;
@@ -199,7 +200,7 @@ class UserController extends Controller
             case '3':
                 return UserType::class;
             default:
-                return 'Nie ma takiego typu';
+                return 'Type dosent exist';
         }
     }
 
@@ -215,7 +216,7 @@ class UserController extends Controller
             case '3':
                 return 'user/fan/_form.html.twig';
             default:
-                return 'Nie ma takiego typu';
+                return 'Type dosent exist';
         }
     }
 }

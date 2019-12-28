@@ -68,7 +68,6 @@ class UserController extends Controller
             return $this->redirectToRoute('view_homepage');
         }
 
-
         return $this->render('security/register.html.twig');
     }
 
@@ -114,29 +113,21 @@ class UserController extends Controller
 
     private function getFormTypeUpdateView(string $type): string
     {
-        switch ($type) {
-            case '1':
-            case '2':
-                return 'user/fighter/_edit.html.twig';
-            case '3':
-                return 'user/fan/_edit.html.twig';
-            default:
-                return 'Nie ma takiego typu';
+        if ($type == 3) {
+            return 'user/fan/_edit.html.twig';
         }
+
+        return 'user/fighter/_edit.html.twig';
     }
 
 
     private function getFormTypeView(string $type): string
     {
-        switch ($type) {
-            case '1':
-            case '2':
-                return 'user/fighter/_form.html.twig';
-            case '3':
-                return 'user/fan/_form.html.twig';
-            default:
-                return 'Nie ma takiego typu';
+        if ($type == 3) {
+            return 'user/fan/_form.html.twig';
         }
+
+        return 'user/fighter/_form.html.twig';
     }
 
     private function getFormType(string $type): string
@@ -149,7 +140,7 @@ class UserController extends Controller
             case '3':
                 return UserType::class;
             default:
-                return 'Nie ma takiego typu';
+                return  $type . ' type dosent exist';
         }
     }
 
@@ -163,7 +154,7 @@ class UserController extends Controller
             case 3:
                 return 'user/fan/show.html.twig';
             default:
-                return 'Nie ma takiego typu';
+                return  $user->getType() . ' type dosent exist';
         }
     }
 }
