@@ -47,3 +47,105 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/fight_table.js') }}"></script>
+<script>
+    $(document).ready(function () {
+
+        {%  if tournament %}
+        // Set the date we're counting down to
+        var countDownDate = new Date("{{ tournament.start|date('Y-m-d') }}").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+        {% endif %}
+
+        var t = $('#table-fights').DataTable({
+            "ajax": "{{ path('api_tournament_fight_list', {id: tournamentId}) }}",
+            "columns": [
+                {data: null},
+                {
+                    mData: function (data) {
+                        var temp = (data.youtubeId === null) ? '' : " <img class='youtube-icon' src='{{ asset('img/YouTube-icon-full_color.png') }}'></a>";
+
+                        return "<a href='" + data.href + "'>Szczegóły</a>" + temp + "<br>" + data.description + isLicence(data);
+                    }
+                },
+                {
+                    mData: function (data) {
+
+                        return record(data.usersFight[0].user) + '<br>' +
+                            "<a href='" + data.usersFight[0].user.href + "'>" + data.usersFight[0].user.surname + ' ' + data.usersFight[0].user.name + '</a> ' +
+                            fightResult(data.usersFight[0]) + club(data.usersFight[0].user) + '<br>' + age(data.usersFight[0].user)
+                            ;
+                    }
+                },
+                {
+                    mData: function (data) {
+
+                        return record(data.usersFight[1].user) + '<br>' +
+                            "<a href='" + data.usersFight[1].user.href + "'>" + data.usersFight[1].user.surname + ' ' + data.usersFight[1].user.name + '</a> ' +
+                            fightResult(data.usersFight[1]) + club(data.usersFight[1].user) + '<br>' + age(data.usersFight[1].user)
+                            ;
+                    }
+                },
+                {
+                    mData: function (data) {
+                        return data.discipline;
+                    }
+                },
+                {
+                    mData: function (data) {
+                        return data.usersFight[1].user.male ? 'M' : 'K';
+                    }
+                },
+                {
+                    mData: function (data) {
+                        return data.formula;
+                    }
+                },
+                {
+                    mData: function (data) {
+                        return data.weight;
+                    }
+                }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Polish.json"
+            },
+            "bPaginate": false,
+            "dom": 'lifrtp'
+        });
+
+        t.on('order.dt search.dt', function () {
+            t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+    });
+
+</script>

@@ -29,6 +29,7 @@ class ClubNormalizer implements NormalizerInterface, SerializerAwareInterface
         return [
             'href' => $this->router->generate('view_club_show', ['id' => $object->getId()]),
             'name'   => $object->getName(),
+            'street' => $object->getStreet(),
             'www' => $object->getWww(),
             'city' => $object->getCity(),
             'record' => $this->countRecordClub($object->getUsers()),

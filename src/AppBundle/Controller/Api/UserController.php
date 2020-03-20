@@ -68,7 +68,6 @@ class UserController extends Controller
             $em->flush();
 
             $eventDispatcher->dispatch(
-                Events::USER_REGISTERED,
                 new UserCreatedEvent($user)
             );
 

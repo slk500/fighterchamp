@@ -7,6 +7,7 @@
                 <h1>{{ club.name }}</h1>
                 <div>
                {% if club.city %} Miasto : {{ club.city }} <br> {% endif %}
+               {% if club.street %} Ulica : {{ club.street }} <br> {% endif %}
                {% if club.www %} Www : <a href="http://{{ club.www }}">{{ club.www }}</a> <br> {% endif %}
 
                 </div>

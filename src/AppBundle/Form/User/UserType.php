@@ -73,7 +73,7 @@ class UserType extends AbstractType
         ;
 
         $builder->addEventSubscriber(new CreateClubIfNotExist($this->em));
-        ;
+
         $builder->addEventSubscriber(new AddTermsAndPlainPasswordFieldsIfNewUser());
     }
 

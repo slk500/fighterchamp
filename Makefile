@@ -57,4 +57,5 @@ setup-project:
 	docker-compose exec php php bin/console do:sch:up --force
 	docker-compose exec php php bin/console do:mi:mi --no-interaction --allow-no-migration --env=dev
 	docker-compose exec php php bin/console do:mi:mi --no-interaction --allow-no-migration --env=test
+	docker-compose exec php bin/console assets:install --symlink web
 

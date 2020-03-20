@@ -3,7 +3,7 @@ app:
     type:     annotation
 
 fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing-sf4.xml"
 
 api_fight_create:
     path:     /api/fights
@@ -94,6 +94,8 @@ api_tournament_show:
     condition: 'request.isXmlHttpRequest()'
     controller: AppBundle\Controller\Api\TournamentController::show
     methods: GET
+    requirements:
+        id: '\d+'
 
 api_tournament_fight_list:
     path:     /api/tournaments/{id}/fights

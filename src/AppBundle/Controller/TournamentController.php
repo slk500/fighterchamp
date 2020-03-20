@@ -31,7 +31,7 @@ class TournamentController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="view_tournament_show")
+     * @Route("/{id}", requirements={"id": "\d+"}, name="view_tournament_show")
      */
     public function show(Tournament $tournament)
     {

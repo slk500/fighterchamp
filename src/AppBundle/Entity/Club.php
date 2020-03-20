@@ -55,6 +55,18 @@ class Club
     private $users;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lng;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -66,80 +78,81 @@ class Club
         $this->users = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-
-    public function setName(string $name)
+    public function getLat(): ?string
     {
-        $this->name = $name;
-
-        return $this;
+        return $this->lat;
     }
 
+    public function setLat(?string $lat): void
+    {
+        $this->lat = $lat;
+    }
 
-    public function getName(): string
+    public function getLng(): ?string
+    {
+        return $this->lng;
+    }
+
+    public function setLng(?string $lng): void
+    {
+        $this->lng = $lng;
+    }
+
+    public function setName(?string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-
-    public function setCity(string $city)
+    public function setCity(?string $city)
     {
         $this->city = $city;
-
-        return $this;
     }
-
 
     public function getCity(): ?string
     {
         return $this->city;
     }
 
-
-    public function setStreet(string $street)
+    public function setStreet(?string $street)
     {
         $this->street = $street;
-
-        return $this;
     }
-
 
     public function getStreet(): ?string
     {
         return $this->street;
     }
 
-
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
-
-    public function setImageName(string $imageName)
+    public function setImageName(?string $imageName)
     {
         $this->imageName = $imageName;
     }
-
 
     public function getWww(): ?string
     {
         return $this->www;
     }
 
-
-    public function setWww(string $www)
+    public function setWww(?string $www)
     {
         $this->www = $www;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
