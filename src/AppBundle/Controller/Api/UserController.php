@@ -53,13 +53,15 @@ class UserController extends Controller
              * @var $user User
              */
             $user = $form->getData();
-            $coachId = $form->get('coachId')->getData();
 
-            if ($coachId) {
-                $coach = $em->getRepository(User::class)
-                    ->find($coachId);
-                $userCoach = new UserCoach($user, $coach);
-                $em->persist($userCoach);
+            if ($form->has('coachId')) {
+                $coachId = $form->get('coachId')->getData();
+                if ($coachId) {
+                    $coach = $em->getRepository(User::class)
+                        ->find($coachId);
+                    $userCoach = new UserCoach($user, $coach);
+                    $em->persist($userCoach);
+                }
             }
 
             $user->setHash(hash('sha256', md5(rand())));
