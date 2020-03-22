@@ -59,8 +59,7 @@ class ClubController extends Controller
             [
                 'form' => $form->createView(),
                 'clubs' => $clubRepository->findAll(),
-                'club' => $club,
-                'pageTitle' => 'Edytujesz klub: '
+                'club' => $club
             ]
         );
     }
