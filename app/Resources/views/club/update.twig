@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-6 col-md-offset-3">
                 <h1>Edytujesz klub: {{ club.name }}</h1>
-                {% include 'club/form/create.twig' %}
+                {% include 'club/form/update.twig' %}
                 <br>
                 <span>Kliknięciem na mapie możesz zaznaczyć gdzie znajduję się dodawany/edytowany klub (pojawi się czerwona ikonka).
                     W lewym górnym rogu mapy znajduję się ikonka "lupy", kliknij ją abyś mógł wpisać szukany adres, co umożliwi Ci łatwiejsze znalezienie klubu na mapie.</span>
@@ -78,18 +78,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $('.select2').select2({tags: true});
-        $(".select2").change(function () {
-
-            var option = parseInt(document.getElementById('club_name').value);
-
-            if(!Number.isInteger(option)){
-                window.location.href = Routing.generate('view_club_create');
-            }else{
-                window.location.href = Routing.generate('view_club_update', {id: option});
-            }
-        });
-
         var redIcon = new L.Icon({
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',

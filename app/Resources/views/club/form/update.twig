@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_row(form.name, {
+        label : 'Nazwa',
+        disabled: true
+    })}}
+    {{ form_row(form.city,{ 'label' : 'Miasto'} ) }}
+    {{ form_row(form.street, { 'label': 'Ulica' }) }}
+    {{ form_row(form.www, { 'label': 'Strona www' }) }}
+<button type="submit" class="btn btn-primary" formnovalidate>Zapisz</button>
+{{ form_end(form) }}
+
+
