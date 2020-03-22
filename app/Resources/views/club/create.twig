@@ -108,26 +108,36 @@
             accessToken: 'pk.eyJ1Ijoic2xrNTAwIiwiYSI6ImNrN3c4cTUzOTAwNjYzbXM2OXg0ZjZpMXUifQ.k3_f9ZBU5rdqK-Q7bLpeLw'
         }).addTo(map);
 
-        new L.esri.Controls.Geosearch().addTo(map);
-
         var marker;
+        var searchControl = new L.esri.Controls.Geosearch().addTo(map);
+        var results = new L.LayerGroup().addTo(map);
+        searchControl.on('results', function(data){
+            results.clearLayers();
+
+            marker = new L.marker(data.latlng, {icon: redIcon}).addTo(map);
+            var coord = data.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            document.getElementById('club_create_lat').value = lat;
+            document.getElementById('club_create_lng').value = lng;
+        });
+
         map.on('click', function (e) {
             if (marker) {
                 map.removeLayer(marker);
             }
-            marker = new L.marker(e.latlng, {icon: redIcon}).addTo(map);
 
+            marker = new L.marker(e.latlng, {icon: redIcon}).addTo(map);
             var coord = e.latlng;
             var lat = coord.lat;
             var lng = coord.lng;
-
             document.getElementById('club_create_lat').value = lat;
             document.getElementById('club_create_lng').value = lng;
         });
 
         {% for club in clubs %}
         {% if club.lat and club.lng %}
-        L.marker([{{ club.lat }}, {{ club.lng }}]).addTo(map).bindPopup("<b>{{ club.name }}</b><br>{{ club.street }}<br> Liczba zawodników: {{ club.user_count }}");
+        L.marker([{{ club.lat }}, {{ club.lng }}]).addTo(map).bindPopup("<b><a href='{{ club.href }}'>{{ club.name }}</a></b><br>{{ club.street }}<br> Liczba zawodników: {{ club.user_count }}");
         {% endif %}
         {% endfor %}
     </script>

@@ -83,7 +83,7 @@
 
         {% for club in clubs %}
             {% if club.lat and club.lng %}
-               L.marker([{{ club.lat }}, {{ club.lng }}]).addTo(map).bindPopup("<b>{{ club.name }}</b><br>{{ club.street }}<br> Liczba zawodników: {{ club.user_count }}");
+               L.marker([{{ club.lat }}, {{ club.lng }}]).addTo(map).bindPopup("<b><a href='{{ club.href }}'>{{ club.name }}</a></b><br>{{ club.street }}<br> Liczba zawodników: {{ club.user_count }}");
             {% endif %}
         {% endfor %}
     </script>
