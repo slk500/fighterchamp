@@ -3,7 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Club;
-use AppBundle\Form\ClubType;
+use AppBundle\Form\ClubCreateType;
+use AppBundle\Form\ClubUpdateType;
 use AppBundle\Repository\ClubRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -40,7 +41,7 @@ class ClubController extends Controller
      */
     public function update(Request $request, EntityManagerInterface $entityManager, ClubRepository $clubRepository, Club $club)
     {
-        $form = $this->createForm(ClubType::class, $club);
+        $form = $this->createForm(ClubUpdateType::class, $club);
 
         $form->handleRequest($request);
 
@@ -69,7 +70,7 @@ class ClubController extends Controller
      */
     public function create(Request $request, EntityManagerInterface $entityManager, ClubRepository $clubRepository)
     {
-        $form = $this->createForm(ClubType::class, null);
+        $form = $this->createForm(ClubCreateType::class, null);
 
         $form->handleRequest($request);
 

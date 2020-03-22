@@ -81,7 +81,7 @@
         $('.select2').select2({tags: true});
         $(".select2").change(function () {
 
-            var option = parseInt(document.getElementById('club_name').value);
+            var option = parseInt(document.getElementById('club_create_name').value);
 
             if(Number.isInteger(option)){
                 window.location.href = Routing.generate('view_club_update', {id: option});
@@ -121,8 +121,8 @@
             var lat = coord.lat;
             var lng = coord.lng;
 
-            document.getElementById('club_lat').value = lat;
-            document.getElementById('club_lng').value = lng;
+            document.getElementById('club_create_lat').value = lat;
+            document.getElementById('club_create_lng').value = lng;
         });
 
         {% for club in clubs %}

@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class ClubType extends AbstractType
+class ClubCreateType extends AbstractType
 {
     /**
      * @var EntityManagerInterface
@@ -56,14 +56,14 @@ class ClubType extends AbstractType
         //shitfx populate data EntityType then change to text
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $form = $event->getForm();
-            if ($event->getData()['name']) {
+            $data = $event->getData();
+
+            if ($data['name']) {
                 $form->remove('name');
                 $form->add('name');
             }
 
-            $data = $event->getData();
             $club = $this->em->getRepository(Club::class)->find($data['name']);
-
             if ($club) {
                 $data['name'] = $club->getName();
             }
