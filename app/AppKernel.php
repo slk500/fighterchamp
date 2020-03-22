@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
