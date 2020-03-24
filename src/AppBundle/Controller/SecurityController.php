@@ -112,7 +112,7 @@ class SecurityController extends Controller
                 $this->addFlash('danger_info', 'Użytkownik o podanej nazwie nie istnieje.');
             }
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('view_login');
         }
 
         return $this->render('security/password_reset.html.twig', [
