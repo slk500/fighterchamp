@@ -33,13 +33,17 @@ final class ClubRepository
     public function findAll(): array
     {
         return $this->entityManager->getConnection()
-            ->query('SELECT CONCAT(\'/kluby/\', c.id) as href, c.name,c.city, c.street, c.lat, c.lng, count(distinct(u.id)) as user_count
+            ->query('SELECT CONCAT(\'/kluby/\', c.id) as href, c.name,c.city, c.street, c.lat, c.lng, 
+                    count(distinct(u.id)) as user_count, club_disc.disciplines
   ,sum(case when uf.result = \'win\' then 1 else 0 end) as win
   ,sum(case when uf.result = \'draw\' then 1 else 0 end) as draw
   ,sum(case when uf.result = \'lose\' or uf.result = \'disqualified\' then 1 else 0 end) as lose
 FROM club c
   LEFT JOIN user u ON u.club_id = c.id
   LEFT JOIN user_fight AS uf ON uf.user_id = u.id
+  LEFT JOIN (SELECT club_id, GROUP_CONCAT(name SEPARATOR \', \') AS disciplines
+            FROM club_dict_discipline cdd
+            LEFT JOIN dict_discipline dd on cdd.dict_discipline_id = dd.id) club_disc on club_disc.club_id = c.id
 group by c.id;')
             ->fetchAll();
     }

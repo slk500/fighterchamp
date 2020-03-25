@@ -17,6 +17,8 @@
                     <tr>
                        <th></th>
                         <th>Nazwa</th>
+                        <th>Miasto</th>
+                        <th>Dyscypliny</th>
                         <th>Rekord Zawodników</th>
                         <th>Liczba Zawodników</th>
                         <th>Punktacja nr.1</th>
@@ -38,6 +40,12 @@
                 { data : null },
                 { mData : function (data){
                         return "<a href='"+ data.href +"'>" + data.name +"</a>";
+                    }},
+                { mData : function (data){
+                        return data.city
+                    }},
+                { mData : function (data){
+                        return data.disciplines
                     }},
                 { mData: function (data) {
                         return recordClub(data.win,data.draw,data.lose);

@@ -23,6 +23,16 @@ class Club
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="club")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DictDiscipline")
+     */
+    private $disciplines;
+
+    /**
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -48,11 +58,6 @@ class Club
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="club")
-     */
-    private $users;
 
     /**
      * @var string

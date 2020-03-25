@@ -6,7 +6,7 @@ use AppBundle\Repository\ClubRepository;
 
 class ClubController
 {
-    public function list(ClubRepository $clubRepository)
+    public function list(ClubRepository $clubRepository): array
     {
         return $clubRepository->findAll();
     }
