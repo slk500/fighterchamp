@@ -42,8 +42,8 @@ FROM club c
   LEFT JOIN user u ON u.club_id = c.id
   LEFT JOIN user_fight AS uf ON uf.user_id = u.id
   LEFT JOIN (SELECT club_id, GROUP_CONCAT(name SEPARATOR \', \') AS disciplines
-            FROM club_dict_discipline cdd
-            LEFT JOIN dict_discipline dd on cdd.dict_discipline_id = dd.id) club_disc on club_disc.club_id = c.id
+            FROM discipline_club cdd
+            LEFT JOIN discipline dd on cdd.discipline_id = dd.id GROUP by club_id) club_disc on club_disc.club_id = c.id
 group by c.id;')
             ->fetchAll();
     }

@@ -28,7 +28,7 @@ class Club
     private $users;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DictDiscipline")
+     * @ORM\ManyToMany(targetEntity="Discipline", mappedBy="clubs")
      */
     private $disciplines;
 
@@ -81,6 +81,7 @@ class Club
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->users = new ArrayCollection();
+        $this->disciplines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,5 +175,29 @@ class Club
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Discipline[]|Collection
+     */
+    public function getDisciplines(): Collection
+    {
+        return $this->disciplines;
+    }
+
+    public function addDiscipline(Discipline $discipline): void
+    {
+        if (!$this->disciplines->contains($discipline)) {
+            $this->disciplines->add($discipline);
+        }
+
+        $this->disciplines->add($discipline);
+        $discipline->addClub($this);
+    }
+
+    public function removeDiscipline(Discipline $discipline)
+    {
+        $this->disciplines->removeElement($discipline);
+        $discipline->removeClub($this);
     }
 }

@@ -3,7 +3,9 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Club;
+use AppBundle\Entity\Discipline;
 use AppBundle\Form\EventListener\CreateClubIfNotExist;
+use AppBundle\Form\EventListener\CreateDisciplineIfNotExist;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -36,7 +38,6 @@ class ClubCreateType extends AbstractType
             ->add('name', EntityType::class, [
                 'constraints' => [new NotBlank()],
                 'required' => false,
-                'data' => $club ? $this->em->getReference(Club::class, $club->getId()) : null,
                 'class' => 'AppBundle:Club',
                 'mapped' => false,
                 'query_builder' => function (EntityRepository $er) {
@@ -51,14 +52,24 @@ class ClubCreateType extends AbstractType
             ])
             ->add('lng', HiddenType::class, [
                 'attr' => ['class' => 'lat']
-            ]);
+            ])
+            ->add('disciplines', EntityType::class, [
+                'by_reference' => false,
+                'class' => Discipline::class,
+                'multiple' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                }]);
+
+        $builder->addEventSubscriber(new CreateDisciplineIfNotExist($this->em));
 
         //shitfx populate data EntityType then change to text
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $form = $event->getForm();
             $data = $event->getData();
 
-            if ($data['name']) {
+            if (($data['name'])) {
                 $form->remove('name');
                 $form->add('name');
             }

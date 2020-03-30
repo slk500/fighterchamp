@@ -79,6 +79,12 @@
     {{ parent() }}
     <script>
         $('.select2').select2({tags: true});
+
+        $('.select2-disciplines').select2({
+            tags: true,
+            tokenSeparators: [',', ' ']
+        });
+
         $(".select2").change(function () {
 
             var option = parseInt(document.getElementById('club_create_name').value);

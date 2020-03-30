@@ -68,12 +68,9 @@ class UserType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 }])
-
-
         ;
 
         $builder->addEventSubscriber(new CreateClubIfNotExist($this->em));
-
         $builder->addEventSubscriber(new AddTermsAndPlainPasswordFieldsIfNewUser());
     }
 

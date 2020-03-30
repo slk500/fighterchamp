@@ -70,7 +70,7 @@ class ClubController extends Controller
      */
     public function create(Request $request, EntityManagerInterface $entityManager, ClubRepository $clubRepository)
     {
-        $form = $this->createForm(ClubCreateType::class, null);
+        $form = $this->createForm(ClubCreateType::class, new Club());
 
         $form->handleRequest($request);
 
