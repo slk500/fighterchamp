@@ -50,7 +50,8 @@ class UserType extends AbstractType
             ->add('male', ChoiceType::class, [
                 'choices' => [
                     'Mężczyzna' => 1,
-                    'Kobieta' => 0]
+                    'Kobieta' => 0],
+                'constraints' => [new NotBlank()]
             ])
 
             ->add('name', TextType::class, [
