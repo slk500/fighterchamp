@@ -46,7 +46,6 @@ class ClubController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager->flush();
 
             $this->addFlash('success', 'Sukces! Twoje zmiany zostały zapisane');

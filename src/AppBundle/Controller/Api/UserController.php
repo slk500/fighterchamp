@@ -4,7 +4,6 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserCoach;
-use AppBundle\Event\Events;
 use AppBundle\Event\UserCreatedEvent;
 use AppBundle\Form\User\CoachType;
 use AppBundle\Form\User\FighterType;

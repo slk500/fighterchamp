@@ -13,7 +13,8 @@ class HomepageController extends Controller
      */
     public function resultAction(ClubRepository $clubRepository)
     {
-        return $this->render(':main:homepage.html.twig',
+        return $this->render(
+            ':main:homepage.html.twig',
             [
                 'clubs' => $clubRepository->findAll()
             ]
