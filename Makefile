@@ -41,6 +41,9 @@ unit-fail-fast:
 behat:
 	${COMPOSE_EXEC_PHP} vendor/bin/behat
 
+fixer:
+	${COMPOSE_EXEC_PHP} vendor/bin/php-cs-fixer fix --diff --dry-run --verbose
+
 setup-keys:
 	mkdir -p var/jwt
 	openssl genpkey -out var/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
