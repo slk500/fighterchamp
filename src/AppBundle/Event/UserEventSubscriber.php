@@ -33,7 +33,7 @@ class UserEventSubscriber implements EventSubscriberInterface
     {
         $user = $event->getUser();
         $link = $this->router->generate(
-            'user_validation',
+            'view_user_validation',
             ['email' => $user->getEmail(),
                 'hash'=> $user->getHash()],
             UrlGeneratorInterface::ABSOLUTE_URL
