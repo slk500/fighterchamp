@@ -4,6 +4,8 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Tournament;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
 class SignUpTournamentRepository extends EntityRepository
@@ -148,7 +150,7 @@ WHERE f.tournament_id = $tournamentId)");
         return $query->execute();
     }
 
-    public function findAllForTournament($tournament)
+    public function findAllForTournament($tournament): Collection
     {
         $qb = $this->createQueryBuilder('signUpTournament')
             ->leftJoin('signUpTournament . user', 'user')
@@ -161,8 +163,7 @@ WHERE f.tournament_id = $tournamentId)");
             ->addOrderBy('user . surname')
         ;
 
-        $query = $qb->getQuery();
-        return $query->execute();
+        return new ArrayCollection($qb->getQuery()->getResult());
     }
 
     public function findMusicForTournament(Tournament $tournament)
@@ -172,7 +173,6 @@ WHERE f.tournament_id = $tournamentId)");
             ->andWhere('signUpTournament . tournament = :tournament')
             ->andWhere('signUpTournament . deleted_at is null')
             ->andWhere('signUpTournament.deletedAtByAdmin is null')
-            ->andWhere('signUpTournament.youtubeId is not null')
             ->setParameter('tournament', $tournament)
         ;
 

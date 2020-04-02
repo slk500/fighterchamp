@@ -37,8 +37,6 @@ class SignUpTournamentType extends AbstractType
                     'K1 ProAm' => 'K1 ProAm'
                 ]])
 //            ->add('isLicence', CheckboxType::class)
-//            ->add('youtubeId', TextType::class)
-//            ->add('musicArtistAndTitle', TextType::class)
            ;
     }
 

@@ -36,8 +36,6 @@ class AdminSignUpTournamentType extends AbstractType
                 ]])
             ->add('weighted')
 //            ->add('isLicence', CheckboxType::class)
-//            ->add('youtubeId', TextType::class)
-//            ->add('musicArtistAndTitle', TextType::class)
         ;
     }
 

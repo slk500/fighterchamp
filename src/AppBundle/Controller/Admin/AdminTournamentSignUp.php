@@ -26,7 +26,6 @@ class AdminTournamentSignUp extends Controller
         return $diff->y;
     }
 
-
     /**
      * @Route("/turnieje/{id}/lista", name="view_admin_tournament_signup")
      */
@@ -36,12 +35,16 @@ class AdminTournamentSignUp extends Controller
             ->getRepository(SignUpTournament::class)
             ->findAllForTournament($tournament);
 
-        $signUpsPaid = $this->getSignUpsPaid($signUpsTournament);
+        $signUpsPaid = $signUpsTournament->filter(
+            fn(SignUpTournament $signupTournament) => $signupTournament->isPaid())
+            ->count();
 
         $signUpsDeleted = $this->getDoctrine()
             ->getRepository(SignUpTournament::class)->signUpsDeleted($tournament);
 
-        $howManyWeighted = $this->howManyWeighted($signUpsTournament);
+        $howManyWeighted = $signUpsTournament->filter(
+            fn(SignUpTournament $signupTournament) => $signupTournament->getWeighted())
+            ->count();
 
         $weights = $this->getDoctrine()
             ->getRepository('AppBundle:Ruleset')
@@ -108,27 +111,5 @@ class AdminTournamentSignUp extends Controller
             'weights' => $weights,
             'tournament' => $tournament
         ]);
-    }
-
-    private function getSignUpsPaid($signUpsTournament): int
-    {
-        $signUpsPaid = 0;
-        foreach ($signUpsTournament as $signUp) {
-            if ($signUp->isPaid()) {
-                $signUpsPaid++;
-            }
-        }
-        return $signUpsPaid;
-    }
-
-    private function howManyWeighted($signUpsTournament): int
-    {
-        $howManyWeighted = 0;
-        foreach ($signUpsTournament as $signUp) {
-            if ($signUp->getWeighted() != null) {
-                $howManyWeighted++;
-            }
-        }
-        return $howManyWeighted;
     }
 }

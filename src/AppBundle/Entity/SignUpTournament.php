@@ -89,21 +89,6 @@ class SignUpTournament
      */
     private $created_at;
 
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @var string
-     */
-    private $youtubeId = '';
-
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @var string
-     */
-    private $musicArtistAndTitle = '';
-
-
     /**
      * @var string
      * @ORM\Column(type="string")
@@ -216,13 +201,12 @@ class SignUpTournament
         return null;
     }
 
-
-    public function getWeighted()
+    public function getWeighted(): ?string
     {
         return $this->weighted;
     }
 
-    public function setWeighted($weighted)
+    public function setWeighted(string $weighted)
     {
         $this->weighted = $weighted;
     }
@@ -230,27 +214,6 @@ class SignUpTournament
     public function getFinallWeight()
     {
         return $this->weighted ?? $this->weight;
-    }
-
-
-    public function getYoutubeId(): ?string
-    {
-        return $this->youtubeId;
-    }
-
-    public function setYoutubeId(?string $youtubeId = ''): void
-    {
-        $this->youtubeId = $youtubeId;
-    }
-
-    public function getMusicArtistAndTitle(): ?string
-    {
-        return $this->musicArtistAndTitle;
-    }
-
-    public function setMusicArtistAndTitle(?string $musicArtistAndTitle = '')
-    {
-        $this->musicArtistAndTitle = $musicArtistAndTitle;
     }
 
     public function getDeletedAtByAdmin(): ?\DateTime
