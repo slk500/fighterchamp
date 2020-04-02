@@ -4,7 +4,7 @@
     "description": "What runs on fighterchamp.pl",
     "license": "gpl-3.0",
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.4",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/doctrine-migrations-bundle": "^1.1",
