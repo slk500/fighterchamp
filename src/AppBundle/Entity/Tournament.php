@@ -50,7 +50,7 @@ class Tournament
     private $place;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\SignUpTournament", mappedBy="tournament")
+     * @ORM\OneToMany(targetEntity="SignupTournament", mappedBy="tournament")
      */
     private $signUpTournament;
 

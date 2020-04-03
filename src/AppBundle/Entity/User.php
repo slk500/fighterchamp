@@ -161,7 +161,7 @@ class User implements UserInterface, \Serializable
     private $plain_password;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\SignUpTournament", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="SignupTournament", mappedBy="user")
      */
     private $signUpTournaments;
 

@@ -1,6 +1,6 @@
 <?php
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Behat\Behat\Context\Context;
@@ -218,7 +218,7 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function signuptournamentTableShouldBeEmpty()
     {
-        $result = $this->em->getRepository(SignUpTournament::class)->findAll();
+        $result = $this->em->getRepository(SignupTournament::class)->findAll();
 
         TestCase::assertEmpty($result);
     }

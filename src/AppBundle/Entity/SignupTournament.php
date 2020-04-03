@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SignUpTournamentRepository")
  * @ORM\Table(name="signuptournament")
  */
-class SignUpTournament
+class SignupTournament
 {
     public function __construct(User $user, Tournament $tournament)
     {

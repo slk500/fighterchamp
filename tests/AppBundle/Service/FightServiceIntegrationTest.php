@@ -3,7 +3,7 @@
 namespace Tests\AppBundle\Service;
 
 use AppBundle\Entity\Fight;
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Service\FightService;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -73,11 +73,11 @@ class FightServiceIntegrationTest extends TestCase
         $tournament = $this->tournamentBuilder
             ->build();
 
-        $signUp1 = new SignUpTournament($user1, $tournament);
+        $signUp1 = new SignupTournament($user1, $tournament);
         $signUp1->setWeight(69);
         $signUp1->setFormula('A');
         $signUp1->setDiscipline('boks');
-        $signUp2 = new SignUpTournament($user2, $tournament);
+        $signUp2 = new SignupTournament($user2, $tournament);
         $signUp2->setWeight(69);
         $signUp2->setFormula('A');
         $signUp2->setDiscipline('boks');

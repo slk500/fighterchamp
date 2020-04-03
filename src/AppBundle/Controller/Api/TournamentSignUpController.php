@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use AppBundle\Form\AdminSignUpTournamentType;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TournamentSignUpController extends Controller
 {
-    public function show(SignUpTournament $signUp)
+    public function show(SignupTournament $signUp)
     {
         return $signUp;
     }
@@ -26,7 +26,7 @@ class TournamentSignUpController extends Controller
         $user = $entityManager->getReference(User::class, $data['userId']);
         $tournament = $entityManager->getReference(Tournament::class, $data['tournamentId']);
 
-        $signupTournament = new SignUpTournament($user, $tournament);
+        $signupTournament = new SignupTournament($user, $tournament);
         $signupTournament->setFormula($data['formula']);
         $signupTournament->setWeight($data['weight']);
         $signupTournament->setDiscipline($data['discipline']);
@@ -39,7 +39,7 @@ class TournamentSignUpController extends Controller
 
     public function list(Tournament $tournament, EntityManagerInterface $entityManager)
     {
-        return $entityManager->getRepository(SignUpTournament::class) //todo remove flags delete
+        return $entityManager->getRepository(SignupTournament::class) //todo remove flags delete
         ->findBy(
             [
                 'tournament' => $tournament,
@@ -52,18 +52,18 @@ class TournamentSignUpController extends Controller
     public function listNotPair(Tournament $tournament, EntityManagerInterface $entityManager)
     {
         $freeSignUpIdsRaw = $entityManager
-            ->getRepository('AppBundle:SignUpTournament')->findAllSignUpButNotPairYet($tournament->getId());
+            ->getRepository('SignupTournament')->findAllSignUpButNotPairYet($tournament->getId());
 
         $freeSignUpIds = array_map(function (array $arr) {
             return $arr['id'];
         }, $freeSignUpIdsRaw);
 
         return $this->getDoctrine()
-            ->getRepository('AppBundle:SignUpTournament')
+            ->getRepository('SignupTournament')
             ->findBy(['id' => $freeSignUpIds, 'deletedAtByAdmin' => null]);
     }
 
-    public function delete(SignUpTournament $signUpTournament, EntityManagerInterface $entityManager)
+    public function delete(SignupTournament $signUpTournament, EntityManagerInterface $entityManager)
     {
         $signUpTournament->delete();
         $entityManager->flush();
@@ -72,7 +72,7 @@ class TournamentSignUpController extends Controller
     }
 
     public function update(
-        SignUpTournament $signUpTournament,
+        SignupTournament $signUpTournament,
         Request $request,
         EntityManagerInterface $entityManager,
         ApiFormService $apiForm,

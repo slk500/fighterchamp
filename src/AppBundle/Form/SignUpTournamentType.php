@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -43,7 +43,7 @@ class SignUpTournamentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SignUpTournament::class,
+            'data_class' => SignupTournament::class,
             'trait_choices' => null,
             'user_id' => null,
             'csrf_protection'   => false,

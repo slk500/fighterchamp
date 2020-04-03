@@ -2,7 +2,7 @@
 
 namespace Tests\Builder;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 
@@ -33,9 +33,9 @@ class SignupTournamentBuilder extends Builder
      */
     private $discipline;
 
-    public function build(): SignUpTournament
+    public function build(): SignupTournament
     {
-        $signup = new SignUpTournament($this->user, $this->tournament);
+        $signup = new SignupTournament($this->user, $this->tournament);
         $signup->setWeight('100');
         $signup->setFormula('A');
         $signup->setDiscipline('Boks');

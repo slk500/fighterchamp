@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,18 +32,18 @@ class AdminTournamentSignUp extends Controller
     public function signUp(Tournament $tournament)
     {
         $signUpsTournament = $this->getDoctrine()
-            ->getRepository(SignUpTournament::class)
+            ->getRepository(SignupTournament::class)
             ->findAllForTournament($tournament);
 
         $signUpsPaid = $signUpsTournament->filter(
-            fn(SignUpTournament $signupTournament) => $signupTournament->isPaid())
+            fn(SignupTournament $signupTournament) => $signupTournament->isPaid())
             ->count();
 
         $signUpsDeleted = $this->getDoctrine()
-            ->getRepository(SignUpTournament::class)->signUpsDeleted($tournament);
+            ->getRepository(SignupTournament::class)->signUpsDeleted($tournament);
 
         $howManyWeighted = $signUpsTournament->filter(
-            fn(SignUpTournament $signupTournament) => $signupTournament->getWeighted())
+            fn(SignupTournament $signupTournament) => $signupTournament->getWeighted())
             ->count();
 
         $weights = $this->getDoctrine()

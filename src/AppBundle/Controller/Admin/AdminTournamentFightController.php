@@ -23,12 +23,12 @@ class AdminTournamentFightController extends Controller
             ->findAllFightsForTournamentAdmin($tournament);
 
         $freeSignUpIds = $this->getDoctrine()
-            ->getRepository('AppBundle:SignUpTournament')->findAllDeletedWhichHaveAFight($tournament->getId());
+            ->getRepository('SignupTournament')->findAllDeletedWhichHaveAFight($tournament->getId());
 
         $signUps = [];
 
         foreach ($freeSignUpIds as $signUp) {
-            $signUps [] = $this->getDoctrine()->getRepository('AppBundle:SignUpTournament')->find($signUp['id']);
+            $signUps [] = $this->getDoctrine()->getRepository('SignupTournament')->find($signUp['id']);
         }
 
         $normalizeSignUps = $serializer->normalize($signUps);
@@ -47,12 +47,12 @@ class AdminTournamentFightController extends Controller
     public function pairAction(Tournament $tournament, SerializerInterface $serializer)
     {
         $freeSignUpIds = $this->getDoctrine()
-            ->getRepository('AppBundle:SignUpTournament')->findAllSignUpButNotPairYet($tournament->getId());
+            ->getRepository('SignupTournament')->findAllSignUpButNotPairYet($tournament->getId());
 
         $signUps = [];
 
         foreach ($freeSignUpIds as $signUp) {
-            $signUps [] = $this->getDoctrine()->getRepository('AppBundle:SignUpTournament')->find($signUp['id']);
+            $signUps [] = $this->getDoctrine()->getRepository('SignupTournament')->find($signUp['id']);
         }
         //todo should be one query
 

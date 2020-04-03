@@ -3,7 +3,7 @@
 namespace AppBundle\Serializer\Normalizer;
 
 use AppBundle\Entity\Club;
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\User;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -47,7 +47,7 @@ class SignUpNormalizer implements NormalizerInterface
 
     public function supportsNormalization($data, $format = null)
     {
-        return $data instanceof SignUpTournament;
+        return $data instanceof SignupTournament;
     }
 
     private function club(User $user)

@@ -3,7 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\BaseFixture;
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -15,7 +15,7 @@ class SignUpTournamentFixtures extends BaseFixture implements DependentFixtureIn
     {
         foreach (range(1, 10) as $i) {
             foreach (range(1, 10) as $j) {
-                $signUpTournament = new SignUpTournament(
+                $signUpTournament = new SignupTournament(
                     $this->getReference(User::class . '_' . $i),
                     $this->getReference(Tournament::class . '_' . $j)
                 );

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use AppBundle\Form\SignUpTournamentType;
 use AppBundle\Service\RulesetService;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @Route("/turnieje")
  */
-class TournamentSignUpController extends Controller
+class TournamentSignupController extends Controller
 {
     /**
      * @Route("/{id}/zapisy", name="view_tournament_signup")
@@ -28,7 +28,7 @@ class TournamentSignUpController extends Controller
 
             $weights = $rulesetService->getWeights($em, $user);
 
-            $isAlreadySignUp = $em->getRepository('AppBundle:SignUpTournament')
+            $isAlreadySignUp = $em->getRepository('SignupTournament')
                 ->findOneBy(
                     [
                         'tournament' => $tournament,
@@ -37,7 +37,7 @@ class TournamentSignUpController extends Controller
                     ]
                 );
 
-            $signupTournament = $isAlreadySignUp ?? new SignUpTournament($user, $tournament);
+            $signupTournament = $isAlreadySignUp ?? new SignupTournament($user, $tournament);
 
             $form = $this->createForm(
                 SignUpTournamentType::class,

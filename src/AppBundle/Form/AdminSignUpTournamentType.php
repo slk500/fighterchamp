@@ -42,7 +42,7 @@ class AdminSignUpTournamentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\SignUpTournament',
+            'data_class' => 'SignupTournament',
             'trait_choices' => null,
             'user_id' => null,
             'csrf_protection'   => false,

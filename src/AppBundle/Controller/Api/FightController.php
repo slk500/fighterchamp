@@ -3,7 +3,7 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Fight;
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Repository\FightRepository;
 use AppBundle\Service\FightService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +17,7 @@ class FightController
         $signupOneId = $parameterBag->get('signup_1');
         $signupTwoId = $parameterBag->get('signup_2');
 
-        $signUpRepo = $entityManager->getRepository(SignUpTournament::class);
+        $signUpRepo = $entityManager->getRepository(SignupTournament::class);
         $signUp0 = $signUpRepo->find($signupOneId);
         $signUp1 = $signUpRepo->find($signupTwoId);
 

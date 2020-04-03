@@ -2,7 +2,7 @@
 
 namespace Tests\AppBundle\Service;
 
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Service\FightService;
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +13,7 @@ class FightServiceTest extends TestCase
      */
     public function testGetHighestFormula($signUp0Formula, $signUp1Formula, $expected)
     {
-        $signUp = $this->getMockBuilder(SignUpTournament::class)
+        $signUp = $this->getMockBuilder(SignupTournament::class)
             ->setMethods(['getFormula'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -24,12 +24,12 @@ class FightServiceTest extends TestCase
             ->getMock();
 
         /**
-         * @var $signUp0\AppBundle\Entity\SignUpTournament
+         * @var $signUp0\AppBundle\Entity\SignupTournament
          */
         $signUp0 = clone $signUp;
 
         /**
-         * @var $signUp1\AppBundle\Entity\SignUpTournament
+         * @var $signUp1\AppBundle\Entity\SignupTournament
          */
         $signUp1 = clone $signUp;
 

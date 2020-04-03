@@ -3,7 +3,7 @@
 namespace Tests\AppBundle\Controller\Api;
 
 use AppBundle\DataFixtures\ORM\RulesetFixtures;
-use AppBundle\Entity\SignUpTournament;
+use AppBundle\Entity\SignupTournament;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Tests\Builder\SignupTournamentBuilder;
 use Tests\Builder\TournamentBuilder;
@@ -93,7 +93,7 @@ class SignUpControllerTest extends WebTestCase
         );
 
         $signup = $this->em
-            ->getRepository(SignUpTournament::class)
+            ->getRepository(SignupTournament::class)
             ->find(1);
 
         $this->assertNotEmpty($signup);
@@ -150,7 +150,7 @@ class SignUpControllerTest extends WebTestCase
         );
 
         $signup = $this->em
-            ->getRepository(SignUpTournament::class)
+            ->getRepository(SignupTournament::class)
             ->find(1);
 
         $this->em->refresh($signup);
