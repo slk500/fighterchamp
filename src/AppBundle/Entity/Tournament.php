@@ -73,12 +73,12 @@ class Tournament
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $signUpTill;
+    private $signupEnd;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $signUpStart;
+    private $signupStart;
 
     /**
      * @var $logo string
@@ -231,14 +231,14 @@ class Tournament
         return $this->schedule;
     }
 
-    public function getSignUpTill()
+    public function getSignupEnd()
     {
-        return $this->signUpTill;
+        return $this->signupEnd;
     }
 
-    public function setSignUpTill($signUpTill)
+    public function setSignupEnd($signupEnd)
     {
-        $this->signUpTill = $signUpTill;
+        $this->signupEnd = $signupEnd;
     }
 
     public function getLogo(): ?string
@@ -355,15 +355,15 @@ class Tournament
     }
 
 
-    public function getSignUpStart()
+    public function getSignupStart()
     {
-        return $this->signUpStart;
+        return $this->signupStart;
     }
 
 
-    public function setSignUpStart($signUpStart): void
+    public function setSignupStart($signupStart): void
     {
-        $this->signUpStart = $signUpStart;
+        $this->signupStart = $signupStart;
     }
 
 
