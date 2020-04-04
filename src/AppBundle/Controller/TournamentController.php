@@ -2,10 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Discipline;
+use AppBundle\Entity\Place;
 use AppBundle\Entity\Tournament;
+use AppBundle\Form\TournamentCreateType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -14,18 +18,69 @@ use Symfony\Component\HttpFoundation\Response;
 class TournamentController extends Controller
 {
     /**
+     * @Route("/dodaj", name="view_tournament_create")
+     */
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(TournamentCreateType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $array = $form->getData();
+
+            $tournament = new Tournament();
+
+            $tournament->setName($array['name']);
+            $array['disciplines']->map(function (Discipline $discipline) use ($tournament) {
+                $tournament->addDiscipline($discipline);
+           });
+
+            $tournament->setStart($array['start']);
+            $tournament->setEnd($array['end']);
+
+            if (array_key_exists('place', $array) ||
+                array_key_exists('city', $array) ||
+                array_key_exists('street', $array)
+            ) {
+                $place = new Place();
+                $array['name'] ?? $place->setName($array['name']);
+                $array['city'] ?? $place->setCity($array['city']);
+                $array['street'] ?? $place->setStreet($array['street']);
+
+                $tournament->setPlace($place);
+            }
+            $entityManager->persist($place);
+            $entityManager->persist($tournament);
+            $entityManager->flush();
+
+            $link = $this->generateUrl('view_tournament_show', ['id' => $tournament->getId()]);
+            $this->addFlash('success', 'Sukces! Dodałeś turniej: ' . "<a href='$link'>{$tournament->getName()}</a>");
+
+            return $this->redirect($link);
+        }
+
+        return $this->render('tournament/create.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("", name="view_tournament_list")
      */
     public function list(EntityManagerInterface $em): Response
     {
-        $tournaments = $em->getRepository(Tournament::class)
-            ->findBy([], ['id' => 'DESC']);
+        $officialTournaments = $em->getRepository(Tournament::class)
+            ->findBy(['isEditable' => false], ['start' => 'DESC']);
 
+        $unofficialTournaments = $em->getRepository(Tournament::class)
+            ->findBy(['isEditable' => true], ['start' => 'DESC']);
 
         return $this->render(
             'tournament/list.twig',
             [
-                'tournaments' => $tournaments,
+                'officialTournaments' => $officialTournaments,
+                'unofficialTournaments' => $unofficialTournaments
             ]
         );
     }

@@ -18,7 +18,7 @@ class Place
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string
      */
     private $name;
@@ -30,13 +30,13 @@ class Place
     private $capacity;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string
      */
     private $city;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string
      */
     private $street;
@@ -46,7 +46,7 @@ class Place
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -56,7 +56,7 @@ class Place
         $this->name = $name;
     }
 
-    public function getCapacity(): int
+    public function getCapacity(): ?int
     {
         return $this->capacity;
     }
@@ -66,7 +66,7 @@ class Place
         $this->capacity = $capacity;
     }
 
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -76,7 +76,7 @@ class Place
         $this->city = $city;
     }
 
-    public function getStreet(): string
+    public function getStreet(): ?string
     {
         return $this->street;
     }

@@ -1,14 +1,11 @@
 <table class="table table-striped text-center">
     <thead>
     <tr>
-        <th class="text-center">#</th>
+        <th class="text-center"></th>
         <th class="text-center">Nazwa</th>
         <th class="text-center">Dyscypliny</th>
-        <th class="text-center">Liczba Uczestników</th>
         <th class="text-center">Data</th>
         <th class="text-center">Miasto</th>
-        <th class="text-center">Miejsce</th>
-        <th class="text-center">Ulica</th>
     </tr>
     </thead>
     <tbody>
@@ -16,12 +13,14 @@
         <tr>
             <td>{{ loop.revindex }}</td>
             <td><a href="{{ path('view_tournament_show', {'id': tournament.id }) }}">{{ tournament.name }}</a></td>
-            <td>{{ tournament.discipline }}</td>
-            <td>{{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</td>
+            <td>
+            {% for discipline in tournament.disciplines %}
+            {{ discipline }}
+                {% if not loop.last %},{% endif %}
+            {% endfor %}
+            </td>
             <td>{{ tournament.start|date('d-m-Y') }}</td>
             <td>{{ tournament.place ? tournament.place.city }}</td>
-            <td>{{ tournament.place ? tournament.place.name }}</td>
-            <td>{{ tournament.place ? tournament.place.street }}</td>
         </tr>
     {% endfor %}
     </tbody>

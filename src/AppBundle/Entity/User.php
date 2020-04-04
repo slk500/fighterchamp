@@ -271,12 +271,6 @@ class User implements UserInterface, \Serializable
         $this->motherName = $motherName;
     }
 
-//    /**
-//     * @var UserInsuranceData
-//     * @ORM\OneToOne(targetEntity="AppBundle\Entity\UserInsuranceData")
-//     */
-//    private $insuranceData;
-
     public function updateInsuranceData(UserInsuranceData $insuranceData)
     {
         $this->insuranceData = $insuranceData;

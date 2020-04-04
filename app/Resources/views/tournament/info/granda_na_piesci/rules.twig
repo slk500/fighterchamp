@@ -39,8 +39,8 @@
             Jeżeli informacja będzie po terminie, NIE ZWRACAMY wpisowego.
         </li>
         <li>
-            Zgłoszenia przyjmowane są do {{ tournament.signUpTill | date('d-m-Y') }}
-            ({{ tournament.signUpTill |localizeddate('none', 'full', app.request.locale, null, 'cccc') }}).
+            Zgłoszenia przyjmowane są do {{ tournament.signupEnd | date('d-m-Y') }}
+            ({{ tournament.signupEnd |localizeddate('none', 'full', app.request.locale, null, 'cccc') }}).
         </li>
     </ul>
 </div>

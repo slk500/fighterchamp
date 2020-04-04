@@ -44,7 +44,7 @@ class SignupTournament
     private $formula;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tournament", inversedBy="signUpTournament")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tournament", inversedBy="signups")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tournament;

@@ -32,6 +32,12 @@ class Discipline
      */
     private $clubs;
 
+    /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tournament", inversedBy="disciplines")
+     */
+    private $tournaments;
+
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -61,5 +67,15 @@ class Discipline
     public function removeClub(Club $club)
     {
         $this->clubs->removeElement($club);
+    }
+
+    public function addTournament(Tournament $tournament)
+    {
+        $this->tournaments->add($tournament);
+    }
+
+    public function removeTournament(Tournament $tournament)
+    {
+        $this->tournaments->removeElement($tournament);
     }
 }

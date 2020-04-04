@@ -42,11 +42,11 @@
                         </div>
                     </div>
                     <div class="limits col-xs-12 text-center">
-                        <h2>Zapisy do {{ tournament.signUpTill | date('d-m-Y') }}
-                            ({{ tournament.signUpTill |localizeddate('none', 'full', app.request.locale, null, 'cccc') }}
+                        <h2>Zapisy do {{ tournament.signupEnd | date('d-m-Y') }}
+                            ({{ tournament.signupEnd |localizeddate('none', 'full', app.request.locale, null, 'cccc') }}
                             )</h2>
                         <h3 class="text-uppercase">uczestnicy</h3>
-                        <p><strong>{{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</strong></p>
+                        <p><strong>{{ tournament.getSignups| length }} / {{ tournament.capacity }}</strong></p>
                     </div>
                     <div class="key-points col-xs-12 col-md-9">
 

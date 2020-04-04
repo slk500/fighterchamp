@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import '_macros/macro.html.twig' as macro %}
-{% set signUpOpen = "now"|date('Y-m-d') <= tournament.signUpTill|date('Y-m-d') and tournament.signUpStart|date('Y-m-d') <= "now"|date('Y-m-d') %}
+{% set signUpOpen = "now"|date('Y-m-d') <= tournament.signupEnd|date('Y-m-d') and tournament.signUpStart|date('Y-m-d') <= "now"|date('Y-m-d') %}
 {% set isTournamentEnded = tournament.end|date('Y-m-d') < "now"|date('Y-m-d') %}
 
 {% block body %}
@@ -15,7 +15,7 @@
 
                         {% if signUpOpen %}
                             <p class="text-center">
-                                Zgłoszenia przyjmowane są do {{ macro.formatYMDdzienTygodnia(tournament.signUpTill) }}
+                                Zgłoszenia przyjmowane są do {{ macro.formatYMDdzienTygodnia(tournament.signupEnd) }}
                             </p>
                         {% else %}
                             {% if isTournamentEnded %}
@@ -25,7 +25,7 @@
                             {% else %}
                                 <p class="text-center">
                                     Termin przyjmowania zgłoszeń
-                                    minął {{ macro.formatYMDdzienTygodnia(tournament.signUpTill) }}
+                                    minął {{ macro.formatYMDdzienTygodnia(tournament.signupEnd) }}
                                 </p>
                             {% endif %}
                         {% endif %}
@@ -90,7 +90,7 @@
 
                 {% endif %}
 
-                <p class="text-center"> Liczba zapisanych: {{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</p>
+                <p class="text-center"> Liczba zapisanych: {{ tournament.getSignups| length }} / {{ tournament.capacity }}</p>
 
                 <div class="col-sm-6 col-sm-offset-3 user-type">
                     <form class="user-type text-center">

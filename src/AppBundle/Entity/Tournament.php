@@ -18,11 +18,12 @@ class Tournament
     public function __construct()
     {
         $this->userAdmin = new ArrayCollection();
-        $this->signUpTournament = new ArrayCollection();
+        $this->signups = new ArrayCollection();
         $this->schedule = new ArrayCollection();
         $this->info = new ArrayCollection();
         $this->fights = new ArrayCollection();
         $this->awards = new ArrayCollection();
+        $this->disciplines = new ArrayCollection();
     }
 
     /**
@@ -31,6 +32,11 @@ class Tournament
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Discipline", mappedBy="tournaments")
+     */
+    private $disciplines;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="tournament")
@@ -52,7 +58,7 @@ class Tournament
     /**
      * @ORM\OneToMany(targetEntity="SignupTournament", mappedBy="tournament")
      */
-    private $signUpTournament;
+    private $signups;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Schedule", mappedBy="tournament")
@@ -121,14 +127,14 @@ class Tournament
     private $capacity = 0;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var int
+     * @ORM\Column(type="boolean")
      */
-    private $discipline;
+    private bool $isEditable = true;
 
     public function isAvailableSeats(): bool
     {
-        return $this->getSignUpTournament()->count() < $this->capacity;
+        return $this->getSignups()->count() < $this->capacity;
     }
 
     public function getPaymentInfo(): string
@@ -220,9 +226,9 @@ class Tournament
     }
 
 
-    public function getSignUpTournament()
+    public function getSignups()
     {
-        return $this->signUpTournament->matching(TournamentRepository::createSignsUpTournamentNotDeleted());
+        return $this->signups->matching(TournamentRepository::createSignsUpTournamentNotDeleted());
     }
 
 
@@ -366,14 +372,24 @@ class Tournament
         $this->signupStart = $signupStart;
     }
 
-
-    public function getDiscipline(): string
+    public function addDiscipline(Discipline $discipline): void
     {
-        return $this->discipline;
+        if (!$this->disciplines->contains($discipline)) {
+            $this->disciplines->add($discipline);
+        }
+
+        $this->disciplines->add($discipline);
+        $discipline->addTournament($this);
     }
 
-    public function setDiscipline(string $discipline): void
+    public function removeDiscipline(Discipline $discipline)
     {
-        $this->discipline = $discipline;
+        $this->disciplines->removeElement($discipline);
+        $discipline->removeTournament($this);
+    }
+
+    public function getDisciplines()
+    {
+        return $this->disciplines;
     }
 }

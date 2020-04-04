@@ -65,7 +65,7 @@ class ClubController extends Controller
     }
 
     /**
-     * @Route("/utworz", name="view_club_create", options={"expose"=true})
+     * @Route("/dodaj", name="view_club_create", options={"expose"=true})
      */
     public function create(Request $request, EntityManagerInterface $entityManager, ClubRepository $clubRepository)
     {

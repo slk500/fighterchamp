@@ -3,7 +3,7 @@
         {% if tournament is not empty %}
             <h1 class="text-center">{{ tournament.name }}</h1>
             <p class="text-center" id="demo"></p>
-            <p class="text-center"> Liczba zapisanych: {{ tournament.getSignUpTournament| length }} / {{ tournament.capacity }}</p>
+            <p class="text-center"> Liczba zapisanych: {{ tournament.getSignups| length }} / {{ tournament.capacity }}</p>
            <p class="text-center"><a style="font-size: 30px" href="{{ path('view_tournament_signup', { id : tournament.id}) }}">ZAPISY</a></p>
         {% endif %}
 
