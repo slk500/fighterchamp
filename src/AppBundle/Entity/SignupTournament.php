@@ -226,7 +226,8 @@ class SignupTournament
         $this->deletedAtByAdmin = $dateTime;
     }
 
-    public function getDiscipline(): string
+    //todo should be string not ?string - form constraint
+    public function getDiscipline(): ?string
     {
         return $this->discipline;
     }

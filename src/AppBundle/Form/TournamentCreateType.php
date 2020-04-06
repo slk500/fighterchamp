@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Club;
 use AppBundle\Entity\Discipline;
-use AppBundle\Entity\Tournament;
 use AppBundle\Form\EventListener\CreateDisciplineIfNotExist;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -34,19 +33,10 @@ class TournamentCreateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $tournament = $builder->getData();
-
         $builder
-            ->add('name', EntityType::class, [
-                'constraints' => [new NotBlank()],
-                'required' => false,
-                'class' => Tournament::class,
-                'mapped' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->where('u.isEditable = true')
-                        ->orderBy('u.name', 'ASC');
-                }])
+            ->add('name', TextType::class, [
+                'constraints' => [new NotBlank()]
+            ])
             ->add('disciplines', EntityType::class, [
                 'constraints' => [new NotBlank()],
                 'by_reference' => false,

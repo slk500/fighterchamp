@@ -3,8 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Discipline;
+use AppBundle\Entity\FightProposition;
 use AppBundle\Entity\Place;
 use AppBundle\Entity\Tournament;
+use AppBundle\Form\FightPropositionType;
 use AppBundle\Form\TournamentCreateType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -55,7 +57,6 @@ class TournamentController extends Controller
             $entityManager->flush();
 
             $link = $this->generateUrl('view_tournament_show', ['id' => $tournament->getId()]);
-            $this->addFlash('success', 'Sukces! Dodałeś turniej: ' . "<a href='$link'>{$tournament->getName()}</a>");
 
             return $this->redirect($link);
         }
@@ -88,12 +89,30 @@ class TournamentController extends Controller
     /**
      * @Route("/{id}", requirements={"id": "\d+"}, name="view_tournament_show")
      */
-    public function show(Tournament $tournament)
+    public function show(Tournament $tournament, Request $request, EntityManagerInterface $entityManager)
     {
+        $fightPropositions = $entityManager->getRepository(FightProposition::class)
+            ->findBy(['tournament' => $tournament]);
+
+        $fightProposition = new FightProposition($this->getUser(), $tournament);
+
+        $form = $this->createForm(FightPropositionType::class, $fightProposition);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($form->getData());
+            $entityManager->flush();
+
+            return $this->redirectToRoute("view_tournament_show", ['id' => $tournament->getId()]);
+        }
+
         return $this->render(
             $tournament->isEditable() ? 'tournament/info/added_by_users/show.twig':'tournament/show.twig',
             [
+                'form' => $form->createView(),
                 'tournament' => $tournament,
+                'fightPropositions' => $fightPropositions
             ]
         );
     }

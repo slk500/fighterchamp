@@ -436,7 +436,7 @@ class User implements UserInterface, \Serializable
 
     public function __toString()
     {
-        return $this->name .' '. $this->surname;
+        return $this->surname .' '. $this->name . " (id {$this->getId()})" ;
     }
 
     public function getType(): int

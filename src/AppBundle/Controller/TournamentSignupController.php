@@ -28,7 +28,7 @@ class TournamentSignupController extends Controller
 
             $weights = $rulesetService->getWeights($em, $user);
 
-            $isAlreadySignUp = $em->getRepository('SignupTournament')
+            $isAlreadySignUp = $em->getRepository(SignupTournament::class)
                 ->findOneBy(
                     [
                         'tournament' => $tournament,

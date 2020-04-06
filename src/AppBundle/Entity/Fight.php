@@ -59,7 +59,7 @@ class Fight
     private $isVisible = false;
 
     /**
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $day;
 
@@ -90,7 +90,7 @@ class Fight
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private $discipline = false;
+    private $discipline;
 
     public function isLicence(): bool
     {
