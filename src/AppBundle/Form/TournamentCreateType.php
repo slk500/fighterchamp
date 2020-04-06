@@ -58,11 +58,11 @@ class TournamentCreateType extends AbstractType
                 }])
             ->add('start', DateType::class, [
                 'translation_domain' => true,
-                'years' => range((int) date('Y') - 30, (int) date('Y') + 5)
+                'years' => range((int) date('Y') - 30, (int) date('Y'))
             ])
             ->add('end', DateType::class, [
                 'translation_domain' => true,
-                'years' => range((int) date('Y') - 30, (int) date('Y') + 5)
+                'years' => range((int) date('Y') - 30, (int) date('Y'))
             ])
             ->add('place', TextType::class)
             ->add('city', TextType::class)

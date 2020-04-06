@@ -42,6 +42,7 @@ class Discipline
     {
         $this->name = $name;
         $this->clubs = new ArrayCollection();
+        $this->tournaments = new ArrayCollection();
     }
 
     public function getId(): int

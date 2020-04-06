@@ -44,9 +44,9 @@ class TournamentController extends Controller
                 array_key_exists('street', $array)
             ) {
                 $place = new Place();
-                $array['name'] ?? $place->setName($array['name']);
-                $array['city'] ?? $place->setCity($array['city']);
-                $array['street'] ?? $place->setStreet($array['street']);
+                if ($array['name']) $place->setName($array['name']);
+                if ($array['city']) $place->setCity($array['city']);
+                if ($array['street']) $place->setStreet($array['street']);
 
                 $tournament->setPlace($place);
             }
@@ -91,7 +91,7 @@ class TournamentController extends Controller
     public function show(Tournament $tournament)
     {
         return $this->render(
-            'tournament/show.twig',
+            $tournament->isEditable() ? 'tournament/info/added_by_users/show.twig':'tournament/show.twig',
             [
                 'tournament' => $tournament,
             ]

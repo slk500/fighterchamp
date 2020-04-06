@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {% include 'tournament/_parts/_panel.twig' %}
+
+    {% include tournament.editable ? 'tournament/_parts/added_by_user__panel.twig' : 'tournament/_parts/_panel.twig' %}
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12">

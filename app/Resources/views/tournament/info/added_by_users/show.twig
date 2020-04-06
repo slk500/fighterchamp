@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% include 'tournament/_parts/added_by_user__panel.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td>dyscypliny</td>
+                    <td>
+                        {% for discipline in tournament.disciplines %}
+                            {{ discipline }}
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>data rozpoczęcia</td>
+                    <td>{{ tournament.start | date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <td>data zakończenia</td>
+                    <td>{{ tournament.end | date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <td>miasto</td>
+                    <td>{{ tournament.place ? tournament.place.city }}</td>
+                </tr>
+                <tr>
+                    <td>miejsce</td>
+                    <td>{{ tournament.place ? tournament.place.name }}</td>
+                </tr>
+                <tr>
+                    <td>ulica</td>
+                    <td>{{ tournament.place ? tournament.place.street }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

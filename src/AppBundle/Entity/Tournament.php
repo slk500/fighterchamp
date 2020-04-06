@@ -127,10 +127,15 @@ class Tournament
     private $capacity = 0;
 
     /**
-     * @var int
+     * @var boolean
      * @ORM\Column(type="boolean")
      */
     private bool $isEditable = true;
+
+    public function isEditable(): bool
+    {
+        return $this->isEditable;
+    }
 
     public function isAvailableSeats(): bool
     {
@@ -159,7 +164,6 @@ class Tournament
     {
         return $this->start;
     }
-
 
     public function setStart($start)
     {
