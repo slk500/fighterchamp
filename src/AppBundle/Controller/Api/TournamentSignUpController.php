@@ -52,14 +52,14 @@ class TournamentSignUpController extends Controller
     public function listNotPair(Tournament $tournament, EntityManagerInterface $entityManager)
     {
         $freeSignUpIdsRaw = $entityManager
-            ->getRepository('SignupTournament')->findAllSignUpButNotPairYet($tournament->getId());
+            ->getRepository(SignupTournament::class)->findAllSignUpButNotPairYet($tournament->getId());
 
         $freeSignUpIds = array_map(function (array $arr) {
             return $arr['id'];
         }, $freeSignUpIdsRaw);
 
         return $this->getDoctrine()
-            ->getRepository('SignupTournament')
+            ->getRepository(SignupTournament::class)
             ->findBy(['id' => $freeSignUpIds, 'deletedAtByAdmin' => null]);
     }
 
