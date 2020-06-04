@@ -2,14 +2,7 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                <h2>Dodane przez użytkowników</h2>
-                <a href="{{ path('view_tournament_create') }}" class="btn btn-success center">Dodaj turniej</a>
-                {% include 'tournament/_parts/_tournaments.twig' with {tournaments : unofficialTournaments} %}
-            </div>
-                <h2>Oficjalne</h2>
-            <span>Z zapisami przez stronę</span><br>
-                {% include 'tournament/_parts/_tournaments.twig' with {tournaments : officialTournaments} %}
+            {% include 'tournament/_parts/_tournaments.twig' with {tournaments : officialTournaments} %}
         </div>
     </div>
 {% endblock %}
