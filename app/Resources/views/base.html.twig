@@ -75,6 +75,8 @@
 
                 <li {{ (app.request.attributes.get('_route') == 'view_tournament_list') ? 'class="active"' }}><a
                             href="{{ path ('view_tournament_list' ) }}">Turnieje</a></li>
+                <li {{ (app.request.attributes.get('_route') == 'view_sparring_list') ? 'class="active"' }}><a
+                            href="{{ path ('view_sparring_list' ) }}">Sparringi</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_user_list') ? 'class="active"' }}><a
                             href="{{ path ('view_user_list') }}">Ludzie</a></li>
                 <li {{ (app.request.attributes.get('_route') == 'view_club_list') ? 'class="active"' }}><a

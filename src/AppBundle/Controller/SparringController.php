@@ -14,15 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class SparringController extends Controller
 {
     /**
-     * @Route("", name="sparring_list")
+     * @Route("", name="view_sparring_list")
      */
     public function list(EntityManagerInterface $entityManager)
     {
         $sparrings = $entityManager
             ->getRepository(Sparring::class)
             ->findAll();
-
-        dump($sparrings);
 
         return $this->render('sparring/list.html.twig',
             [
