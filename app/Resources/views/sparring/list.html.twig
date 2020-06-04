@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn btn-primary">Dodaj Nowy Sparring</button>
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nazwa</th>
+                        <th class="text-center">Dyscypliny</th>
+                        <th class="text-center">Liczba Uczestników</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Miasto</th>
+                        <th class="text-center">Miejsce</th>
+                        <th class="text-center">Ulica</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sparring in sparrings %}
+                        <tr>
+                            <td>{{ loop.revindex }}</td>
+{#                            <td><a href="{{ path('tournament_show', {'id': tournament.id }) }}">{{ tournament.name }}</a></td>#}
+                            <td>{{ sparring.name }}</td>
+                            <td>{{ sparring.disciplines }}</td>
+                            <td>{{ sparring.signups | length }} / {{ sparring.capacity }}</td>
+                            <td>{{ sparring.start|date('d-m-Y') }}</td>
+                            <td>{{ sparring.club ? sparring.club.city }}</td>
+                            <td>{{ sparring.club ? sparring.club.name }}</td>
+                            <td>{{ sparring.club ? sparring.club.street }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
