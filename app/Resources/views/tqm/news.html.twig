@@ -47,7 +47,7 @@
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {{ form_start(form) }}
-                    {{ form_row(form.body,{ 'label' : 'Wpisz swój komentarz'} ) }}
+                    {{ form_row(form.body,{ 'label' : 'Napisz komentarz...'} ) }}
                     <button type="submit" class="btn btn-primary" formnovalidate>Wyślij</button>
                     {{ form_end(form) }}
                 {% else %}
