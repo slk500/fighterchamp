@@ -16,10 +16,38 @@ class SignupSparring
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sparring", inversedBy="signups")
      */
-    private $sparring;
+    public Sparring $sparring;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="signUpTournaments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    public User $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Discipline")
+     */
+    public ?Discipline $discipline = null;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public ?int $weight = null;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    public ?int $trainingTime = null;
+
+    public function __construct(User $user, Sparring $sparring)
+    {
+        $this->user = $user;
+        $this->sparring = $sparring;
+        $this->createdAt = new \DateTime();
+    }
 }

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <a href="{{ path('view_tournament_create') }}" class="btn btn-success center">Dodaj Sparring</a>
+                <a href="{{ path('view_sparring_create') }}" class="btn btn-success center">Dodaj Sparring</a>
                 <br><br>
                 <table class="table table-striped text-center">
                     <thead>
@@ -15,26 +15,23 @@
                         <th class="text-center">Data</th>
                         <th class="text-center">Miasto</th>
                         <th class="text-center">Miejsce</th>
-                        <th class="text-center">Ulica</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for sparring in sparrings %}
                         <tr>
                             <td>{{ loop.revindex }}</td>
-{#                            <td><a href="{{ path('tournament_show', {'id': tournament.id }) }}">{{ tournament.name }}</a></td>#}
-                            <td>{{ sparring.name }}</td>
+                            <td><a href="{{ path('view_sparring_show', {'id': sparring.id }) }}">{{ sparring.name }}</a></td>
                             <td>
                                 {% for discipline in sparring.disciplines %}
                                     {{ discipline }}
                                     {% if not loop.last %},{% endif %}
                                 {% endfor %}
                             </td>
-                            <td>{{ sparring.signups | length }} / {{ sparring.capacity }}</td>
+                            <td>{{ sparring.signups | length }}</td>
                             <td>{{ sparring.start|date('d-m-Y') }}</td>
-{#                            <td>{{ sparring.club ? sparring.club.city }}</td>#}
-{#                            <td>{{ sparring.club ? sparring.club.name }}</td>#}
-{#                            <td>{{ sparring.club ? sparring.club.street }}</td>#}
+                            <td>{{ sparring.place ? sparring.place.city }}</td>
+                            <td>{{ sparring.place ? sparring.place.name }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

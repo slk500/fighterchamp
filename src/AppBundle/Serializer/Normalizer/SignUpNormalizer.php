@@ -25,7 +25,6 @@ class SignUpNormalizer implements NormalizerInterface
             'id' => $object->getId(),
             'formula'   => $object->getFormula(),
             'weight'   => $object->getFinallWeight(),
-            'staz' => $object->getStazTreningowy(),
             'isPaid' => $object->isPaid(),
             'deletedAtByAdmin' => $object->getDeletedAtByAdmin(),
             'weighted' => $object->getWeighted(),

@@ -193,14 +193,6 @@ class SignupTournament
         return $this->user;
     }
 
-    public function getStazTreningowy()
-    {
-        if ($this->getTrainingTime()) {
-            return '(staż ' . $this->getTrainingTime() . "miesiące) ";
-        }
-        return null;
-    }
-
     public function getWeighted(): ?string
     {
         return $this->weighted;

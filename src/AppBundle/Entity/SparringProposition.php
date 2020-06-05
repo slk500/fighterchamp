@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fight_proposition")
+ * @ORM\Table(name="sparring_proposition")
  */
-class FightProposition
+class SparringProposition
 {
     use TimestampableTrait;
 
@@ -22,11 +22,10 @@ class FightProposition
     private ?int $id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tournament")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sparring")
      * @ORM\JoinColumn(nullable=true)
-     * @var Tournament
      */
-    public Tournament $tournament;
+    public Sparring $sparring;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -60,9 +59,9 @@ class FightProposition
      */
     public ?string $result = null;
 
-    public function __construct(?User $user, Tournament $tournament)
+    public function __construct(?User $user, Sparring $sparring)
     {
-        $this->tournament = $tournament;
+        $this->sparring = $sparring;
         $this->user = $user;
     }
 }

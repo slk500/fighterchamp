@@ -12,10 +12,8 @@ trait CountRecordTrait
 
         foreach ($user->getUserFights() as $userFight) {
             switch ($userFight->getResult()) {
-                case 'win':
-                    $userRecord->addWin();
-                    break;
                 case 'win_ko':
+                case 'win':
                     $userRecord->addWin();
                     break;
                 case 'draw':

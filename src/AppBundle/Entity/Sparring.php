@@ -28,11 +28,6 @@ class Sparring
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $capacity;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\SignupSparring", mappedBy="sparring")
      */
     private $signups;
@@ -41,11 +36,6 @@ class Sparring
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $start;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $end;
 
     /**
      * @var \DateTime
@@ -57,6 +47,17 @@ class Sparring
      * @ORM\ManyToMany(targetEntity="Discipline", mappedBy="sparrings")
      */
     private $disciplines;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Place")
+     */
+    private $place;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     public function __construct()
     {
@@ -105,16 +106,6 @@ class Sparring
         $this->start = $start;
     }
 
-    public function getEnd()
-    {
-        return $this->end;
-    }
-
-    public function setEnd($end): void
-    {
-        $this->end = $end;
-    }
-
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
@@ -136,18 +127,28 @@ class Sparring
         $discipline->removeSparring($this);
     }
 
-    public function getCapacity()
-    {
-        return $this->capacity;
-    }
-
-    public function setCapacity($capacity): void
-    {
-        $this->capacity = $capacity;
-    }
-
     public function getDisciplines(): Collection
     {
         return $this->disciplines;
+    }
+
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    public function setPlace(Place $place): void
+    {
+        $this->place = $place;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 }

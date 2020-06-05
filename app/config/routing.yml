@@ -83,6 +83,13 @@ api_signup_delete:
     requirements:
         id: '\d+'
 
+api_signup_sparring_delete:
+    path:     /api/sparrings-signups/{id}
+    controller: AppBundle\Controller\Api\SignupSparringController::delete
+    condition: 'request.isXmlHttpRequest()'
+    requirements:
+        id: '\d+'
+
 api_club_list:
     path:     /api/clubs
     condition: 'request.isXmlHttpRequest()'

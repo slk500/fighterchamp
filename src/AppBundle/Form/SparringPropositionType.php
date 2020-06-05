@@ -3,7 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Discipline;
-use AppBundle\Entity\FightProposition;
+use AppBundle\Entity\SparringProposition;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class FightPropositionType extends AbstractType
+class SparringPropositionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -61,7 +61,7 @@ class FightPropositionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => FightProposition::class
+            'data_class' => SparringProposition::class
         ]);
     }
 }

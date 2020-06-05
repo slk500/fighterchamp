@@ -1,0 +1,121 @@
+{% import "_macros/macro.html.twig" as macro %}
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>nazwa</td>
+                        <td>{{ sparring.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>data i godzina rozpoczęcia</td>
+                        <td>{{ sparring.start | date('d-m-Y H:i') }}
+                            ({{ sparring.start |localizeddate('none', 'full', app.request.locale, null, 'cccc') }})
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>dyscypliny</td>
+                        <td>
+                            {% for discipline in sparring.disciplines %}
+                                {{ discipline }}
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>miasto</td>
+                        <td>{{ sparring.place ? sparring.place.city }}</td>
+                    </tr>
+                    <tr>
+                        <td>miejsce</td>
+                        <td>{{ sparring.place ? sparring.place.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>ulica</td>
+                        <td>{{ sparring.place ? sparring.place.street }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if is_granted('ROLE_USER') %}
+                {% if form and userSignup == false %}
+                    <div class="col-xs-8 col-xs-offset-2">
+                        {{ form_start(form) }}
+                        {{ form_row(form.discipline,{ 'label' : 'Dyscyplina', 'placeholder' : 'Wybierz dyscypline'} ) }}
+                        {{ form_row(form.weight, { 'label': 'Waga (kg)', 'placeholder':'Wybierz wage' }) }}
+                        {{ form_row(form.trainingTime, {
+                            'label': 'Staż treningowy - liczba lat (opcjonalnie)',
+                            'attr': {'min': 0, 'max' : 99 }}) }}
+                        <button type="submit" class="btn btn-primary" formnovalidate>Wyślij moje zgłoszenie</button>
+                        {{ form_end(form) }}
+                    </div>
+                {% else %}
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <button id="js-signup-delete" onclick="deleteSignup()"
+                                class="btn btn-danger align-left">Skasuj moje zgłoszenie
+                        </button>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="col-xs-8 col-xs-offset-2">
+                    Aby dodać / skasować swoje zgłoszenie na sparing musisz być zalogowany! &#8594;
+                    <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
+                </div>
+            {% endif %}
+
+        </div>
+        <div class="row">
+            <table id="table" class="col-xs-12 table table-striped">
+                <thead>
+                <tr>
+                    <th>Nazwisko i Imię</th>
+                    <th>Rekord</th>
+                    <th>Dyscyplina</th>
+                    <th>Waga [kg]</th>
+                    <th>Staż [lata]</th>
+                    <th>Płeć</th>
+                    <th>Wiek</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for signup in signups %}
+                    <tr>
+                        <td><a href="{{ signup.user.href }}">
+                                {{ signup.user.surname }} {{ signup.user.name }}</a></td>
+                        <td> {{ macro.record(signup.user) }} </td>
+                        <td> {{ signup.discipline }}</td>
+                        <td> {{ signup.weight }}</td>
+                        <td> {{ signup.trainingTime }}</td>
+                        <td> {{ signup.user.male ?  'M' : 'K' }} </td>
+                        <td> {{ signup.user.birthDay |getAge }} </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if userSignup %}
+        <script>
+
+            function deleteSignup() {
+                $.ajax({
+                    type: 'DELETE',
+                    url: "{{ path('api_signup_sparring_delete', {id: userSignup.id }) }}",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
+        </script>
+    {% endif %}
+{% endblock %}

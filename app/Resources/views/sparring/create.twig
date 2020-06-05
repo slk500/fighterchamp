@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
-            <h1>Dodaj turniej</h1>
-            {% include 'tournament/form/create.twig' %}
+            <h1>Dodaj sparing</h1>
+            {% include 'sparring/form/create.twig' %}
         </div>
     </div>
 </div>
@@ -17,15 +17,6 @@
     $('.select2-disciplines').select2({
         tags: true,
         tokenSeparators: [',']
-    });
-
-    $(".select2").change(function () {
-
-        var option = parseInt(document.getElementById('club_create_name').value);
-
-        if(Number.isInteger(option)){
-            window.location.href = Routing.generate('view_club_update', {id: option});
-        }
     });
 </script>
 {% endblock %}

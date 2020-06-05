@@ -9,14 +9,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class TournamentCreateType extends AbstractType
+class SparringCreateType extends AbstractType
 {
     /**
      * @var EntityManagerInterface
@@ -46,13 +46,11 @@ class TournamentCreateType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 }])
-            ->add('start', DateType::class, [
+            ->add('start', DateTimeType::class, [
                 'translation_domain' => true,
-                'years' => range((int) date('Y') - 30, (int) date('Y'))
-            ])
-            ->add('end', DateType::class, [
-                'translation_domain' => true,
-                'years' => range((int) date('Y') - 30, (int) date('Y'))
+                'years' => range(date('Y'), date('Y')),
+                'months' => range(date('m'), 12),
+                'days' => range(date('d'), 31),
             ])
             ->add('place', TextType::class)
             ->add('city', TextType::class)
