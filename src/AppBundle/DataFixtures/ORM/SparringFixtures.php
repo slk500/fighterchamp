@@ -4,6 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\BaseFixture;
 use AppBundle\Entity\Club;
+use AppBundle\Entity\Discipline;
 use AppBundle\Entity\Sparring;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -15,13 +16,15 @@ class SparringFixtures extends BaseFixture implements DependentFixtureInterface
         foreach (range(1,10) as $i) {
             $sparring = new Sparring();
 
+            $discipline = new Discipline(
+                $this->faker->randomElement(['boks','MMA', 'kick-boxing'])
+            );
+            $manager->persist($discipline);
+
             $sparring->setName('Sparing ' . $i);
             $sparring->setStart(new \DateTime("+$i day"));
             $sparring->setCapacity($this->faker->numberBetween(5, 30));
-            $sparring->setDisciplines($this->faker->randomElement(['boks','MMA', 'kick-boxing']));
-
-            $sparring->setClub($this->getReference(Club::class . '_' . $i));
-
+            $sparring->addDiscipline($discipline);
             $manager->persist($sparring);
 
             $this->addReference(Sparring::class . '_' . $i, $sparring);

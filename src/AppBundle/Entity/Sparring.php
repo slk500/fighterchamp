@@ -38,12 +38,6 @@ class Sparring
     private $signups;
 
     /**
-     * @var Club
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
-     */
-    private $club;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $start;
@@ -60,8 +54,7 @@ class Sparring
     private $createdAt;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="Discipline", mappedBy="sparrings")
      */
     private $disciplines;
 
@@ -69,6 +62,7 @@ class Sparring
     {
         $this->createdAt = \DateTime::createFromFormat('U', (string) time());
         $this->signups = new ArrayCollection();
+        $this->disciplines = new ArrayCollection();
     }
 
     public function getId()
@@ -126,24 +120,20 @@ class Sparring
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function addDiscipline(Discipline $discipline): void
     {
-        $this->createdAt = $createdAt;
+        if (!$this->disciplines->contains($discipline)) {
+            $this->disciplines->add($discipline);
+        }
+
+        $this->disciplines->add($discipline);
+        $discipline->addSparring($this);
     }
 
-    public function setDisciplines($disciplines)
+    public function removeDiscipline(Discipline $discipline)
     {
-        $this->disciplines = $disciplines;
-    }
-
-    public function getDisciplines(): ?string
-    {
-        return $this->disciplines;
-    }
-
-    public function setClub(Club $club)
-    {
-        $this->club = $club;
+        $this->disciplines->removeElement($discipline);
+        $discipline->removeSparring($this);
     }
 
     public function getCapacity()
@@ -156,8 +146,8 @@ class Sparring
         $this->capacity = $capacity;
     }
 
-    public function getClub(): Club
+    public function getDisciplines(): Collection
     {
-        return $this->club;
+        return $this->disciplines;
     }
 }

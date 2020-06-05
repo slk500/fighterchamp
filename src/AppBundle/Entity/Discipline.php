@@ -38,11 +38,18 @@ class Discipline
      */
     private $tournaments;
 
+    /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Sparring", inversedBy="disciplines")
+     */
+    private $sparrings;
+
     public function __construct(string $name)
     {
         $this->name = $name;
         $this->clubs = new ArrayCollection();
         $this->tournaments = new ArrayCollection();
+        $this->sparrings = new ArrayCollection();
     }
 
     public function getId(): int
@@ -78,5 +85,15 @@ class Discipline
     public function removeTournament(Tournament $tournament)
     {
         $this->tournaments->removeElement($tournament);
+    }
+
+    public function addSparring(Sparring $sparring)
+    {
+        $this->sparrings->add($sparring);
+    }
+
+    public function removeSparring(Sparring $sparring)
+    {
+        $this->sparrings->removeElement($sparring);
     }
 }
