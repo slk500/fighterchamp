@@ -58,10 +58,4 @@ class SparringProposition
      * @ORM\Column(type="string")
      */
     public ?string $result = null;
-
-    public function __construct(?User $user, Sparring $sparring)
-    {
-        $this->sparring = $sparring;
-        $this->user = $user;
-    }
 }

@@ -1,16 +1,12 @@
 {% import "_macros/macro.html.twig" as macro %}
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% include 'sparring/_panel.twig' %}
     <div class="container">
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
-
                 <table class="table table-bordered">
                     <tbody>
-                    <tr>
-                        <td>nazwa</td>
-                        <td>{{ sparring.name }}</td>
-                    </tr>
                     <tr>
                         <td>data i godzina rozpoczęcia</td>
                         <td>{{ sparring.start | date('d-m-Y H:i') }}
@@ -26,7 +22,6 @@
                             {% endfor %}
                         </td>
                     </tr>
-
                     <tr>
                         <td>miasto</td>
                         <td>{{ sparring.place ? sparring.place.city }}</td>
@@ -42,7 +37,6 @@
                     </tbody>
                 </table>
             </div>
-
             {% if is_granted('ROLE_USER') %}
                 {% if form and userSignup == false %}
                     <div class="col-xs-8 col-xs-offset-2">
