@@ -125,26 +125,24 @@ class SparringController extends Controller
     public function fights(Sparring $sparring, Request $request,
                          EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
     {
-        $fightPropositions = $entityManager->getRepository(SparringProposition::class)
+        $sparringPropositions = $entityManager->getRepository(SparringProposition::class)
             ->findBy(['sparring' => $sparring]);
 
         if ($user = $this->getUser()) {
-//            $userSignups = array_filter($signups,
-//                fn(SignupSparring $signup) => $signup->user == $user);
-//
-//            $signupSparring = $user ? new SignupSparring($user, $sparring) : null;
-
             $form = $this->createForm(SparringPropositionType::class);
 
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $sparringProposition = $form->getData();
                 $sparringProposition->user = $user;
+                $sparringProposition->sparring = $sparring;
                 $entityManager->persist($sparringProposition);
                 $entityManager->flush();
 
-                return $this->redirectToRoute("view_sparring_show", ['id' => $sparring->getId()]);
+                return $this->redirectToRoute("view_sparring_fights", ['id' => $sparring->getId()]);
             }
+
+            dump($sparringPropositions);
         }
 
         return $this->render('sparring/fights.twig',
@@ -152,7 +150,7 @@ class SparringController extends Controller
                 'form' => isset($form) ? $form->createView() : null,
                 'userSignup' => isset($userSignups) ? reset($userSignups) : null,
                 'sparring' => $sparring,
-                'fightPropositions' => $fightPropositions
+                'fightPropositions' => $sparringPropositions
             ]
         );
     }

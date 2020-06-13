@@ -32,13 +32,6 @@ class SparringPropositionType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 }])
-            ->add('formula', ChoiceType::class, [
-                'placeholder' => 'Nie dotyczy',
-                'choices' => [
-                    'A' => 'A',
-                    'B' => 'B',
-                    'C' => 'C'
-                ]])
             ->add('weight', TextType::class, [
                 'constraints' => [new NotBlank()]
             ])

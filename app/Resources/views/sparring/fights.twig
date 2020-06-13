@@ -4,16 +4,6 @@
     {% include 'sparring/_panel.twig' %}
 
     <div class="container">
-
-        <div class="row">
-            {% if is_granted('ROLE_USER') %}
-                <div class="col-xs-8 col-xs-offset-2">
-                    Aby dodać / skasować swoje zgłoszenie na sparing musisz być zalogowany! &#8594;
-                    <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
-                </div>
-            {% endif %}
-        </div>
-
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
                 <h1 class="text-center">Uzupełnij swoją historię walk</h1>
@@ -28,7 +18,6 @@
                     {{ form_start(form) }}
                     {{ form_row(form.opponent, { 'label': 'Przeciwnik' }) }}
                     {{ form_row(form.discipline, { 'label' : 'Dyscyplina'} ) }}
-                    {{ form_row(form.formula, { 'label': 'Formuła' }) }}
                     {{ form_row(form.weight, { 'label': 'Waga' }) }}
                     {{ form_row(form.result, { 'label': 'Wyniki walki' }) }}
                     <button type="submit" class="btn btn-primary" formnovalidate>Zapisz</button>
@@ -73,9 +62,6 @@
                             </td>
                             <td>
                                 {{ fightProposition.weight }}
-                            </td>
-                            <td>
-                                {{ fightProposition.formula }}
                             </td>
                         </tr>
                     {% endfor %}

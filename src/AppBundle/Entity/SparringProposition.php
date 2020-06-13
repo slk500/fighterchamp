@@ -40,11 +40,6 @@ class SparringProposition
     public ?User $opponent = null;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    public ?string $formula = null;
-
-    /**
      * @ORM\Column(type="string")
      */
     public ?string $weight = null;
