@@ -7,7 +7,7 @@ use Faker\Provider\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SignUpTournamentRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SignupTournamentRepository")
  * @ORM\Table(name="signup_tournament")
  */
 class SignupTournament

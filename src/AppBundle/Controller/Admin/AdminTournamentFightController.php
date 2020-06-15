@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\SignupTournament;
 use AppBundle\Entity\Tournament;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -23,12 +24,12 @@ class AdminTournamentFightController extends Controller
             ->findAllFightsForTournamentAdmin($tournament);
 
         $freeSignUpIds = $this->getDoctrine()
-            ->getRepository('SignupTournament')->findAllDeletedWhichHaveAFight($tournament->getId());
+            ->getRepository(SignupTournament::class)->findAllDeletedWhichHaveAFight($tournament->getId());
 
         $signUps = [];
 
         foreach ($freeSignUpIds as $signUp) {
-            $signUps [] = $this->getDoctrine()->getRepository('SignupTournament')->find($signUp['id']);
+            $signUps [] = $this->getDoctrine()->getRepository(SignupTournament::class)->find($signUp['id']);
         }
 
         $normalizeSignUps = $serializer->normalize($signUps);
@@ -47,12 +48,12 @@ class AdminTournamentFightController extends Controller
     public function pairAction(Tournament $tournament, SerializerInterface $serializer)
     {
         $freeSignUpIds = $this->getDoctrine()
-            ->getRepository('SignupTournament')->findAllSignUpButNotPairYet($tournament->getId());
+            ->getRepository(SignupTournament::class)->findAllSignUpButNotPairYet($tournament->getId());
 
         $signUps = [];
 
         foreach ($freeSignUpIds as $signUp) {
-            $signUps [] = $this->getDoctrine()->getRepository('SignupTournament')->find($signUp['id']);
+            $signUps [] = $this->getDoctrine()->getRepository(SignupTournament::class)->find($signUp['id']);
         }
         //todo should be one query
 

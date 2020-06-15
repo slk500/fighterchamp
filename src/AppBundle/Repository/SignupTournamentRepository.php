@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
-class SignUpTournamentRepository extends EntityRepository
+class SignupTournamentRepository extends EntityRepository
 {
     public function findAllSignUpsPaidButDeleted($tournament)
     {
@@ -89,7 +89,7 @@ class SignUpTournamentRepository extends EntityRepository
             ->getConnection();
 
         $stmt = $conn->prepare("
-SELECT sut.id FROM signuptournament sut
+SELECT sut.id FROM signup_tournament sut
 LEFT JOIN user u ON sut.user_id = u.id
 WHERE sut.tournament_id = $tournamentId
 AND sut.deleted_at IS NOT NULL
@@ -112,7 +112,7 @@ WHERE f.tournament_id = $tournamentId)
         $conn = $this->getEntityManager()
             ->getConnection();
 
-        $stmt = $conn->prepare("SELECT sut.id FROM signuptournament sut
+        $stmt = $conn->prepare("SELECT sut.id FROM signup_tournament sut
 LEFT JOIN user u ON sut.user_id = u.id
 WHERE sut.tournament_id = $tournamentId
 AND sut.deleted_at IS NULL
