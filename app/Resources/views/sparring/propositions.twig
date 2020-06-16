@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% import "_macros/macro.html.twig" as macro %}
+{% block body %}
+    {% include 'sparring/_panel.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                {% if not is_granted('ROLE_USER') %}
+                    <p>
+                        Aby uzupełnić historie walk musisz być zalogowany! &#8594;
+                        <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
+                    </p>
+                {% endif %}
+
+                {% if is_granted('ROLE_USER') %}
+                    {{ form_start(form) }}
+                    {{ form_row(form.opponent, { 'label': 'Przeciwnik' }) }}
+                    <button type="submit" class="btn btn-primary" formnovalidate>Wyślij zaproszenie do walki</button>
+                    {{ form_end(form) }}
+                {% endif %}
+                <br>
+            </div>
+        </div>
+            <div class="row">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Zapraszający</th>
+                        <th class="text-center">Przeciwnik</th>
+                        <th class="text-center">Status zaproszenia</th>
+                        <th class="text-center">Waga (kg)</th>
+                        <th class="text-center">Dyscyplina</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for proposition in propositions %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('view_user_show', {'id': proposition.user.id }) }}">
+                                    {{ proposition.user.surname }} {{ proposition.user.name }}
+                                </a><br>
+                                {{ macro.showAgeCategory(proposition.user) }} <br>
+                            </td>
+                            <td>
+                                <a href="{{ path('view_user_show', {'id': proposition.opponent.id }) }}">
+                                    {{ proposition.opponent.surname }} {{ proposition.opponent.name }}
+                                </a><br>
+                                {{ macro.showAgeCategory(proposition.opponent) }} <br>
+                            </td>
+                            <td> Oczekuje
+                                <a href="{{ path('view_sparring_create') }}" class="btn btn-success center">Zaakceptuj</a>
+                                <a href="{{ path('view_sparring_create') }}" class="btn btn-danger center">Odrzuć</a>
+                            </td>
+                            <td>
+                                {{ proposition.weight }} kg
+                            </td>
+                            <td>
+                                {{ proposition.discipline }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}
+

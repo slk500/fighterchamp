@@ -90,23 +90,7 @@
                                 {{ signUp? signUp.formula }}
                                 {{ signUp? signUp.getFinallWeight }}
                                 <br>
-                                {% if user.birthDay %}
-                                    {% set age = user.birthDay |getAge %}
-                                    {{ age }} lat
-                                    {% if(age <= 13) %}
-                                        (adept)
-                                    {% elseif(age == 14) %}
-                                        (młodzik)
-                                    {% elseif(age == 15 or age == 16) %}
-                                        (kadet)
-                                    {% elseif(age == 17 or age == 18) %}
-                                        (junior)
-                                    {% elseif(age >= 19 and age <= 23) %}
-                                        (młodzieżowiec)
-                                    {% elseif(age > 23 ) %}
-                                        (senior)
-                                    {% endif %}
-                                {% endif %}
+                           {{ macro.showAgeCategory(user) }}
 
                                 <br>
                                 {% if signUp %}

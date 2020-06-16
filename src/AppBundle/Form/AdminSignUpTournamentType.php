@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\SignupTournament;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -43,7 +42,7 @@ class AdminSignUpTournamentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SignupTournament::class,
+            'data_class' => 'SignupTournament',
             'trait_choices' => null,
             'user_id' => null,
             'csrf_protection'   => false,

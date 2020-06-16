@@ -7,6 +7,7 @@ use AppBundle\Entity\Place;
 use AppBundle\Entity\SignupSparring;
 use AppBundle\Entity\Sparring;
 use AppBundle\Entity\SparringProposition;
+use AppBundle\Entity\User;
 use AppBundle\Form\SignupSparringType;
 use AppBundle\Form\SparringCreateType;
 use AppBundle\Form\SparringPropositionType;
@@ -84,7 +85,7 @@ class SparringController extends Controller
     }
 
     /**
-     * @Route("/{id}", requirements={"id": "\d+"}, name="view_sparring_show")
+     * @Route("/{id}/zapisy", requirements={"id": "\d+"}, name="view_sparring_show")
      */
     public function show(Sparring $sparring, Request $request,
                          EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
@@ -122,8 +123,7 @@ class SparringController extends Controller
     /**
      * @Route("/{id}/walki", requirements={"id": "\d+"}, name="view_sparring_fights")
      */
-    public function fights(Sparring $sparring, Request $request,
-                         EntityManagerInterface $entityManager, NormalizerInterface $normalizer)
+    public function fights(Sparring $sparring, Request $request, EntityManagerInterface $entityManager)
     {
         $sparringPropositions = $entityManager->getRepository(SparringProposition::class)
             ->findBy(['sparring' => $sparring]);
@@ -141,8 +141,6 @@ class SparringController extends Controller
 
                 return $this->redirectToRoute("view_sparring_fights", ['id' => $sparring->getId()]);
             }
-
-            dump($sparringPropositions);
         }
 
         return $this->render('sparring/fights.twig',
@@ -153,5 +151,49 @@ class SparringController extends Controller
                 'fightPropositions' => $sparringPropositions
             ]
         );
+    }
+
+    /**
+     * @Route("/{id}/propozycje", name="view_sparring_propositions")
+     */
+    public function propositions(Sparring $sparring, Request $request, EntityManagerInterface $entityManager)
+    {
+        if ($user = $this->getUser()) {
+            $signups = $entityManager->getRepository(SignupSparring::class)
+                ->findBy(['sparring' => $sparring]);
+            $signupsWithoutUser = array_filter($signups, fn(SignupSparring $signupSparring) => $user != $signupSparring->user);
+
+            $form = $this->createForm(SparringPropositionType::class, null,
+                ['signupUsers' => array_map(fn(SignupSparring $signupSparring) => $signupSparring->user, $signupsWithoutUser)]
+            );
+
+            $signupSparring = $entityManager
+                ->getRepository(SignupSparring::class)
+                ->findOneBy(['user' => $user, 'sparring' => $sparring]);
+
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $sparringProposition = $form->getData();
+                $sparringProposition->user = $user;
+                $sparringProposition->sparring = $sparring;
+                $sparringProposition->weight = $signupSparring->weight;
+                $sparringProposition->discipline = $signupSparring->discipline;
+                $entityManager->persist($sparringProposition);
+                $entityManager->flush();
+
+                return $this->redirectToRoute("view_sparring_propositions", ['id' => $sparring->getId()]);
+            }
+        }
+
+        $propositions = $entityManager
+            ->getRepository(SparringProposition::class)
+            ->findAll();
+
+        return $this->render('sparring/propositions.twig',
+            [
+                'form' => isset($form) ? $form->createView() : null,
+                'sparring' => $sparring,
+                'propositions' => $propositions
+            ]);
     }
 }

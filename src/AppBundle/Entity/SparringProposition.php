@@ -48,9 +48,4 @@ class SparringProposition
      * @ORM\Column(type="string")
      */
     public ?string $discipline = null;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    public ?string $result = null;
 }
