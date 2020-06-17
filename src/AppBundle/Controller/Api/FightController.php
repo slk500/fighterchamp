@@ -21,9 +21,7 @@ class FightController
         $signUp0 = $signUpRepo->find($signupOneId);
         $signUp1 = $signUpRepo->find($signupTwoId);
 
-        $fight = $fightService->createFightFromSignUps($signUp0, $signUp1);
-
-        return $fight;
+        return $fightService->createFightFromSignUps($signUp0, $signUp1);
     }
 
     public function show(Fight $fight)

@@ -48,9 +48,17 @@
                                 </a><br>
                                 {{ macro.showAgeCategory(proposition.opponent) }} <br>
                             </td>
-                            <td> Oczekuje
-                                <a href="{{ path('view_sparring_create') }}" class="btn btn-success center">Zaakceptuj</a>
-                                <a href="{{ path('view_sparring_create') }}" class="btn btn-danger center">Odrzuć</a>
+                            <td> {{ proposition.status }} <br>
+                                {% if app.user == proposition.opponent %}
+                                    {% if proposition.status == 'zaakceptowane' %}
+                                        <a id="js-proposition-decline" data-id="{{ proposition.id }}" class="btn btn-danger center">Odrzuć</a>
+                                    {% elseif proposition.status == 'odrzucone' %}
+                                        <a id="js-proposition-accept" data-id="{{ proposition.id }}" class="btn btn-success center">Zaakceptuj</a>
+                                    {% else %}
+                                        <a id="js-proposition-decline" data-id="{{ proposition.id }}" class="btn btn-danger center">Odrzuć</a>
+                                        <a id="js-proposition-accept" data-id="{{ proposition.id }}" class="btn btn-success center">Zaakceptuj</a>
+                                    {% endif %}
+                                {% endif %}
                             </td>
                             <td>
                                 {{ proposition.weight }} kg
@@ -65,4 +73,34 @@
             </div>
         </div>
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    $( "#js-proposition-decline" ).click(function() {
+        let propositionId = $(this).data('id');
 
+        $.ajax({
+            type: 'PATCH',
+            url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
+            data: {status: "odrzucone"},
+            success: function () {
+                location.reload();
+            }
+        });
+    });
+
+    $( "#js-proposition-accept" ).click(function() {
+        let propositionId = $(this).data('id');
+
+        $.ajax({
+            type: 'PATCH',
+            url: Routing.generate('api_sparring_proposition_update', {id: propositionId, status: 'accept'}),
+            data: {status: "zaakceptowane"},
+            success: function () {
+                location.reload();
+            }
+        });
+    });
+</script>
+
+{% endblock %}

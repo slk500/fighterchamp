@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,14 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SparringProposition
 {
-    use TimestampableTrait;
+    public function __construct()
+    {
+        $this->createdAt = \DateTime::createFromFormat('U', (string) time());
+    }
 
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    public ?int $id = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sparring")
@@ -48,4 +50,14 @@ class SparringProposition
      * @ORM\Column(type="string")
      */
     public ?string $discipline = null;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public ?string $status = 'oczekuje';
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    public \DateTime $createdAt;
 }

@@ -90,6 +90,16 @@ api_signup_sparring_delete:
     requirements:
         id: '\d+'
 
+api_sparring_proposition_update:
+    path:     /api/sparrings-propositions/{id}
+    controller: AppBundle\Controller\Api\SparringPropositionController::update
+    methods: PATCH
+    condition: 'request.isXmlHttpRequest()'
+    options:
+        expose: true
+    requirements:
+        id: '\d+'
+
 api_club_list:
     path:     /api/clubs
     condition: 'request.isXmlHttpRequest()'
