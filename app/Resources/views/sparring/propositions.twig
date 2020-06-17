@@ -23,12 +23,12 @@
             </div>
         </div>
             <div class="row">
-                <table class="table table-striped text-center">
+                <table class="table table-striped text-center" id="table">
                     <thead>
                     <tr>
                         <th class="text-center">Zapraszający</th>
                         <th class="text-center">Przeciwnik</th>
-                        <th class="text-center">Status zaproszenia</th>
+                        <th class="text-center">Status</th>
                         <th class="text-center">Waga (kg)</th>
                         <th class="text-center">Dyscyplina</th>
                     </tr>
@@ -51,13 +51,12 @@
                             <td> {{ proposition.status }} <br>
                                 {% if app.user == proposition.opponent %}
                                     {% if proposition.status == 'zaakceptowane' %}
-                                        <a id="js-proposition-decline" data-id="{{ proposition.id }}" class="btn btn-danger center">Odrzuć</a>
+                                        <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
                                     {% elseif proposition.status == 'odrzucone' %}
-                                        <a id="js-proposition-accept" data-id="{{ proposition.id }}" class="btn btn-success center">Zaakceptuj</a>
+                                        <a onclick="accept({{ proposition.id }})" class="btn btn-success center">Zaakceptuj</a>
                                     {% else %}
-                                        <a id="js-proposition-decline" data-id="{{ proposition.id }}" class="btn btn-danger center">Odrzuć</a>
-                                        <a id="js-proposition-accept" data-id="{{ proposition.id }}" class="btn btn-success center">Zaakceptuj</a>
-                                    {% endif %}
+                                        <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
+                                        <a onclick="accept({{ proposition.id }})" class="btn btn-success center">Zaakceptuj</a>                                    {% endif %}
                                 {% endif %}
                             </td>
                             <td>
@@ -76,9 +75,7 @@
 {% block javascripts %}
     {{ parent() }}
 <script>
-    $( "#js-proposition-decline" ).click(function() {
-        let propositionId = $(this).data('id');
-
+    function decline(propositionId) {
         $.ajax({
             type: 'PATCH',
             url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
@@ -87,20 +84,17 @@
                 location.reload();
             }
         });
-    });
+    }
 
-    $( "#js-proposition-accept" ).click(function() {
-        let propositionId = $(this).data('id');
-
+    function accept(propositionId) {
         $.ajax({
             type: 'PATCH',
-            url: Routing.generate('api_sparring_proposition_update', {id: propositionId, status: 'accept'}),
+            url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
             data: {status: "zaakceptowane"},
             success: function () {
                 location.reload();
             }
         });
-    });
+    }
 </script>
-
 {% endblock %}

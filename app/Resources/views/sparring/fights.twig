@@ -14,15 +14,15 @@
                     </p>
                 {% endif %}
 
-                {% if is_granted('ROLE_USER') %}
-                    {{ form_start(form) }}
-                    {{ form_row(form.opponent, { 'label': 'Przeciwnik' }) }}
-                    {{ form_row(form.discipline, { 'label' : 'Dyscyplina'} ) }}
-                    {{ form_row(form.weight, { 'label': 'Waga' }) }}
-                    {{ form_row(form.result, { 'label': 'Wyniki walki' }) }}
-                    <button type="submit" class="btn btn-primary" formnovalidate>Zapisz</button>
-                    {{ form_end(form) }}
-                {% endif %}
+{#                {% if is_granted('ROLE_USER') %}#}
+{#                    {{ form_start(form) }}#}
+{#                    {{ form_row(form.opponent, { 'label': 'Przeciwnik' }) }}#}
+{#                    {{ form_row(form.discipline, { 'label' : 'Dyscyplina'} ) }}#}
+{#                    {{ form_row(form.weight, { 'label': 'Waga' }) }}#}
+{#                    {{ form_row(form.result, { 'label': 'Wyniki walki' }) }}#}
+{#                    <button type="submit" class="btn btn-primary" formnovalidate>Zapisz</button>#}
+{#                    {{ form_end(form) }}#}
+{#                {% endif %}#}
                 <br>
             </div>
         </div>

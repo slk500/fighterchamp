@@ -57,6 +57,11 @@ class SparringProposition
     public ?string $status = 'oczekuje';
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    public ?string $result = '';
+
+    /**
      * @ORM\Column(type="datetime")
      */
     public \DateTime $createdAt;
