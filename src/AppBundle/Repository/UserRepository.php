@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Sparring;
+use AppBundle\Entity\SparringProposition;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
@@ -49,6 +52,30 @@ order by u.male, formula, weight, win desc, draw desc, lose')
 
         $query = $qb->getQuery();
         return $query->execute();
+    }
+
+    public function findSparringOpponentsIds(Sparring $sparring, User $user)
+    {
+        $sparringId = $sparring->getId();
+        $userId = $user->getId();
+
+        $conn = $this->getEntityManager()
+            ->getConnection();
+
+        $stmt = $conn->prepare("
+        SELECT id
+        FROM user
+        WHERE user.id
+          NOT IN (
+          select opponent_id
+          from sparring_proposition sp
+              where sp.sparring_id = $sparringId and user_id = $userId
+      )
+      AND id != $userId
+      ");
+
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     public function findAllListAction(int $type)

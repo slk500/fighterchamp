@@ -29,15 +29,12 @@ class SparringPropositionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $fighters = $this->em->getRepository(User::class)->findBy(
-            [], ['surname' => 'ASC']);
-
         $builder
             ->add('opponent', EntityType::class, [
                 'class' => User::class,
                 'choices' => [
                     'zawodnicy zapisani' => $options['signupUsers'],
-                    'zawodnicy niezapisani' => $fighters
+                    'zawodnicy niezapisani' => $options['fighters']
                 ]
                 ])
             ;
@@ -47,7 +44,8 @@ class SparringPropositionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SparringProposition::class,
-            'signupUsers' => null
+            'signupUsers' => null,
+            'fighters' => null
         ]);
     }
 }

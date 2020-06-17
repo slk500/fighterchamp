@@ -161,10 +161,17 @@ class SparringController extends Controller
         if ($user = $this->getUser()) {
             $signups = $entityManager->getRepository(SignupSparring::class)
                 ->findBy(['sparring' => $sparring]);
-            $signupsWithoutUser = array_filter($signups, fn(SignupSparring $signupSparring) => $user != $signupSparring->user);
+            $signupsWithoutLoggedInUser = array_filter($signups, fn(SignupSparring $signupSparring) => $user != $signupSparring->user);
+
+            $fightersIdsInArray = $entityManager->getRepository(User::class)
+                ->findSparringOpponentsIds($sparring, $user);
+            $fightersIds = array_map(fn (array $arr) => $arr['id'], $fightersIdsInArray);
+            $fighters = $entityManager->getRepository(User::class)
+                ->findBy(['id' => $fightersIds],['surname' => 'asc']);
 
             $form = $this->createForm(SparringPropositionType::class, null,
-                ['signupUsers' => array_map(fn(SignupSparring $signupSparring) => $signupSparring->user, $signupsWithoutUser)]
+                ['signupUsers' => array_map(fn(SignupSparring $signupSparring) => $signupSparring->user, $signupsWithoutLoggedInUser),
+                    'fighters' => $fighters]
             );
 
             $signupSparring = $entityManager

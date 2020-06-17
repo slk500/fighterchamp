@@ -100,8 +100,6 @@ JOIN fight f ON uf.fight_id = f.id
 WHERE f.tournament_id = $tournamentId)
 ");
 
-
-
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -122,10 +120,7 @@ JOIN user_fight uf ON uf.user_id = uu.id
 JOIN fight f ON uf.fight_id = f.id
 WHERE f.tournament_id = $tournamentId)");
 
-
-
         $stmt->execute();
-
         return $stmt->fetchAll();
     }
 
@@ -143,7 +138,6 @@ WHERE f.tournament_id = $tournamentId)");
             ->addOrderBy('signUpTournament . formula')
             ->addOrderBy('signUpTournament . weight')
             ->addOrderBy('user . surname')
-
         ;
 
         $query = $qb->getQuery();
