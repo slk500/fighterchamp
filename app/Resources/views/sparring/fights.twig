@@ -6,12 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
-                <h1 class="text-center">Uzupełnij swoją historię walk</h1>
                 {% if not is_granted('ROLE_USER') %}
-                    <p>
+                    <div class="text-center">
                         Aby uzupełnić historie walk musisz być zalogowany! &#8594;
                         <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
-                    </p>
+                    </div>
                 {% endif %}
 
 {#                {% if is_granted('ROLE_USER') %}#}

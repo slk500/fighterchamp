@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
                 {% if not is_granted('ROLE_USER') %}
-                    <p>
-                        Aby uzupełnić historie walk musisz być zalogowany! &#8594;
+                    <div class="text-center">
+                        Aby wysłać zaporoszenie do walki musisz być zalogowany! &#8594;
                         <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
-                    </p>
+                    </div>
                 {% endif %}
 
                 {% if is_granted('ROLE_USER') %}
@@ -22,79 +22,108 @@
                 <br>
             </div>
         </div>
-            <div class="row">
-                <table class="table table-striped text-center" id="table">
-                    <thead>
+        <div class="row">
+            <table class="table table-striped text-center" id="table">
+                <thead>
+                <tr>
+                    <th class="text-center">Zapraszający</th>
+                    <th class="text-center">Przeciwnik</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Waga (kg)</th>
+                    <th class="text-center">Dyscyplina</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for proposition in propositions %}
                     <tr>
-                        <th class="text-center">Zapraszający</th>
-                        <th class="text-center">Przeciwnik</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Waga (kg)</th>
-                        <th class="text-center">Dyscyplina</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for proposition in propositions %}
-                        <tr>
-                            <td>
-                                <a href="{{ path('view_user_show', {'id': proposition.user.id }) }}">
-                                    {{ proposition.user.surname }} {{ proposition.user.name }}
-                                </a><br>
-                                {{ macro.showAgeCategory(proposition.user) }} <br>
-                            </td>
-                            <td>
-                                <a href="{{ path('view_user_show', {'id': proposition.opponent.id }) }}">
-                                    {{ proposition.opponent.surname }} {{ proposition.opponent.name }}
-                                </a><br>
-                                {{ macro.showAgeCategory(proposition.opponent) }} <br>
-                            </td>
-                            <td> {{ proposition.status }} <br>
-                                {% if app.user == proposition.opponent %}
-                                    {% if proposition.status == 'zaakceptowane' %}
-                                        <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
-                                    {% elseif proposition.status == 'odrzucone' %}
-                                        <a onclick="accept({{ proposition.id }})" class="btn btn-success center">Zaakceptuj</a>
-                                    {% else %}
-                                        <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
-                                        <a onclick="accept({{ proposition.id }})" class="btn btn-success center">Zaakceptuj</a>                                    {% endif %}
+                        <td>
+                            <a href="{{ path('view_user_show', {'id': proposition.user.id }) }}">
+                                {{ proposition.user.surname }} {{ proposition.user.name }}
+                            </a><br>
+                            {{ macro.showAgeCategory(proposition.user) }} <br>
+                            {% if app.user == proposition.user %}
+                                <select onChange="doSomething({{ proposition.id }}, this.value)"
+                                        class="select_winner" autocomplete="off"
+                                        {{ proposition.status == 'oczekuje na akceptację zaproszenia' ? 'disabled' : null }}
+                                >
+                                    <option value="null"></option>
+                                    <option {{ proposition.result == 'user' ? 'selected' }} value="user">Wygrałem</option>
+                                    <option {{ proposition.result == 'opponent' ? 'selected' }} value="opponent">Przegrałem</option>
+                                    <option {{ proposition.result == 'draw' ? 'selected' }} value="draw">Remis</option>
+                                </select>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('view_user_show', {'id': proposition.opponent.id }) }}">
+                                {{ proposition.opponent.surname }} {{ proposition.opponent.name }}
+                            </a><br>
+                            {{ macro.showAgeCategory(proposition.opponent) }} <br>
+                        </td>
+                        <td> {{ proposition.status }} <br>
+                            {% if app.user == proposition.opponent %}
+                                {% if proposition.status == 'zaproszenie zaakceptowane' %}
+                                    <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
+                                {% elseif proposition.status == 'odrzucone' %}
+                                    <a onclick="accept({{ proposition.id }})"
+                                       class="btn btn-success center">Zaakceptuj</a>
+                                {% else %}
+                                    <a onclick="decline({{ proposition.id }})" class="btn btn-danger center">Odrzuć</a>
+                                    <a onclick="accept({{ proposition.id }})"
+                                       class="btn btn-success center">Zaakceptuj</a>
                                 {% endif %}
-                            </td>
-                            <td>
-                                {{ proposition.weight }} kg
-                            </td>
-                            <td>
-                                {{ proposition.discipline }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+
+                                {% if proposition.result and proposition.status != 'wynik zaakceptowany' %}
+
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ proposition.weight }} kg
+                        </td>
+                        <td>
+                            {{ proposition.discipline }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-<script>
-    function decline(propositionId) {
-        $.ajax({
-            type: 'PATCH',
-            url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
-            data: {status: "odrzucone"},
-            success: function () {
-                location.reload();
-            }
-        });
-    }
+    <script>
+        function doSomething(propositionId, value) {
+            $.ajax({
+                type: 'PATCH',
+                url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
+                data: {result: value},
+                success: function () {
+                     location.reload();
+                }
+            });
+        }
 
-    function accept(propositionId) {
-        $.ajax({
-            type: 'PATCH',
-            url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
-            data: {status: "zaakceptowane"},
-            success: function () {
-                location.reload();
-            }
-        });
-    }
-</script>
+        function decline(propositionId) {
+            $.ajax({
+                type: 'PATCH',
+                url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
+                data: {status: "odrzucone"},
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+
+        function accept(propositionId) {
+            $.ajax({
+                type: 'PATCH',
+                url: Routing.generate('api_sparring_proposition_update', {id: propositionId}),
+                data: {status: "zaakceptowane"},
+                success: function () {
+                    location.reload();
+                }
+            });
+        }
+    </script>
 {% endblock %}

@@ -12,7 +12,16 @@ class SparringPropositionController
                            Request $request, EntityManagerInterface $entityManager)
     {
         $parameterBag = $request->request;
-        $sparringProposition->status = $parameterBag->get('status');
+
+        if ($parameterBag->get('status')){
+            $sparringProposition->status = $parameterBag->get('status');
+        }
+
+        if($parameterBag->get('result')){
+            $sparringProposition->result =
+                ($parameterBag->get('result') == 'null') ? null : $parameterBag->get('result');
+        }
+
         $entityManager->flush();
 
         return $sparringProposition;
