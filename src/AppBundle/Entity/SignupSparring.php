@@ -40,9 +40,9 @@ class SignupSparring
     public ?int $weight = null;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    public ?int $trainingTime = null;
+    public ?string $trainingTime = null;
 
     public function __construct(User $user, Sparring $sparring)
     {

@@ -54,7 +54,7 @@ class SparringProposition
     /**
      * @ORM\Column(type="string")
      */
-    public ?string $status = 'oczekuje';
+    public ?string $status = 'zaproszenie oczekuje na akceptacje przeciwnika';
 
     /**
      * @ORM\Column(type="string", nullable=true)
