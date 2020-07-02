@@ -123,32 +123,15 @@ class SparringController extends Controller
     /**
      * @Route("/{id}/walki", requirements={"id": "\d+"}, name="view_sparring_fights")
      */
-    public function fights(Sparring $sparring, Request $request, EntityManagerInterface $entityManager)
+    public function fights(Sparring $sparring, EntityManagerInterface $entityManager)
     {
-        $sparringPropositions = $entityManager->getRepository(SparringProposition::class)
-            ->findBy(['sparring' => $sparring]);
-
-        if ($user = $this->getUser()) {
-            $form = $this->createForm(SparringPropositionType::class);
-
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $sparringProposition = $form->getData();
-                $sparringProposition->user = $user;
-                $sparringProposition->sparring = $sparring;
-                $entityManager->persist($sparringProposition);
-                $entityManager->flush();
-
-                return $this->redirectToRoute("view_sparring_fights", ['id' => $sparring->getId()]);
-            }
-        }
+        $fights = $entityManager->getRepository(SparringProposition::class)
+            ->findBy(['sparring' => $sparring, 'status' => 'wynik walki został zaakceptowany przez przeciwnika']);
 
         return $this->render('sparring/fights.twig',
             [
-                'form' => isset($form) ? $form->createView() : null,
-                'userSignup' => isset($userSignups) ? reset($userSignups) : null,
-                'sparring' => $sparring,
-                'fightPropositions' => $sparringPropositions
+                'fights' => $fights,
+                'sparring' => $sparring
             ]
         );
     }

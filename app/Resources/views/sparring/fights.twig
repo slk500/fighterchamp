@@ -5,54 +5,41 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-                {% if not is_granted('ROLE_USER') %}
-                    <div class="text-center">
-                        Aby uzupełnić historie walk musisz być zalogowany! &#8594;
-                        <a href="{{ path ('view_login') }}">Przejdź do strony logowania</a>
-                    </div>
-                {% endif %}
-
-{#                {% if is_granted('ROLE_USER') %}#}
-{#                    {{ form_start(form) }}#}
-{#                    {{ form_row(form.opponent, { 'label': 'Przeciwnik' }) }}#}
-{#                    {{ form_row(form.discipline, { 'label' : 'Dyscyplina'} ) }}#}
-{#                    {{ form_row(form.weight, { 'label': 'Waga' }) }}#}
-{#                    {{ form_row(form.result, { 'label': 'Wyniki walki' }) }}#}
-{#                    <button type="submit" class="btn btn-primary" formnovalidate>Zapisz</button>#}
-{#                    {{ form_end(form) }}#}
-{#                {% endif %}#}
-                <br>
-            </div>
-        </div>
-            <div class="row">
-                <h2>Wnioski</h2>
-                <span>Aby walka i rezultat zostały zapisane wniosek musi zostać zaakceptowany przez Przeciwnika</span><br><br>
                 <table class="table table-striped text-center">
                     <thead>
                     <tr>
-                        <th class="text-center">Wnioskujący</th>
-                        <th class="text-center">Wynik walki</th>
-                        <th class="text-center">Przeciwnik</th>
+                        <th class="text-center">Zawodnik 1</th>
+                        <th class="text-center">Zawodnik 2</th>
                         <th class="text-center">Dyscyplina</th>
                         <th class="text-center">Waga</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for fightProposition in fightPropositions %}
+                    {% for fightProposition in fights %}
                         <tr>
                             <td>
                                 <a href="{{ path('view_user_show', {'id': fightProposition.user.id }) }}">
                                     {{ fightProposition.user.surname }} {{ fightProposition.user.name }}
                                 </a>
-                            </td>
-                            <td>
-                                {{ fightProposition.result }}
+                                {% if fightProposition.result == 'user' %}
+                                    <span class="label label-success">W</span>
+                                {% elseif fightProposition.result == 'opponent' %}
+                                    <span class="label label-danger">L</span>
+                                {% elseif fightProposition.result == 'draw' %}
+                                    <span class="label label-warning">D</span>
+                                {% endif %}
                             </td>
                             <td>
                                 <a href="{{ path('view_user_show', {'id': fightProposition.opponent.id }) }}">
                                     {{ fightProposition.opponent.surname }} {{ fightProposition.opponent.name }}
                                 </a>
+                                {% if fightProposition.result == 'opponent' %}
+                                    <span class="label label-success">W</span>
+                                {% elseif fightProposition.result == 'user' %}
+                                    <span class="label label-danger">L</span>
+                                {% elseif fightProposition.result == 'draw' %}
+                                    <span class="label label-warning">D</span>
+                                {% endif %}
                             </td>
 
                             <td>
@@ -65,7 +52,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
         </div>
+    </div>
 {% endblock %}
 
