@@ -31,13 +31,13 @@ class SecurityController extends Controller
                     'hash' => $hash]
             );
 
-        if ($user) {
-            $user->validate();
-            $em->flush();
-            $this->addFlash('success_info', 'Sukces. Twoje konto jest już aktywne.');
-        } else {
+        if(!$user){
             $this->addFlash('danger_info', 'Niepoprawne dane. Użyj linka który został wysłany na twojego maila.');
         }
+
+        $user->validate();
+        $em->flush();
+        $this->addFlash('success_info', 'Sukces. Twoje konto jest już aktywne.');
 
         return $this->render('security/validate.html.twig');
     }

@@ -34,10 +34,7 @@ class TournamentVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        if (
-            $this->decisionManager->decide($token, ['ROLE_USER']) &&
-            $token->getUser()->getType() != 3
-        ) {
+        if ($this->decisionManager->decide($token, ['ROLE_USER']) && $token->getUser()->getType() != 3) {
             return true;
         }
         return false;
