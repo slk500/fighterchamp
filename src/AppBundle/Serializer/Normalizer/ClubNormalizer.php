@@ -32,7 +32,6 @@ class ClubNormalizer implements NormalizerInterface, SerializerAwareInterface
             'street' => $object->getStreet(),
             'www' => $object->getWww(),
             'city' => $object->getCity(),
-            'street' => $object->getStreet(),
             'record' => $this->countRecordClub($object->getUsers()),
             'users' => $this->serializer->normalize($object->getUsers(), $format, $context)
         ];
